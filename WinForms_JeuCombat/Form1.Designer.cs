@@ -76,7 +76,7 @@
             QuitButton.TabIndex = 1;
             QuitButton.TextImageRelation = TextImageRelation.ImageAboveText;
             QuitButton.UseVisualStyleBackColor = false;
-            QuitButton.Click += button2_Click;
+            QuitButton.Click += exitButton_Click;
             // 
             // label1
             // 
@@ -106,7 +106,7 @@
             DamagerButton.Text = "Damager";
             DamagerButton.TextImageRelation = TextImageRelation.ImageAboveText;
             DamagerButton.UseVisualStyleBackColor = false;
-            DamagerButton.Click += button3_Click;
+            DamagerButton.Click += characterChoice_Click;
             // 
             // HealerButton
             // 
@@ -125,7 +125,7 @@
             HealerButton.Text = "Healer";
             HealerButton.TextImageRelation = TextImageRelation.ImageAboveText;
             HealerButton.UseVisualStyleBackColor = false;
-            HealerButton.Click += button3_Click;
+            HealerButton.Click += characterChoice_Click;
             // 
             // TankButton
             // 
@@ -143,7 +143,7 @@
             TankButton.Text = "Tank";
             TankButton.TextImageRelation = TextImageRelation.ImageAboveText;
             TankButton.UseVisualStyleBackColor = false;
-            TankButton.Click += button3_Click;
+            TankButton.Click += characterChoice_Click;
             // 
             // AssasinButton
             // 
@@ -161,11 +161,12 @@
             AssasinButton.Text = "Assassin";
             AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
             AssasinButton.UseVisualStyleBackColor = false;
-            AssasinButton.Click += button3_Click;
+            AssasinButton.Click += characterChoice_Click;
             // 
             // textBox1
             // 
             textBox1.AcceptsReturn = true;
+            textBox1.Font = new Font("Segoe UI", 15F);
             textBox1.Location = new Point(637, 57);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
@@ -183,7 +184,7 @@
             AttackButton.Tag = "1";
             AttackButton.Text = "Attack";
             AttackButton.UseVisualStyleBackColor = true;
-            AttackButton.Click += button7_Click;
+            AttackButton.Click += actionChoice_Click;
             // 
             // DefendButton
             // 
@@ -194,7 +195,7 @@
             DefendButton.Tag = "2";
             DefendButton.Text = "Defend";
             DefendButton.UseVisualStyleBackColor = true;
-            DefendButton.Click += button7_Click;
+            DefendButton.Click += actionChoice_Click;
             // 
             // SpellButton
             // 
@@ -205,7 +206,7 @@
             SpellButton.Tag = "3";
             SpellButton.Text = "Spell";
             SpellButton.UseVisualStyleBackColor = true;
-            SpellButton.Click += button7_Click;
+            SpellButton.Click += actionChoice_Click;
             // 
             // Form1
             // 

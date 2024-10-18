@@ -42,10 +42,10 @@ namespace WinForms_JeuCombat
             characterButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
             //Set all the images for the buttons
             imageList.AddRange(new List<Image>() { 
-                Image.FromFile("./Images/damager.png"),
-                Image.FromFile("./Images/healer.png"),
-                Image.FromFile("./Images/tank.png"),
-                Image.FromFile("./Images/assassin.png") 
+                Image.FromFile("./Images/damager_selection.png"),
+                Image.FromFile("./Images/healer_selection.png"),
+                Image.FromFile("./Images/tank_selection.png"),
+                Image.FromFile("./Images/assassin_selection.png") 
             });
             //List of all the option buttons to display later
             optionButtonList.AddRange(new Button[] {AttackButton, DefendButton, SpellButton});
@@ -54,11 +54,11 @@ namespace WinForms_JeuCombat
         private async void button1_Click(object sender, EventArgs e)
         {
             //ANimate controls leaving screen
-            BounceFunction(PlayButton, new Point(0, 250), new Point(0, 500), 1);
-            BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
-            BounceFunction(label1, new Point(0, 100), new Point(0, 400), 1);
+            AnimationClass.BounceFunction(PlayButton, new Point(0, 250), new Point(0, 500), 1);
+            AnimationClass.BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
+            AnimationClass.BounceFunction(label1, new Point(0, 100), new Point(0, 400), 1);
 
-            buttonOffset = 200;//Offset
+            buttonOffset = 0;//Offset
 
             await Task.Delay(2000);//Wait 2 seconds
 
@@ -66,17 +66,26 @@ namespace WinForms_JeuCombat
 
             foreach (Button button in characterButtonList)
             {
-                button.Image = imageList[int.Parse(button.Tag.ToString())-1];
+                button.Size = new Size(356, 496);//Set the button size to the image's
+                button.Image = imageList[int.Parse(button.Tag.ToString())-1];//Select image according to button tag
+                button.Location = new Point((this.Width / 5 +  buttonOffset) - (button.Width / 2), (this.Height / 2 + 100) - (button.Height / 2));
+                buttonOffset += 400;//Add offset between images
 
-                button.Location = new Point((this.Width / 5 +  buttonOffset) - (button.Width / 2), (this.Height / 2) - (button.Height / 2));
-                buttonOffset += 200;
+                //Create the select buttons
+                Button selButton = new Button();
+                selButton.Name = "selButton" + (int.Parse(button.Tag.ToString()) - 1);//Set name according to button button tag + "selButton"
+                //Set parameters for select buttons
 
-                button.Size = new Size(235,235);
+                selButton.Click += characterChoice_Click;  selButton.Tag = button.Tag;//Set button tag to match button and add click Event
+                selButton.Location = new Point(button.Location.X + 50, button.Location.Y + 550);selButton.Size = new Size(275,113);//Set position and size
+                selButton.FlatStyle = FlatStyle.Flat;//Set type of button
+                selButton.FlatAppearance.BorderSize = 0; selButton.FlatAppearance.MouseOverBackColor = Color.Transparent; selButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+                selButton.Image = Image.FromFile("./Images/Button_Select.png");//Set image
+                this.Controls.Add(selButton);//Actually show the image, else it is not added during runtime
             }
 
             //mSoundPlayer.Play();
             textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
-
 
             await Task.Delay(1000);
 
@@ -85,27 +94,31 @@ namespace WinForms_JeuCombat
             //Before the game starts
             textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
         }
-        private void button2_Click(object sender, EventArgs e)
+
+
+        //If clicked exit the app
+        private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();//Exit the app
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        //If clicked start the game
+        private void characterChoice_Click(object sender, EventArgs e)
         {
             buttonOffset = 100;
-            //Make the buttons appear on the window
+            //Move the buttons on the window
             foreach (Button button in optionButtonList)
             {
                 button.Location = new Point((this.Width / 3 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 400) - (button.Height / 2));
                 buttonOffset += 200;
             }
 
-            Button clickedButton = sender as Button;
+            Button clickedButton = sender as Button;//Button clicked that sent triggered the event
 
-            MainFunction(textBox1, clickedButton);
+            MainFunction(textBox1, clickedButton);//Launch main function
         }
 
-        private async void button7_Click(object sender, EventArgs e)
+        private void actionChoice_Click(object sender, EventArgs e)
         {
             Button cButton = sender as Button;
 
@@ -116,8 +129,15 @@ namespace WinForms_JeuCombat
             choseAction = true;
         }
 
-
-
+        
+        //Here ends the form section, no more Form controls (buttons, label, textbox ect...)
+        //The following code is the logic of the game
+        //
+        //
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------------------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        //
+        //
+        //
         //Big chunk of code ahead : 
         public enum ActionChoice
         {
@@ -357,10 +377,10 @@ namespace WinForms_JeuCombat
                     character_player_choice = int.Parse(pChoiceButton.Tag.ToString());
                     choseCharacter = true;
 
-                    this.Controls.Remove(DamagerButton);
-                    this.Controls.Remove(HealerButton);
-                    this.Controls.Remove(TankButton);
-                    this.Controls.Remove(AssasinButton);
+                    this.Controls.Remove(DamagerButton); this.Controls.Remove(this.Controls["selButton0"]);
+                    this.Controls.Remove(HealerButton); this.Controls.Remove(this.Controls["selButton1"]);
+                    this.Controls.Remove(TankButton); this.Controls.Remove(this.Controls["selButton2"]);
+                    this.Controls.Remove(AssasinButton); this.Controls.Remove(this.Controls["selButton3"]);
                 }
             }
 
@@ -447,34 +467,6 @@ namespace WinForms_JeuCombat
         {
             textBox1.SelectionStart = textBox1.TextLength;//Set text start(the first line to show
             textBox1.ScrollToCaret();//Scroll to bottom
-        }
-
-
-
-        //Bounce function here
-        public async void BounceFunction(Control control, Point targetPos, Point targetPos2, int speed)
-        {
-
-            while (control.Location.Y > targetPos.Y)//< to end position
-            {
-                speed += 1;//Incremental speed
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);//Change position with speed
-                await Task.Delay(20);//Wait 20ms without freezing program
-            }
-
-            speed = -10; //Inverse speed to create bounce effect
-            while (control.Location.Y < targetPos2.Y)
-            {
-                speed += 1;
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);
-                await Task.Delay(20);
-            }
-            speed = 10;
-
-            //When finished remove menu
-            control.Location = targetPos;
-            this.Controls.Remove(control);
-
         }
     }
 }
