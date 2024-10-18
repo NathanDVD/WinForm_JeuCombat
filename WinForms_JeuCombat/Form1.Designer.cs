@@ -255,6 +255,7 @@
             Controls.Add(label1);
             Controls.Add(QuitButton);
             Controls.Add(PlayButton);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             Name = "Form1";
