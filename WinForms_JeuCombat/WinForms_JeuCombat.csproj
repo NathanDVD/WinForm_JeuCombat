@@ -27,7 +27,7 @@
     <None Update="Images\assassin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Images\assassin_invervse.png">
+    <None Update="Images\assassin_inverse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Images\assassin_selection.png">

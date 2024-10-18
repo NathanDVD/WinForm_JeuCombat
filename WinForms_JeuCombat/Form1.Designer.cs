@@ -40,6 +40,10 @@
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
+            PlayerBox = new PictureBox();
+            ComputerBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
@@ -83,7 +87,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 75F);
-            label1.Location = new Point(12, 237);
+            label1.Location = new Point(-15, 308);
             label1.Name = "label1";
             label1.Size = new Size(321, 133);
             label1.TabIndex = 2;
@@ -167,7 +171,7 @@
             // 
             textBox1.AcceptsReturn = true;
             textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(637, 57);
+            textBox1.Location = new Point(635, 12);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
@@ -208,12 +212,36 @@
             SpellButton.UseVisualStyleBackColor = true;
             SpellButton.Click += actionChoice_Click;
             // 
+            // PlayerBox
+            // 
+            PlayerBox.BackColor = Color.Transparent;
+            PlayerBox.BackgroundImageLayout = ImageLayout.Stretch;
+            PlayerBox.Location = new Point(-300, 0);
+            PlayerBox.Name = "PlayerBox";
+            PlayerBox.Size = new Size(235, 235);
+            PlayerBox.TabIndex = 11;
+            PlayerBox.TabStop = false;
+            PlayerBox.WaitOnLoad = true;
+            // 
+            // ComputerBox
+            // 
+            ComputerBox.BackColor = Color.Transparent;
+            ComputerBox.BackgroundImageLayout = ImageLayout.Stretch;
+            ComputerBox.Location = new Point(-300, 0);
+            ComputerBox.Name = "ComputerBox";
+            ComputerBox.Size = new Size(235, 235);
+            ComputerBox.TabIndex = 12;
+            ComputerBox.TabStop = false;
+            ComputerBox.WaitOnLoad = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(800, 450);
+            Controls.Add(ComputerBox);
+            Controls.Add(PlayerBox);
             Controls.Add(SpellButton);
             Controls.Add(DefendButton);
             Controls.Add(AttackButton);
@@ -231,6 +259,8 @@
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)PlayerBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,5 +278,7 @@
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
+        private PictureBox PlayerBox;
+        private PictureBox ComputerBox;
     }
 }

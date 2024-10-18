@@ -8,6 +8,8 @@ namespace WinForms_JeuCombat
     {
         List<Button> characterButtonList = new List<Button>();
         List<Image> imageList = new List<Image>();
+        List<Image> enemyList = new List<Image>();
+        List<Image> playerList = new List<Image>();
         List<Button> optionButtonList = new List<Button>();
 
         private bool canChange = true;
@@ -54,6 +56,19 @@ namespace WinForms_JeuCombat
                 Image.FromFile("./Images/tank_selection.png"),
                 Image.FromFile("./Images/assassin_selection.png") 
             });
+            playerList.AddRange(new List<Image>() {
+                Image.FromFile("./Images/damager.png"),
+                Image.FromFile("./Images/healer.png"),
+                Image.FromFile("./Images/tank.png"),
+                Image.FromFile("./Images/assassin.png")
+            });
+            enemyList.AddRange(new List<Image>() {
+                Image.FromFile("./Images/damager_inverse.png"),
+                Image.FromFile("./Images/healer_inverse.png"),
+                Image.FromFile("./Images/tank_inverse.png"),
+                Image.FromFile("./Images/assassin_inverse.png")
+            });
+
             //List of all the option buttons to display later
             optionButtonList.AddRange(new Button[] {AttackButton, DefendButton, SpellButton});
         }
@@ -207,10 +222,12 @@ namespace WinForms_JeuCombat
             Random rnd = new Random();
 
             // Choix personnage joueur
-            Dictionary<string, object> playerCharacter = new Dictionary<string, object>(character[PlayerChooseCharacter(tBox, button)]);
+            Dictionary<string, object> playerCharacter = new Dictionary<string, object>(character[PlayerChooseCharacter(tBox, button, PlayerBox)]);
+            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 ) - (PlayerBox.Height / 2));
 
             // Choix personnage AI
-            Dictionary<string, object> AICharacter = new Dictionary<string, object>(character[AIChooseCharacter()]);
+            Dictionary<string, object> AICharacter = new Dictionary<string, object>(character[AIChooseCharacter(ComputerBox)]);
+            ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 ) - (ComputerBox.Height / 2));
 
             //Affichage choix personnages
             tBox.Text += $"\r\nJoueur : {playerCharacter["Name"]}\r\nIA : {AICharacter["Name"]}";
@@ -372,7 +389,7 @@ namespace WinForms_JeuCombat
             ai["Action"] = (ActionChoice)rand.Next(1, choiceNb + 1);
         }
 
-        public string PlayerChooseCharacter(TextBox tBox, Button pChoiceButton)
+        public string PlayerChooseCharacter(TextBox tBox, Button pChoiceButton, PictureBox plrBox)
         {
             List<string> classList = new List<string>() { "Damager", "Healer", "Tank", "Assassin" };
             int character_player_choice = 0;
@@ -389,18 +406,22 @@ namespace WinForms_JeuCombat
                     this.Controls.Remove(HealerButton); this.Controls.Remove(this.Controls["selButton1"]);
                     this.Controls.Remove(TankButton); this.Controls.Remove(this.Controls["selButton2"]);
                     this.Controls.Remove(AssasinButton); this.Controls.Remove(this.Controls["selButton3"]);
+
+                    plrBox.Image = playerList[character_player_choice-1];//-1 because the tags starts at 1, not 0
                 }
             }
-
             return classList[character_player_choice - 1];
         }
 
         //Choix d'action IA
-        static string AIChooseCharacter()
+        public string AIChooseCharacter(PictureBox compBox)
         {
             List<string> classList = new List<string>() { "Damager", "Healer", "Tank", "Assassin" };
             Random rand = new Random();
             int rand_index = rand.Next(0, classList.Count);
+
+            compBox.Image = enemyList[rand_index];
+
             return classList[rand_index];
         }
 
