@@ -6,12 +6,15 @@ namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
     {
-        List<Button> buttonList = new List<Button>();
-
+        List<Button> characterButtonList = new List<Button>();
+        List<Image> imageList = new List<Image>();
+        List<Button> optionButtonList = new List<Button>();
 
         private bool canChange = true;
         private bool choseCharacter = false;
         public bool choseAction = false;
+
+        private int buttonOffset = 0;
 
         private Button choiceButton;
 
@@ -34,34 +37,18 @@ namespace WinForms_JeuCombat
 
             textBox1.Location = new Point(-1000, 0);
 
+
             //Add character choice buttons to list
-            buttonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
-
-        }
-
-        public async void BounceFunction(Control control, Point targetPos, Point targetPos2, int speed)
-        {
-
-            while (control.Location.Y > targetPos.Y)//< to end position
-            {
-                speed += 1;//Incremental speed
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);//Change position with speed
-                await Task.Delay(20);//Wait 20ms without freezing program
-            }
-
-            speed = -10; //Inverse speed to create bounce effect
-            while (control.Location.Y < targetPos2.Y)
-            {
-                speed += 1;
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);
-                await Task.Delay(20);
-            }
-            speed = 10;
-
-            //When finished remove menu
-            control.Location = targetPos;
-            this.Controls.Remove(control);
-
+            characterButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
+            //Set all the images for the buttons
+            imageList.AddRange(new List<Image>() { 
+                Image.FromFile("./Images/damager.png"),
+                Image.FromFile("./Images/healer.png"),
+                Image.FromFile("./Images/tank.png"),
+                Image.FromFile("./Images/assassin.png") 
+            });
+            //List of all the option buttons to display later
+            optionButtonList.AddRange(new Button[] {AttackButton, DefendButton, SpellButton});
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -71,27 +58,31 @@ namespace WinForms_JeuCombat
             BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
             BounceFunction(label1, new Point(0, 100), new Point(0, 400), 1);
 
-            int buttonOffset = 100;//Offset
+            buttonOffset = 200;//Offset
 
             await Task.Delay(2000);//Wait 2 seconds
 
             //Set all character choice buttons position
-            buttonList.Reverse();
-            foreach (Button button in buttonList)
+
+            foreach (Button button in characterButtonList)
             {
-                button.Location = new Point((this.Width / 2 + 700) - (PlayButton.Width / 2), (this.Height / 2 - buttonOffset) - (PlayButton.Height / 2));
-                buttonOffset += 100;
+                button.Image = imageList[int.Parse(button.Tag.ToString())-1];
+
+                button.Location = new Point((this.Width / 5 +  buttonOffset) - (button.Width / 2), (this.Height / 2) - (button.Height / 2));
+                buttonOffset += 200;
+
+                button.Size = new Size(235,235);
             }
 
             //mSoundPlayer.Play();
             textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
 
 
-
             await Task.Delay(1000);
 
-            //sPlayer.PlayLooping();
+            //sPlayer.PlayLooping();//Loops the song selected
 
+            //Before the game starts
             textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
         }
         private void button2_Click(object sender, EventArgs e)
@@ -101,6 +92,13 @@ namespace WinForms_JeuCombat
 
         private void button3_Click(object sender, EventArgs e)
         {
+            buttonOffset = 100;
+            //Make the buttons appear on the window
+            foreach (Button button in optionButtonList)
+            {
+                button.Location = new Point((this.Width / 3 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 400) - (button.Height / 2));
+                buttonOffset += 200;
+            }
 
             Button clickedButton = sender as Button;
 
@@ -449,6 +447,34 @@ namespace WinForms_JeuCombat
         {
             textBox1.SelectionStart = textBox1.TextLength;//Set text start(the first line to show
             textBox1.ScrollToCaret();//Scroll to bottom
+        }
+
+
+
+        //Bounce function here
+        public async void BounceFunction(Control control, Point targetPos, Point targetPos2, int speed)
+        {
+
+            while (control.Location.Y > targetPos.Y)//< to end position
+            {
+                speed += 1;//Incremental speed
+                control.Location = new Point(control.Location.X, control.Location.Y - speed);//Change position with speed
+                await Task.Delay(20);//Wait 20ms without freezing program
+            }
+
+            speed = -10; //Inverse speed to create bounce effect
+            while (control.Location.Y < targetPos2.Y)
+            {
+                speed += 1;
+                control.Location = new Point(control.Location.X, control.Location.Y - speed);
+                await Task.Delay(20);
+            }
+            speed = 10;
+
+            //When finished remove menu
+            control.Location = targetPos;
+            this.Controls.Remove(control);
+
         }
     }
 }

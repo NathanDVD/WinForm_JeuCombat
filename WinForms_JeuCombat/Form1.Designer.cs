@@ -91,46 +91,76 @@
             // 
             // DamagerButton
             // 
+            DamagerButton.BackColor = Color.Transparent;
+            DamagerButton.BackgroundImageLayout = ImageLayout.None;
+            DamagerButton.FlatAppearance.BorderSize = 0;
+            DamagerButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            DamagerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            DamagerButton.FlatStyle = FlatStyle.Flat;
+            DamagerButton.ForeColor = Color.Transparent;
             DamagerButton.Location = new Point(0, -30);
             DamagerButton.Name = "DamagerButton";
             DamagerButton.Size = new Size(75, 23);
             DamagerButton.TabIndex = 3;
             DamagerButton.Tag = "1";
             DamagerButton.Text = "Damager";
-            DamagerButton.UseVisualStyleBackColor = true;
+            DamagerButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            DamagerButton.UseVisualStyleBackColor = false;
             DamagerButton.Click += button3_Click;
             // 
             // HealerButton
             // 
+            HealerButton.BackColor = Color.Transparent;
+            HealerButton.BackgroundImageLayout = ImageLayout.None;
+            HealerButton.FlatAppearance.BorderSize = 0;
+            HealerButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            HealerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            HealerButton.FlatStyle = FlatStyle.Flat;
+            HealerButton.ForeColor = Color.Transparent;
             HealerButton.Location = new Point(0, -30);
             HealerButton.Name = "HealerButton";
             HealerButton.Size = new Size(75, 23);
             HealerButton.TabIndex = 4;
             HealerButton.Tag = "2";
             HealerButton.Text = "Healer";
-            HealerButton.UseVisualStyleBackColor = true;
+            HealerButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            HealerButton.UseVisualStyleBackColor = false;
             HealerButton.Click += button3_Click;
             // 
             // TankButton
             // 
+            TankButton.BackColor = Color.Transparent;
+            TankButton.FlatAppearance.BorderSize = 0;
+            TankButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            TankButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            TankButton.FlatStyle = FlatStyle.Flat;
+            TankButton.ForeColor = Color.Transparent;
             TankButton.Location = new Point(0, -30);
             TankButton.Name = "TankButton";
             TankButton.Size = new Size(75, 23);
             TankButton.TabIndex = 5;
             TankButton.Tag = "3";
             TankButton.Text = "Tank";
-            TankButton.UseVisualStyleBackColor = true;
+            TankButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            TankButton.UseVisualStyleBackColor = false;
             TankButton.Click += button3_Click;
             // 
             // AssasinButton
             // 
+            AssasinButton.BackColor = Color.Transparent;
+            AssasinButton.FlatAppearance.BorderSize = 0;
+            AssasinButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            AssasinButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            AssasinButton.FlatStyle = FlatStyle.Flat;
+            AssasinButton.ForeColor = Color.Transparent;
             AssasinButton.Location = new Point(0, -30);
             AssasinButton.Name = "AssasinButton";
             AssasinButton.Size = new Size(75, 23);
             AssasinButton.TabIndex = 6;
             AssasinButton.Tag = "4";
             AssasinButton.Text = "Assassin";
-            AssasinButton.UseVisualStyleBackColor = true;
+            AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            AssasinButton.UseVisualStyleBackColor = false;
             AssasinButton.Click += button3_Click;
             // 
             // textBox1
