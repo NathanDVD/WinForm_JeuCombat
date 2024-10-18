@@ -24,7 +24,14 @@ namespace WinForms_JeuCombat
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();//Start the WinForm
+
+            //Load the sounds and songs
+            sPlayer = new SoundPlayer("./Sounds/8-Bit_FightingGame_Music.wav");
+            sPlayer.Load();
+            //Here too
+            mSoundPlayer = new SoundPlayer("./Sounds/Game_Start.wav");
+            mSoundPlayer.Load();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +60,8 @@ namespace WinForms_JeuCombat
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            mSoundPlayer.Play();//Play sound
+
             //ANimate controls leaving screen
             AnimationClass.BounceFunction(PlayButton, new Point(0, 250), new Point(0, 500), 1);
             AnimationClass.BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
@@ -84,12 +93,11 @@ namespace WinForms_JeuCombat
                 this.Controls.Add(selButton);//Actually show the image, else it is not added during runtime
             }
 
-            //mSoundPlayer.Play();
             textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
 
             await Task.Delay(1000);
 
-            //sPlayer.PlayLooping();//Loops the song selected
+            sPlayer.PlayLooping();//Loops the song selected
 
             //Before the game starts
             textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
