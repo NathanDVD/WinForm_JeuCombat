@@ -34,6 +34,8 @@ namespace WinForms_JeuCombat
             //Here too
             mSoundPlayer = new SoundPlayer("./Sounds/Game_Start.wav");
             mSoundPlayer.Load();
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,6 +105,7 @@ namespace WinForms_JeuCombat
                 selButton.Click += characterChoice_Click;  selButton.Tag = button.Tag;//Set button tag to match button and add click Event
                 selButton.Location = new Point(button.Location.X + 50, button.Location.Y + 550);selButton.Size = new Size(275,113);//Set position and size
                 selButton.FlatStyle = FlatStyle.Flat;//Set type of button
+                selButton.BackColor = Color.Transparent;
                 selButton.FlatAppearance.BorderSize = 0; selButton.FlatAppearance.MouseOverBackColor = Color.Transparent; selButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
                 selButton.Image = Image.FromFile("./Images/Button_Select.png");//Set image
                 this.Controls.Add(selButton);//Actually show the image, else it is not added during runtime
@@ -132,7 +135,7 @@ namespace WinForms_JeuCombat
             //Move the buttons on the window
             foreach (Button button in optionButtonList)
             {
-                button.Location = new Point((this.Width / 3 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 400) - (button.Height / 2));
+                button.Location = new Point((this.Width / 3 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 500) - (button.Height / 2));
                 buttonOffset += 200;
             }
 
@@ -223,11 +226,11 @@ namespace WinForms_JeuCombat
 
             // Choix personnage joueur
             Dictionary<string, object> playerCharacter = new Dictionary<string, object>(character[PlayerChooseCharacter(tBox, button, PlayerBox)]);
-            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 ) - (PlayerBox.Height / 2));
+            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 + 300) - (PlayerBox.Height / 2));
 
             // Choix personnage AI
             Dictionary<string, object> AICharacter = new Dictionary<string, object>(character[AIChooseCharacter(ComputerBox)]);
-            ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 ) - (ComputerBox.Height / 2));
+            ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 + 300) - (ComputerBox.Height / 2));
 
             //Affichage choix personnages
             tBox.Text += $"\r\nJoueur : {playerCharacter["Name"]}\r\nIA : {AICharacter["Name"]}";
