@@ -139,6 +139,7 @@
             textBox1.Location = new Point(637, 57);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(583, 265);
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;

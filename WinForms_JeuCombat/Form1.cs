@@ -444,8 +444,8 @@ namespace WinForms_JeuCombat
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            textBox1.SelectionStart = textBox1.TextLength;
-            textBox1.ScrollToCaret();
+            textBox1.SelectionStart = textBox1.TextLength;//Set text start(the first line to show
+            textBox1.ScrollToCaret();//Scroll to bottom
         }
     }
 }
