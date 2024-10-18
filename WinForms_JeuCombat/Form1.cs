@@ -251,10 +251,10 @@ namespace WinForms_JeuCombat
                 choseAction = false;
 
                 //Choix adction joueur
-                PlayerChooseAction(playerCharacter, tBox, choiceButton);
+                PlayerChooseAction(playerCharacter, tBox, choiceButton, PlayerBox);
 
                 //Choix action IA
-                AIChooseAction(AICharacter);
+                AIChooseAction(AICharacter, ComputerBox);
 
                 //Combat (round)
                 Fight(playerCharacter, AICharacter, tBox);
@@ -369,7 +369,7 @@ namespace WinForms_JeuCombat
 
 
         //Choix action joueur
-        static void PlayerChooseAction(Dictionary<string, object> player, TextBox tBox, Button button)
+        static void PlayerChooseAction(Dictionary<string, object> player, TextBox tBox, Button button, PictureBox plrBox)
         {
             int action_player_choice = 0;
 
@@ -381,15 +381,24 @@ namespace WinForms_JeuCombat
             Debug.WriteLine(action_player_choice);
 
             player["Action"] = (ActionChoice)action_player_choice;
+
+
+            //----------------------------------------------------------------------------------------------
+            AnimationClass.CharacterAnim(plrBox, 1);
         }
 
         //Choix d'action IA
-        static void AIChooseAction(Dictionary<string, object> ai)
+        static async void AIChooseAction(Dictionary<string, object> ai, PictureBox compBox)
         {
             Random rand = new Random();
             int choiceNb = Enum.GetValues(typeof(ActionChoice)).Length;
 
             ai["Action"] = (ActionChoice)rand.Next(1, choiceNb + 1);
+
+            await Task.Delay(200);
+
+            //----------------------------------------------------------------------------------------------
+            AnimationClass.CharacterAnim(compBox, -1);
         }
 
         public string PlayerChooseCharacter(TextBox tBox, Button pChoiceButton, PictureBox plrBox)

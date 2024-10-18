@@ -25,5 +25,15 @@
             //When finished remove menu
             control.Location = targetPos;
         }
+
+        public static async void CharacterAnim(PictureBox characterImage, int direction)
+        {
+            Point startLocation = characterImage.Location;
+            characterImage.Location = new Point(startLocation.X + (200 * direction), startLocation.Y);
+
+            await Task.Delay(200);
+
+            characterImage.Location = startLocation;
+        }
     }
 }
