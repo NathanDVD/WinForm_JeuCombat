@@ -27,14 +27,15 @@ namespace WinForms_JeuCombat
         private void Form1_Load(object sender, EventArgs e)
         {
             //Get half of screen height and width + half of button height and width to find the perfect center of the screen
-            button1.Location = new Point((this.Width / 2) - (button1.Width / 2), (this.Height / 2) - (button1.Height / 2));
-            button2.Location = new Point((this.Width / 2) - (button2.Width / 2), (this.Height / 2 + 150) - (button2.Height / 2));
+            PlayButton.Location = new Point((this.Width / 2) - (PlayButton.Width / 2), (this.Height / 2) - (PlayButton.Height / 2));
+            QuitButton.Location = new Point((this.Width / 2) - (QuitButton.Width / 2), (this.Height / 2 + 150) - (QuitButton.Height / 2));
 
             label1.Location = new Point((this.Width / 2) - (label1.Width / 2), 150);
 
+            textBox1.Location = new Point(-1000, 0);
 
             //Add character choice buttons to list
-            buttonList.AddRange(new Button[] { button3, button4, button5, button6 });
+            buttonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
 
         }
 
@@ -66,8 +67,8 @@ namespace WinForms_JeuCombat
         private async void button1_Click(object sender, EventArgs e)
         {
             //ANimate controls leaving screen
-            BounceFunction(button1, new Point(0, 250), new Point(0, 500), 1);
-            BounceFunction(button2, new Point(0, 500), new Point(0, 550), 1);
+            BounceFunction(PlayButton, new Point(0, 250), new Point(0, 500), 1);
+            BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
             BounceFunction(label1, new Point(0, 100), new Point(0, 400), 1);
 
             int buttonOffset = 100;//Offset
@@ -78,12 +79,12 @@ namespace WinForms_JeuCombat
             buttonList.Reverse();
             foreach (Button button in buttonList)
             {
-                button.Location = new Point((this.Width / 2 + 700) - (button1.Width / 2), (this.Height / 2 - buttonOffset) - (button1.Height / 2));
+                button.Location = new Point((this.Width / 2 + 700) - (PlayButton.Width / 2), (this.Height / 2 - buttonOffset) - (PlayButton.Height / 2));
                 buttonOffset += 100;
             }
 
             //mSoundPlayer.Play();
-
+            textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
             await Task.Delay(1000);
 
             //sPlayer.PlayLooping();
@@ -92,7 +93,7 @@ namespace WinForms_JeuCombat
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();//Exit the app
+            Application.Exit();//Exit the app
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -183,7 +184,7 @@ namespace WinForms_JeuCombat
             Dictionary<string, object> AICharacter = new Dictionary<string, object>(character[AIChooseCharacter()]);
 
             //Affichage choix personnages
-            tBox.Text += ($"\r\nJoueur : {playerCharacter["Name"]}\r\nIA : {AICharacter["Name"]}");
+            tBox.Text += $"\r\nJoueur : {playerCharacter["Name"]}\r\nIA : {AICharacter["Name"]}";
 
             //------------- BOUCLE DU JEU  ----------------
 
@@ -355,10 +356,10 @@ namespace WinForms_JeuCombat
                     character_player_choice = int.Parse(pChoiceButton.Tag.ToString());
                     choseCharacter = true;
 
-                    this.Controls.Remove(button3);
-                    this.Controls.Remove(button4);
-                    this.Controls.Remove(button5);
-                    this.Controls.Remove(button6);
+                    this.Controls.Remove(DamagerButton);
+                    this.Controls.Remove(HealerButton);
+                    this.Controls.Remove(TankButton);
+                    this.Controls.Remove(AssasinButton);
                 }
             }
 

@@ -29,54 +29,54 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            button1 = new Button();
-            button2 = new Button();
+            PlayButton = new Button();
+            QuitButton = new Button();
             label1 = new Label();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            DamagerButton = new Button();
+            HealerButton = new Button();
+            TankButton = new Button();
+            AssasinButton = new Button();
             textBox1 = new TextBox();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
+            AttackButton = new Button();
+            DefendButton = new Button();
+            SpellButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // PlayButton
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button1.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Transparent;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(12, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(597, 110);
-            button1.TabIndex = 0;
-            button1.TextImageRelation = TextImageRelation.ImageAboveText;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            PlayButton.BackColor = Color.Transparent;
+            PlayButton.BackgroundImageLayout = ImageLayout.None;
+            PlayButton.FlatAppearance.BorderSize = 0;
+            PlayButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            PlayButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            PlayButton.FlatStyle = FlatStyle.Flat;
+            PlayButton.ForeColor = Color.Transparent;
+            PlayButton.Image = (Image)resources.GetObject("PlayButton.Image");
+            PlayButton.Location = new Point(12, 12);
+            PlayButton.Name = "PlayButton";
+            PlayButton.Size = new Size(597, 110);
+            PlayButton.TabIndex = 0;
+            PlayButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            PlayButton.UseVisualStyleBackColor = false;
+            PlayButton.Click += button1_Click;
             // 
-            // button2
+            // QuitButton
             // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImageLayout = ImageLayout.Center;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button2.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.ForeColor = Color.Transparent;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(12, 128);
-            button2.Name = "button2";
-            button2.Size = new Size(597, 106);
-            button2.TabIndex = 1;
-            button2.TextImageRelation = TextImageRelation.ImageAboveText;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            QuitButton.BackColor = Color.Transparent;
+            QuitButton.BackgroundImageLayout = ImageLayout.Center;
+            QuitButton.FlatAppearance.BorderSize = 0;
+            QuitButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            QuitButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            QuitButton.FlatStyle = FlatStyle.Flat;
+            QuitButton.ForeColor = Color.Transparent;
+            QuitButton.Image = (Image)resources.GetObject("QuitButton.Image");
+            QuitButton.Location = new Point(12, 128);
+            QuitButton.Name = "QuitButton";
+            QuitButton.Size = new Size(597, 106);
+            QuitButton.TabIndex = 1;
+            QuitButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            QuitButton.UseVisualStyleBackColor = false;
+            QuitButton.Click += button2_Click;
             // 
             // label1
             // 
@@ -89,49 +89,49 @@
             label1.TabIndex = 2;
             label1.Text = "label1";
             // 
-            // button3
+            // DamagerButton
             // 
-            button3.Location = new Point(0, -30);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 3;
-            button3.Tag = "1";
-            button3.Text = "Damager";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            DamagerButton.Location = new Point(0, -30);
+            DamagerButton.Name = "DamagerButton";
+            DamagerButton.Size = new Size(75, 23);
+            DamagerButton.TabIndex = 3;
+            DamagerButton.Tag = "1";
+            DamagerButton.Text = "Damager";
+            DamagerButton.UseVisualStyleBackColor = true;
+            DamagerButton.Click += button3_Click;
             // 
-            // button4
+            // HealerButton
             // 
-            button4.Location = new Point(0, -30);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 4;
-            button4.Tag = "2";
-            button4.Text = "Healer";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button3_Click;
+            HealerButton.Location = new Point(0, -30);
+            HealerButton.Name = "HealerButton";
+            HealerButton.Size = new Size(75, 23);
+            HealerButton.TabIndex = 4;
+            HealerButton.Tag = "2";
+            HealerButton.Text = "Healer";
+            HealerButton.UseVisualStyleBackColor = true;
+            HealerButton.Click += button3_Click;
             // 
-            // button5
+            // TankButton
             // 
-            button5.Location = new Point(0, -30);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 5;
-            button5.Tag = "3";
-            button5.Text = "Tank";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button3_Click;
+            TankButton.Location = new Point(0, -30);
+            TankButton.Name = "TankButton";
+            TankButton.Size = new Size(75, 23);
+            TankButton.TabIndex = 5;
+            TankButton.Tag = "3";
+            TankButton.Text = "Tank";
+            TankButton.UseVisualStyleBackColor = true;
+            TankButton.Click += button3_Click;
             // 
-            // button6
+            // AssasinButton
             // 
-            button6.Location = new Point(0, -30);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 6;
-            button6.Tag = "4";
-            button6.Text = "Assassin";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button3_Click;
+            AssasinButton.Location = new Point(0, -30);
+            AssasinButton.Name = "AssasinButton";
+            AssasinButton.Size = new Size(75, 23);
+            AssasinButton.TabIndex = 6;
+            AssasinButton.Tag = "4";
+            AssasinButton.Text = "Assassin";
+            AssasinButton.UseVisualStyleBackColor = true;
+            AssasinButton.Click += button3_Click;
             // 
             // textBox1
             // 
@@ -143,56 +143,56 @@
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
-            // button7
+            // AttackButton
             // 
-            button7.Location = new Point(625, 328);
-            button7.Name = "button7";
-            button7.Size = new Size(75, 23);
-            button7.TabIndex = 8;
-            button7.Tag = "1";
-            button7.Text = "Attack";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            AttackButton.Location = new Point(625, 328);
+            AttackButton.Name = "AttackButton";
+            AttackButton.Size = new Size(75, 23);
+            AttackButton.TabIndex = 8;
+            AttackButton.Tag = "1";
+            AttackButton.Text = "Attack";
+            AttackButton.UseVisualStyleBackColor = true;
+            AttackButton.Click += button7_Click;
             // 
-            // button8
+            // DefendButton
             // 
-            button8.Location = new Point(625, 357);
-            button8.Name = "button8";
-            button8.Size = new Size(75, 23);
-            button8.TabIndex = 9;
-            button8.Tag = "2";
-            button8.Text = "Defend";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button7_Click;
+            DefendButton.Location = new Point(625, 357);
+            DefendButton.Name = "DefendButton";
+            DefendButton.Size = new Size(75, 23);
+            DefendButton.TabIndex = 9;
+            DefendButton.Tag = "2";
+            DefendButton.Text = "Defend";
+            DefendButton.UseVisualStyleBackColor = true;
+            DefendButton.Click += button7_Click;
             // 
-            // button9
+            // SpellButton
             // 
-            button9.Location = new Point(625, 386);
-            button9.Name = "button9";
-            button9.Size = new Size(75, 23);
-            button9.TabIndex = 10;
-            button9.Tag = "3";
-            button9.Text = "Spell";
-            button9.UseVisualStyleBackColor = true;
-            button9.Click += button7_Click;
+            SpellButton.Location = new Point(625, 386);
+            SpellButton.Name = "SpellButton";
+            SpellButton.Size = new Size(75, 23);
+            SpellButton.TabIndex = 10;
+            SpellButton.Tag = "3";
+            SpellButton.Text = "Spell";
+            SpellButton.UseVisualStyleBackColor = true;
+            SpellButton.Click += button7_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaptionText;
+            BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(800, 450);
-            Controls.Add(button9);
-            Controls.Add(button8);
-            Controls.Add(button7);
+            Controls.Add(SpellButton);
+            Controls.Add(DefendButton);
+            Controls.Add(AttackButton);
             Controls.Add(textBox1);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
+            Controls.Add(AssasinButton);
+            Controls.Add(TankButton);
+            Controls.Add(HealerButton);
+            Controls.Add(DamagerButton);
             Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(QuitButton);
+            Controls.Add(PlayButton);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             Name = "Form1";
@@ -205,16 +205,16 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button PlayButton;
+        private Button QuitButton;
         private Label label1;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Button DamagerButton;
+        private Button HealerButton;
+        private Button TankButton;
+        private Button AssasinButton;
         private TextBox textBox1;
-        private Button button7;
-        private Button button8;
-        private Button button9;
+        private Button AttackButton;
+        private Button DefendButton;
+        private Button SpellButton;
     }
 }
