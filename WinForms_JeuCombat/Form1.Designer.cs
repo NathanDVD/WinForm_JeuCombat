@@ -146,7 +146,7 @@
             // 
             // AttackButton
             // 
-            AttackButton.Location = new Point(625, 328);
+            AttackButton.Location = new Point(-100, -100);
             AttackButton.Name = "AttackButton";
             AttackButton.Size = new Size(75, 23);
             AttackButton.TabIndex = 8;
@@ -157,7 +157,7 @@
             // 
             // DefendButton
             // 
-            DefendButton.Location = new Point(625, 357);
+            DefendButton.Location = new Point(-100, -100);
             DefendButton.Name = "DefendButton";
             DefendButton.Size = new Size(75, 23);
             DefendButton.TabIndex = 9;
@@ -168,7 +168,7 @@
             // 
             // SpellButton
             // 
-            SpellButton.Location = new Point(625, 386);
+            SpellButton.Location = new Point(-100, -100);
             SpellButton.Name = "SpellButton";
             SpellButton.Size = new Size(75, 23);
             SpellButton.TabIndex = 10;

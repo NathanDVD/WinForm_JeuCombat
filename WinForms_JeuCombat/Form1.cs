@@ -85,6 +85,9 @@ namespace WinForms_JeuCombat
 
             //mSoundPlayer.Play();
             textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
+
+
+
             await Task.Delay(1000);
 
             //sPlayer.PlayLooping();
