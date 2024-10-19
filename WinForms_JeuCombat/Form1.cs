@@ -89,7 +89,6 @@ namespace WinForms_JeuCombat
             await Task.Delay(2000);//Wait 2 seconds
 
             //Set all character choice buttons position
-
             foreach (Button button in characterButtonList)
             {
                 button.Size = new Size(356, 496);//Set the button size to the image's
@@ -384,7 +383,7 @@ namespace WinForms_JeuCombat
 
 
             //----------------------------------------------------------------------------------------------
-            AnimationClass.CharacterAnim(plrBox, 1);
+            AnimationClass.CharacterAnim(plrBox, 1, player["Action"].ToString());
         }
 
         //Choix d'action IA
@@ -395,10 +394,10 @@ namespace WinForms_JeuCombat
 
             ai["Action"] = (ActionChoice)rand.Next(1, choiceNb + 1);
 
-            await Task.Delay(200);
+            await Task.Delay(500);
 
             //----------------------------------------------------------------------------------------------
-            AnimationClass.CharacterAnim(compBox, -1);
+            AnimationClass.CharacterAnim(compBox, -1, ai["Action"].ToString());
         }
 
         public string PlayerChooseCharacter(TextBox tBox, Button pChoiceButton, PictureBox plrBox)

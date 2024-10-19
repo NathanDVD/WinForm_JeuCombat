@@ -1,7 +1,13 @@
-﻿namespace WinForms_JeuCombat
+﻿using System.DirectoryServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+
+namespace WinForms_JeuCombat
 {
     internal class AnimationClass
     {
+        private static int speed;
+
         //Bounce function here
         public static async void BounceFunction(Control control, Point targetPos, Point targetPos2, int speed)
         {
@@ -26,14 +32,60 @@
             control.Location = targetPos;
         }
 
-        public static async void CharacterAnim(PictureBox characterImage, int direction)
+        public static async void CharacterAnim(PictureBox characterImage, int xDirection, string action)
         {
-            Point startLocation = characterImage.Location;
-            characterImage.Location = new Point(startLocation.X + (200 * direction), startLocation.Y);
+            
+            if (action == "Attack")
+            {
+                Animate(characterImage, xDirection, 0, action);//Animate one way
 
-            await Task.Delay(200);
+                await Task.Delay(500);//Wait
 
-            characterImage.Location = startLocation;
+                Animate(characterImage, -xDirection, 0, action);//Reverse the animation
+            }
+            else if(action == "Defend")
+            {
+                Animate(characterImage, 0, -1, action);//Animate one way
+
+                await Task.Delay(500);
+
+                Animate(characterImage, 0, 1, action);//Reverse the animation
+            }
+            else
+            {
+                
+            }
+        }
+        public async static void Animate(PictureBox characterImage, int xDirection, int yDirection, string action)
+        {
+            Point location = characterImage.Location;
+            Point startLocation = location; //Set start location
+
+            int targetX = startLocation.X + (200 * xDirection);//Calculate end locations
+            int targetY = startLocation.Y + (100 * yDirection);
+
+            speed = 1;//Reset speed
+
+            if (xDirection != 0)
+            {
+                while ((xDirection == 1 && startLocation.X < targetX) || (xDirection == -1 && startLocation.X > targetX))
+                {
+                    speed += 2;//Incremental speed
+                    startLocation.X += xDirection * speed;//Move in the direction based on xDirection (-1 to 1)
+                    characterImage.Location = new Point(startLocation.X, startLocation.Y);
+                    await Task.Delay(20);//Wait
+                }
+            }
+            else
+            {
+                while ((yDirection == 1 && startLocation.Y < targetY) || (yDirection == -1 && startLocation.Y > targetY))
+                {
+                    speed += 2;//Incremental speed
+                    startLocation.Y += yDirection * speed;//Move in direction based on yDirection (-1 to 1)
+                    characterImage.Location = new Point(startLocation.X, startLocation.Y);
+                    await Task.Delay(20);//Wait
+                }
+            }
         }
     }
 }
