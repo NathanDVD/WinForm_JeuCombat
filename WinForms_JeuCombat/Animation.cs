@@ -1,4 +1,5 @@
-﻿using System.DirectoryServices;
+﻿using System.Diagnostics;
+using System.DirectoryServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
@@ -6,32 +7,37 @@ namespace WinForms_JeuCombat
 {
     internal class AnimationClass
     {
-        private static int speed;
+        private static float speed;
 
         //Bounce function here
-        public static async void BounceFunction(Control control, Point targetPos, Point targetPos2, int speed)
+        public static async void BounceFunction(Control control, PointF targetPos, PointF targetPos2, float speed)
         {
-
-            while (control.Location.Y > targetPos.Y)//< to end position
+            // Move upwards until reaching the target position (bounce start)
+            while (control.Location.Y > targetPos.Y)
             {
-                speed += 1;//Incremental speed
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);//Change position with speed
-                await Task.Delay(20);//Wait 20ms without freezing program
+                speed += 0.5f;
+                float newY = control.Location.Y - speed;
+
+                Debug.WriteLine(newY + " / " + (int)newY);
+
+                control.Location = new Point(control.Location.X, (int)newY);//Convert to integer Point
+                await Task.Delay(20); //Wait
             }
 
-            speed = -10; //Inverse speed to create bounce effect
+            //Reverse speed to create bounce effect
+            speed = -11;
             while (control.Location.Y < targetPos2.Y)
             {
-                speed += 1;
-                control.Location = new Point(control.Location.X, control.Location.Y - speed);
+                speed += 1.1f;
+                float newY = control.Location.Y - speed;
+                control.Location = new Point(control.Location.X, (int)newY); // Convert to integer Point
                 await Task.Delay(20);
             }
-            speed = 10;
-
-            //When finished remove menu
-            control.Location = targetPos;
+            speed = 10; // Reset speed for future bounces if needed
         }
 
+
+        //Character animations
         public static async void CharacterAnim(PictureBox characterImage, int xDirection, string action)
         {
             
@@ -71,7 +77,7 @@ namespace WinForms_JeuCombat
                 while ((xDirection == 1 && startLocation.X < targetX) || (xDirection == -1 && startLocation.X > targetX))
                 {
                     speed += 2;//Incremental speed
-                    startLocation.X += xDirection * speed;//Move in the direction based on xDirection (-1 to 1)
+                    startLocation.X += xDirection * (int)speed;//Move in the direction based on xDirection (-1 to 1)
                     characterImage.Location = new Point(startLocation.X, startLocation.Y);
                     await Task.Delay(20);//Wait
                 }
@@ -81,7 +87,7 @@ namespace WinForms_JeuCombat
                 while ((yDirection == 1 && startLocation.Y < targetY) || (yDirection == -1 && startLocation.Y > targetY))
                 {
                     speed += 2;//Incremental speed
-                    startLocation.Y += yDirection * speed;//Move in direction based on yDirection (-1 to 1)
+                    startLocation.Y += yDirection * (int)speed;//Move in direction based on yDirection (-1 to 1)
                     characterImage.Location = new Point(startLocation.X, startLocation.Y);
                     await Task.Delay(20);//Wait
                 }

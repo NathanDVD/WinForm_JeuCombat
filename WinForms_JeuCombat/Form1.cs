@@ -6,7 +6,7 @@ namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
     {
-        List<Button> characterButtonList = new List<Button>();
+        List<Button> characterSelectionButtonList = new List<Button>();
         List<Image> imageList = new List<Image>();
         List<Image> enemyList = new List<Image>();
         List<Image> playerList = new List<Image>();
@@ -50,7 +50,7 @@ namespace WinForms_JeuCombat
 
 
             //Add character choice buttons to list
-            characterButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
+            characterSelectionButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
             //Set all the images for the buttons
             imageList.AddRange(new List<Image>() { 
                 Image.FromFile("./Images/damager_selection.png"),
@@ -80,16 +80,17 @@ namespace WinForms_JeuCombat
             mSoundPlayer.Play();//Play sound
 
             //ANimate controls leaving screen
-            AnimationClass.BounceFunction(PlayButton, new Point(0, 250), new Point(0, 500), 1);
-            AnimationClass.BounceFunction(QuitButton, new Point(0, 500), new Point(0, 550), 1);
-            AnimationClass.BounceFunction(label1, new Point(0, 100), new Point(0, 400), 1);
+            AnimationClass.BounceFunction(label1, new Point(0, 100), new Point(0, 400), 11);
+            AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
+            await Task.Delay(100);
+            AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
 
             buttonOffset = 0;//Offset
 
             await Task.Delay(2000);//Wait 2 seconds
 
             //Set all character choice buttons position
-            foreach (Button button in characterButtonList)
+            foreach (Button button in characterSelectionButtonList)
             {
                 button.Size = new Size(356, 496);//Set the button size to the image's
                 button.Image = imageList[int.Parse(button.Tag.ToString())-1];//Select image according to button tag
@@ -431,7 +432,7 @@ namespace WinForms_JeuCombat
             Random rand = new Random();
             int rand_index = rand.Next(0, classList.Count);
 
-            compBox.Image = enemyList[rand_index];
+            compBox.Image = enemyList[rand_index];//Computer image
 
             return classList[rand_index];
         }

@@ -42,6 +42,7 @@
             SpellButton = new Button();
             PlayerBox = new PictureBox();
             ComputerBox = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
             SuspendLayout();
@@ -56,7 +57,8 @@
             PlayButton.FlatStyle = FlatStyle.Flat;
             PlayButton.ForeColor = Color.Transparent;
             PlayButton.Image = (Image)resources.GetObject("PlayButton.Image");
-            PlayButton.Location = new Point(12, 12);
+            PlayButton.Location = new Point(12, 5);
+            PlayButton.Margin = new Padding(0);
             PlayButton.Name = "PlayButton";
             PlayButton.Size = new Size(597, 110);
             PlayButton.TabIndex = 0;
@@ -74,7 +76,8 @@
             QuitButton.FlatStyle = FlatStyle.Flat;
             QuitButton.ForeColor = Color.Transparent;
             QuitButton.Image = (Image)resources.GetObject("QuitButton.Image");
-            QuitButton.Location = new Point(12, 128);
+            QuitButton.Location = new Point(9, 115);
+            QuitButton.Margin = new Padding(0);
             QuitButton.Name = "QuitButton";
             QuitButton.Size = new Size(597, 106);
             QuitButton.TabIndex = 1;
@@ -87,7 +90,8 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 75F);
-            label1.Location = new Point(-15, 308);
+            label1.Location = new Point(-15, 301);
+            label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(321, 133);
             label1.TabIndex = 2;
@@ -234,6 +238,15 @@
             ComputerBox.TabStop = false;
             ComputerBox.WaitOnLoad = true;
             // 
+            // button1
+            // 
+            button1.Location = new Point(534, 333);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 13;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -242,6 +255,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(ComputerBox);
             Controls.Add(PlayerBox);
             Controls.Add(SpellButton);
@@ -283,5 +297,6 @@
         private Button SpellButton;
         private PictureBox PlayerBox;
         private PictureBox ComputerBox;
+        private Button button1;
     }
 }
