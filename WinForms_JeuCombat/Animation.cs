@@ -38,31 +38,28 @@ namespace WinForms_JeuCombat
 
 
         //Character animations
-        public static async void CharacterAnim(PictureBox characterImage, int xDirection, string action)
+        public static async void CharacterAnim(PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
-            
-            if (action == "Attack")
+
+            if (action == Form1.ActionChoice.Attack)
             {
-                Animate(characterImage, xDirection, 0, action);//Animate one way
+                Animate(characterImage, xDirection, 0);//Animate one way
 
                 await Task.Delay(500);//Wait
 
-                Animate(characterImage, -xDirection, 0, action);//Reverse the animation
+                Animate(characterImage, -xDirection, 0);//Reverse the animation
             }
-            else if(action == "Defend")
+            else if(action == Form1.ActionChoice.Defend)
             {
-                Animate(characterImage, 0, -1, action);//Animate one way
+                Animate(characterImage, 0, -1);//Animate one way
 
                 await Task.Delay(500);
 
-                Animate(characterImage, 0, 1, action);//Reverse the animation
+                Animate(characterImage, 0, 1);//Reverse the animation
             }
-            else
-            {
-                
-            }
+
         }
-        public async static void Animate(PictureBox characterImage, int xDirection, int yDirection, string action)
+        public async static void Animate(PictureBox characterImage, int xDirection, int yDirection)
         {
             Point location = characterImage.Location;
             Point startLocation = location; //Set start location
