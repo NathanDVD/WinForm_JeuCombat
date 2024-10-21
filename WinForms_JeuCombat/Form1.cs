@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Media;
 using System.Windows.Forms;
+using static WinForms_JeuCombat.Form1;
 
 namespace WinForms_JeuCombat
 {
@@ -9,10 +10,9 @@ namespace WinForms_JeuCombat
         //------------------- VARIABLES
 
         List<Button> characterSelectionButtonList = new List<Button>();
-        List<Image> imageList = new List<Image>();
-        List<Image> enemyList = new List<Image>();
-        List<Image> playerList = new List<Image>();
         List<Button> optionButtonList = new List<Button>();
+
+        List<Image> imageList = new List<Image>();
 
         private bool canChange = true;
         private bool choseCharacter = false;
@@ -47,6 +47,12 @@ namespace WinForms_JeuCombat
             public bool isPoisoned;
             public ActionChoice action;
 
+            public Image idle_frame;
+            //public Image attack_frame_1;
+            //public Image attack_frame_2;
+            //public Image spell_frame_1;
+            //public Image spell_frame_2;
+
             //Base constructor
             public Characters(CharacterClass characterClass, string name, int curHealth, int maxHealth, int damage, ActionChoice action, bool isPoisoned)
             {
@@ -58,17 +64,28 @@ namespace WinForms_JeuCombat
                 this.isPoisoned = isPoisoned;
                 this.action = action;
 
+                //GET IMAGES
+                this.idle_frame = Image.FromFile($"./Images/{name}/{name}Idle.png");
+                //this.attack_frame_1 = Image.FromFile($"./Images/{name}/{name}Attack_1.png");
+                //this.attack_frame_2 = Image.FromFile($"./Images/{name}/{name}Attack_2.png");
+                //this.spell_frame_1 = Image.FromFile($"./Images/{name}/{name}Spell_1.png");
+                //this.spell_frame_2 = Image.FromFile($"./Images/{name}/{name}Spell_2.png");
             }
 
             // Copy constructor
             public Characters(Characters characterToCopy)
             {
-                CharacterClass characterClass = characterToCopy.characterClass;
+                characterClass = characterToCopy.characterClass;
                 name = characterToCopy.name;
                 curHealth = characterToCopy.curHealth;
                 maxHealth = characterToCopy.maxHealth;
                 damage = characterToCopy.damage;
-                ActionChoice action = characterToCopy.action;
+                action = characterToCopy.action;
+                idle_frame = characterToCopy.idle_frame;
+                //attack_frame_1 = characterToCopy.attack_frame_1;
+                //attack_frame_2 = characterToCopy.attack_frame_2;
+                //spell_frame_1 = characterToCopy.spell_frame_1;
+                //spell_frame_2 = characterToCopy.spell_frame_2;
             }
 
             //Inflict damage to character
@@ -77,6 +94,12 @@ namespace WinForms_JeuCombat
                 int res = curHealth - damage;
                 if (res < 0) { res = 0; }
                 curHealth = res;
+            }
+
+            public void Poisoned(int damagePtn)
+            {
+                curHealth -= damagePtn;
+                isPoisoned = true;
             }
         }
 
@@ -116,7 +139,6 @@ namespace WinForms_JeuCombat
 
             textBox1.Location = new Point(-1000, 0);
 
-
             //Add character choice buttons to list
             characterSelectionButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
             //Set all the images for the buttons
@@ -124,19 +146,7 @@ namespace WinForms_JeuCombat
                 Image.FromFile("./Images/damager_selection.png"),
                 Image.FromFile("./Images/healer_selection.png"),
                 Image.FromFile("./Images/tank_selection.png"),
-                Image.FromFile("./Images/assassin_selection.png") 
-            });
-            playerList.AddRange(new List<Image>() {
-                Image.FromFile("./Images/damager.png"),
-                Image.FromFile("./Images/healer.png"),
-                Image.FromFile("./Images/tank.png"),
-                Image.FromFile("./Images/assassin.png")
-            });
-            enemyList.AddRange(new List<Image>() {
-                Image.FromFile("./Images/damager_inverse.png"),
-                Image.FromFile("./Images/healer_inverse.png"),
-                Image.FromFile("./Images/tank_inverse.png"),
-                Image.FromFile("./Images/assassin_inverse.png")
+                Image.FromFile("./Images/assassin_selection.png")
             });
 
             //List of all the option buttons to display later
@@ -239,7 +249,7 @@ namespace WinForms_JeuCombat
             Characters damager = new Characters(CharacterClass.Damager, "Damager", 3, 3, 2, ActionChoice.Defend, false);
             Characters healer = new Characters(CharacterClass.Healer, "Healer", 4, 4, 1, ActionChoice.Defend, false);
             Characters tank = new Characters(CharacterClass.Tank, "Tank", 5, 5, 1, ActionChoice.Defend, false);
-            Characters assassin = new Characters(CharacterClass.Assassin, "Assassin", 3, 3, 1, ActionChoice.Defend, false);
+            Characters assassin = new Characters(CharacterClass.Assassin, "Rogue", 3, 3, 1, ActionChoice.Defend, false);
 
             classList = new List<Characters> { damager, healer, tank, assassin };
             //------------------------------------
@@ -249,7 +259,7 @@ namespace WinForms_JeuCombat
             ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 + 300) - (ComputerBox.Height / 2));
 
             //Player's choice
-            tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assassin\r\n");
+            tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");
             Characters playerCharacter = PlayerChooseCharacter(tBox, playerSelectionButton, PlayerBox);
 
             //Display character choice
@@ -338,12 +348,12 @@ namespace WinForms_JeuCombat
                 {
                     Heal(actionPlayer, tBox);
                 }
-                else if (actionPlayer.name == "Assassin") //Dagues empoisonnées
+                else if (actionPlayer.name == "Rogue") //Dagues empoisonnées
                 {
                     //Empoisonne : - 1 HP au prochain tour
                     Poisoned(otherPlayer, true);
 
-                    tBox.Text += ("\r\nAttaque shuriken : - 1 HP, État empoisonnée"); //pour test
+                    tBox.Text += ("\r\nPoisoned attack : - 1 HP | Poisoned state"); //pour test
 
                     //Si cible ne défend pas : - 1ptn de dégat sur le moment
                     if (otherPlayerChoice != ActionChoice.Defend)
@@ -449,8 +459,11 @@ namespace WinForms_JeuCombat
             this.Controls.Remove(TankButton);
             this.Controls.Remove(AssasinButton);
 
-            //Update player sprite
-            plrBox.Image = playerList[character_player_choice - 1];
+            //Get player's choice
+            Characters _playerChoice = new Characters(classList[character_player_choice - 1]);
+
+            //Update player sprite (Idle)
+            plrBox.Image = _playerChoice.idle_frame;
 
             //Return player's choice
             return classList[character_player_choice - 1];
@@ -464,9 +477,14 @@ namespace WinForms_JeuCombat
             Random rand = new Random();
             int rand_index = rand.Next(0, classList.Count);
 
-            compBox.Image = enemyList[rand_index];//Computer image
+            //Get AI choice
+            Characters _aiCharacter = new Characters(classList[rand_index]);
+            
+            //Update AI sprite (Idle)
+            compBox.Image = _aiCharacter.idle_frame;
 
-            return classList[rand_index];
+            //Return AI choice
+            return _aiCharacter;
         }
 
 
