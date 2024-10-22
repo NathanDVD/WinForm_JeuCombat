@@ -1,7 +1,4 @@
 ﻿using System.Diagnostics;
-using System.DirectoryServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
 
 namespace WinForms_JeuCombat
 {
@@ -9,7 +6,15 @@ namespace WinForms_JeuCombat
     {
         private static float speed;
 
-        //Bounce function here
+
+
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        //
+        //Bounce function used primarily for the menu buttons. Needs a Control, 2 target locations and a float to control the movement speed.
+        //The function will loop until the 1st destination is reached (adding more speed), it also converts a PointF(float) into a Point(int), then
+        //go in the other direction (2nd destination) to create this "bounce" effect, then will continue in the primary direction.
+        //
+        //___________________________________________________________________________________________________________
         public static async void BounceFunction(Control control, PointF targetPos, PointF targetPos2, float speed)
         {
             // Move upwards until reaching the target position (bounce start)
@@ -33,11 +38,16 @@ namespace WinForms_JeuCombat
                 control.Location = new Point(control.Location.X, (int)newY); // Convert to integer Point
                 await Task.Delay(20);
             }
-            speed = 10; // Reset speed for future bounces if needed
+            speed = 10;//Reset speed
         }
 
 
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        //
+        //Uses the animate function to move the character according to the action that was chosen.
         //Character animations  --> Faire ici le chagement de frame
+        //
+        //___________________________________________________________________________________________________________
         public static async void CharacterAnim(PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
            
@@ -59,10 +69,20 @@ namespace WinForms_JeuCombat
             }
 
         }
+
+
+        //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        //
+        //Animation logic :
+        //Take image location, set a new location every 20ms by the chosen offset multiplied by the speed(which is incremental)
+        //in the chosen direction, only if the xDirection and yDirection are not 0.
+        //It also works with anything that has a location parameter, you just need to change PictureBox to Control.
+        //
+        //___________________________________________________________________________________________________________
         public async static void Animate(PictureBox characterImage, int xDirection, int yDirection)
         {
             Point location = characterImage.Location;
-            Point startLocation = location; //Set start location
+            Point startLocation = location;//Set start location
 
             int targetX = startLocation.X + (200 * xDirection);//Calculate end locations
             int targetY = startLocation.Y + (100 * yDirection);
@@ -71,6 +91,7 @@ namespace WinForms_JeuCombat
 
             if (xDirection != 0)
             {
+                //While loop to move the image until it reaches the set destination (for the X axis)
                 while ((xDirection == 1 && startLocation.X < targetX) || (xDirection == -1 && startLocation.X > targetX))
                 {
                     speed += 2;//Incremental speed
@@ -81,6 +102,7 @@ namespace WinForms_JeuCombat
             }
             else
             {
+                //While loop to move the image until it reaches the set destination (for the Y axis)
                 while ((yDirection == 1 && startLocation.Y < targetY) || (yDirection == -1 && startLocation.Y > targetY))
                 {
                     speed += 2;//Incremental speed
