@@ -8,6 +8,8 @@ namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
     {
+        //------------- COMMENTAIRE TEST
+
         //------------------- VARIABLES
 
         List<Button> characterSelectionButtonList = new List<Button>();
