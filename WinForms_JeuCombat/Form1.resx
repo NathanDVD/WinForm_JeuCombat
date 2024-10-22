@@ -777,6 +777,22 @@
         YFkJLCuBZSWwrASWdViuPgFlLLfu7fb3UAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="SpellButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAIySURBVHhe7ZQxThxBFET3BISkpM4h8yWIuIAdOOQiHMQ+
+        hjNCTjRoV1NSU3q/+8/uMhv8LukFU9vTU1VCHJZlKQ2alUCzEmhWAs1KoFkJNCuBZiXQrASalUCT2KrX
+        x7vlGqzXpUXZe6BJbBWVOYf1urQoew80iawU/P3Pj6uwdQjK3gNNIquyA2SL/315OPH76f6Enh1/LzsE
+        Ze+BJjFS2QG8eFREzyr+/P9wQs865/g9oyEoew80iUhlB/DiEVFxR7/rfITujYag7D3QJFxlB/DiUUAn
+        OwC928OHoOw90CSksgN4cceHEFHxt49fJ9yPhvB7/Xfl89wj0CTmADaAgijwCC86GiDLHOBWAyiAFxgR
+        FR/x899X5gC3HkCMhlDhrcW9sPDiYg6w9wD6Jxj9M6RSGaLCoi3dMgfYawAVphAtCkwliai439uO3uaY
+        A+w1QBvmiAcS2QG8uND7us+/68wBbjWAuFZxR/f5d4T8OcBeA/iHnWgAKpchGqD95pE5wF4D6IMKIrLF
+        dS7Czwv93pZumQN89wCSDyGiAvKFzvuAQueie9pvHlGeNR5m74EmIZUfQBoNEQXOMrrHi0uUvQeahKv8
+        AFI0hEN/7kR0Xn5UXKLsPdAkIpUfQPIhvMAIf0/PYlRcouw90CRGKj+A5ENcSra4RNl7oElkVX4AScEv
+        Zb0uLcreA01iq6jMOazXpUXZe6BZCTQrgWYl0KwEmpVAsxJoVgLNSqBZCTTrsBw+AULHUDN9F2FCAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

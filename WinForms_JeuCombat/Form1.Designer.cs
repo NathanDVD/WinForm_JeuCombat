@@ -215,13 +215,20 @@
             // 
             // SpellButton
             // 
+            SpellButton.BackColor = Color.Transparent;
+            SpellButton.BackgroundImage = (Image)resources.GetObject("SpellButton.BackgroundImage");
+            SpellButton.BackgroundImageLayout = ImageLayout.Stretch;
+            SpellButton.Cursor = Cursors.Hand;
+            SpellButton.FlatAppearance.BorderSize = 0;
+            SpellButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            SpellButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            SpellButton.FlatStyle = FlatStyle.Flat;
             SpellButton.Location = new Point(-100, -100);
             SpellButton.Name = "SpellButton";
-            SpellButton.Size = new Size(75, 23);
+            SpellButton.Size = new Size(128, 128);
             SpellButton.TabIndex = 10;
             SpellButton.Tag = "3";
-            SpellButton.Text = "Spell";
-            SpellButton.UseVisualStyleBackColor = true;
+            SpellButton.UseVisualStyleBackColor = false;
             SpellButton.Click += actionChoice_Click;
             // 
             // PlayerBox
