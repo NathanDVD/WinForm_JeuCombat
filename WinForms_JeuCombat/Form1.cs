@@ -1,9 +1,5 @@
 using System.Diagnostics;
-using System.Drawing.Text;
 using System.Media;
-using System.Windows.Forms;
-using static WinForms_JeuCombat.Form1;
-
 namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
@@ -238,17 +234,13 @@ namespace WinForms_JeuCombat
             textBox1.ScrollToCaret();//Scroll to bottom
         }
 
-
-        //Here ends the form section, no more Form controls (buttons, label, textbox ect...)
-        //The following code is the logic of the game
-        //
-        //
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------------------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
-        //
+        //Here ends the form section, no more Form controls (buttons, label, textbox ect...)
+        //The following code is the logic of the game, featuring the main function, game loop, win conditions ...
         //
         //Big chunk of code ahead : 
-        
+
 
         public async void MainFunction(TextBox tBox, Button playerSelectionButton)//here, button = character selection button
         {

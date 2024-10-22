@@ -180,24 +180,37 @@
             // 
             // AttackButton
             // 
+            AttackButton.BackColor = Color.Transparent;
+            AttackButton.BackgroundImage = (Image)resources.GetObject("AttackButton.BackgroundImage");
+            AttackButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AttackButton.Cursor = Cursors.Hand;
+            AttackButton.FlatAppearance.BorderSize = 0;
+            AttackButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            AttackButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            AttackButton.FlatStyle = FlatStyle.Flat;
             AttackButton.Location = new Point(-100, -100);
             AttackButton.Name = "AttackButton";
-            AttackButton.Size = new Size(75, 23);
+            AttackButton.Size = new Size(132, 132);
             AttackButton.TabIndex = 8;
             AttackButton.Tag = "1";
-            AttackButton.Text = "Attack";
-            AttackButton.UseVisualStyleBackColor = true;
+            AttackButton.UseVisualStyleBackColor = false;
             AttackButton.Click += actionChoice_Click;
             // 
             // DefendButton
             // 
+            DefendButton.BackColor = Color.Transparent;
+            DefendButton.BackgroundImage = (Image)resources.GetObject("DefendButton.BackgroundImage");
+            DefendButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DefendButton.FlatAppearance.BorderSize = 0;
+            DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            DefendButton.FlatStyle = FlatStyle.Flat;
             DefendButton.Location = new Point(-100, -100);
             DefendButton.Name = "DefendButton";
-            DefendButton.Size = new Size(75, 23);
+            DefendButton.Size = new Size(132, 132);
             DefendButton.TabIndex = 9;
             DefendButton.Tag = "2";
-            DefendButton.Text = "Defend";
-            DefendButton.UseVisualStyleBackColor = true;
+            DefendButton.UseVisualStyleBackColor = false;
             DefendButton.Click += actionChoice_Click;
             // 
             // SpellButton
