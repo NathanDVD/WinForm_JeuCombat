@@ -133,7 +133,7 @@ namespace WinForms_JeuCombat
             PlayButton.Location = new Point((this.Width / 2) - (PlayButton.Width / 2), (this.Height / 2) - (PlayButton.Height / 2));
             QuitButton.Location = new Point((this.Width / 2) - (QuitButton.Width / 2), (this.Height / 2 + 150) - (QuitButton.Height / 2));
 
-            ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 150);
+            ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 50);
 
             textBox1.Location = new Point(-1000, 0);
 
@@ -158,6 +158,7 @@ namespace WinForms_JeuCombat
 
             //ANimate controls leaving screen
             AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
+            await Task.Delay(1120);
             AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
             await Task.Delay(100);
             AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);

@@ -190,6 +190,7 @@
             DefendButton.BackColor = Color.Transparent;
             DefendButton.BackgroundImage = (Image)resources.GetObject("DefendButton.BackgroundImage");
             DefendButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DefendButton.Cursor = Cursors.Hand;
             DefendButton.FlatAppearance.BorderSize = 0;
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -247,12 +248,11 @@
             ImageLogo.BackColor = Color.Transparent;
             ImageLogo.BackgroundImage = (Image)resources.GetObject("ImageLogo.BackgroundImage");
             ImageLogo.BackgroundImageLayout = ImageLayout.Stretch;
-            ImageLogo.Location = new Point(9, 224);
+            ImageLogo.Location = new Point(12, 224);
             ImageLogo.Name = "ImageLogo";
-            ImageLogo.Size = new Size(667, 342);
+            ImageLogo.Size = new Size(500, 257);
             ImageLogo.TabIndex = 13;
             ImageLogo.TabStop = false;
-            ImageLogo.WaitOnLoad = true;
             // 
             // Form1
             // 

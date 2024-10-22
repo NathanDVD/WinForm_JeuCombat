@@ -20,7 +20,7 @@ namespace WinForms_JeuCombat
             // Move upwards until reaching the target position (bounce start)
             while (control.Location.Y > targetPos.Y)
             {
-                speed += 0.5f;
+                speed += 0.9f;
                 float newY = control.Location.Y - speed;
 
                 control.Location = new Point(control.Location.X, (int)newY);//Convert to integer Point
@@ -52,7 +52,7 @@ namespace WinForms_JeuCombat
             {
                 XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
-                await Task.Delay(500);//Wait
+                await Task.Delay(550);//Wait for movement to finish
 
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
             }
