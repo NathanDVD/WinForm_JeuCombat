@@ -750,7 +750,7 @@
   <data name="AttackButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAAAhtJREFUeF7tkr1NBDEUhKmAFkiRyKAXaiBBUAIVkBJQASKnBCRCKlq0px3JjL5n
+        EAAACxABrSO9dQAAAhtJREFUeF7tkr1NBDEUhKmAFkiRyKAXaiBBUAIVkBJQASKnBCRCKlq0px3JjL5n
         e+9nL3ge6QuYs70zIy6maUoNmplAMxNoZgLNTKCZCTQzgWYm0MwEmplAk1ir57vL6Rgsz3WLstdAk1gr
         KrMPy3Pdouw10CR6peA/D9dHYe0QlL0GmkSv0g7QW/zj/qoLv9c7BGWvgSbRUtoBvHhUxH1H5xz/vTUE
         Za+BJhEp7QBePKJVUOhcC52PhqDsNdAkXGkH8OJRwBat8++/3/94+frc4ed8CMpeA01CSjuAF3fKEXqg
@@ -765,7 +765,7 @@
   <data name="DefendButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAAAh9JREFUeF7tkjtOHFEURFmBt0BKzkYcIbEDQkSMHDkmtbdARkDEBixn3lGjkbqk
+        EAAACxABrSO9dQAAAh9JREFUeF7tkjtOHFEURFmBt0BKzkYcIbEDQkSMHDkmtbdARkDEBixn3lGjkbqk
         59K5972eTxPcV9IJphi66x7N1bIspcGyElhWAstKYFkJLCuBZSWwrASWlcCyElgSW/N4+205B+vjhkPb
         M7AktoaOOYb1ccOh7RlYEqPR8L8PN2dhqwjanoElMZqyAqLDX++uj8KfMyqCtmdgSfRSVoAfTseM0B7b
         4n/viaDtGVgSUcoK8MNPpZWRoe9HImh7BpaEp6wAPzwa+P3u/izoeREugrZnYEkoZQX44Y4EaPjzyy/k
