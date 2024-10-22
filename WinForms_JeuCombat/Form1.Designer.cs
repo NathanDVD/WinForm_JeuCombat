@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             PlayButton = new Button();
             QuitButton = new Button();
-            label1 = new Label();
             DamagerButton = new Button();
             HealerButton = new Button();
             TankButton = new Button();
@@ -42,8 +41,10 @@
             SpellButton = new Button();
             PlayerBox = new PictureBox();
             ComputerBox = new PictureBox();
+            ImageLogo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
@@ -83,18 +84,6 @@
             QuitButton.TextImageRelation = TextImageRelation.ImageAboveText;
             QuitButton.UseVisualStyleBackColor = false;
             QuitButton.Click += exitButton_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 75F);
-            label1.Location = new Point(-15, 301);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Size = new Size(321, 133);
-            label1.TabIndex = 2;
-            label1.Text = "label1";
             // 
             // DamagerButton
             // 
@@ -253,6 +242,18 @@
             ComputerBox.TabStop = false;
             ComputerBox.WaitOnLoad = true;
             // 
+            // ImageLogo
+            // 
+            ImageLogo.BackColor = Color.Transparent;
+            ImageLogo.BackgroundImage = (Image)resources.GetObject("ImageLogo.BackgroundImage");
+            ImageLogo.BackgroundImageLayout = ImageLayout.Stretch;
+            ImageLogo.Location = new Point(9, 224);
+            ImageLogo.Name = "ImageLogo";
+            ImageLogo.Size = new Size(667, 342);
+            ImageLogo.TabIndex = 13;
+            ImageLogo.TabStop = false;
+            ImageLogo.WaitOnLoad = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -261,6 +262,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(ImageLogo);
             Controls.Add(ComputerBox);
             Controls.Add(PlayerBox);
             Controls.Add(SpellButton);
@@ -271,7 +273,6 @@
             Controls.Add(TankButton);
             Controls.Add(HealerButton);
             Controls.Add(DamagerButton);
-            Controls.Add(label1);
             Controls.Add(QuitButton);
             Controls.Add(PlayButton);
             DoubleBuffered = true;
@@ -282,6 +283,7 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)PlayerBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ImageLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,7 +292,6 @@
 
         private Button PlayButton;
         private Button QuitButton;
-        private Label label1;
         private Button DamagerButton;
         private Button HealerButton;
         private Button TankButton;
@@ -301,5 +302,6 @@
         private Button SpellButton;
         private PictureBox PlayerBox;
         private PictureBox ComputerBox;
+        private PictureBox ImageLogo;
     }
 }

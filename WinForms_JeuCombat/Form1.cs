@@ -62,16 +62,12 @@ namespace WinForms_JeuCombat
                 this.action = action;
 
                 //GET IMAGES
-                //this.idle_frame = Image.FromFile($"./Images/{name}/{name}Idle.png");
+                this.idle_frame = Image.FromFile($"./Images/{name}/{name}Idle.png");
                 //this.attack_frame_1 = Image.FromFile($"./Images/{name}/{name}Attack_1.png");
                 //this.attack_frame_2 = Image.FromFile($"./Images/{name}/{name}Attack_2.png");
                 //this.spell_frame_1 = Image.FromFile($"./Images/{name}/{name}Spell_1.png");
                 //this.spell_frame_2 = Image.FromFile($"./Images/{name}/{name}Spell_2.png");
 
-
-                //This is how to rotate
-                this.idle_frame = Image.FromFile($"./Images/{name}/{name}Idle.png");
-                this.idle_frame.RotateFlip(RotateFlipType.Rotate180FlipY);
             }
 
             //Copy constructor
@@ -113,7 +109,7 @@ namespace WinForms_JeuCombat
             Spell = 3,
         }
 
-        //--------------------- END OF VARIABLES
+        //--------------------- END OF VARIABLES ---------------------//
 
 
 
@@ -127,9 +123,9 @@ namespace WinForms_JeuCombat
             //Here too (sound effect)
             mSoundPlayer = new SoundPlayer("./Sounds/Game_Start.wav");
             mSoundPlayer.Load();
-
-            
         }
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -137,7 +133,7 @@ namespace WinForms_JeuCombat
             PlayButton.Location = new Point((this.Width / 2) - (PlayButton.Width / 2), (this.Height / 2) - (PlayButton.Height / 2));
             QuitButton.Location = new Point((this.Width / 2) - (QuitButton.Width / 2), (this.Height / 2 + 150) - (QuitButton.Height / 2));
 
-            label1.Location = new Point((this.Width / 2) - (label1.Width / 2), 150);
+            ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 150);
 
             textBox1.Location = new Point(-1000, 0);
 
@@ -161,7 +157,7 @@ namespace WinForms_JeuCombat
             mSoundPlayer.Play();//Play sound
 
             //ANimate controls leaving screen
-            AnimationClass.BounceFunction(label1, new Point(0, 100), new Point(0, 400), 11);
+            AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
             AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
             await Task.Delay(100);
             AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
@@ -487,6 +483,9 @@ namespace WinForms_JeuCombat
             //Update AI sprite (Idle)
             compBox.Image = _aiCharacter.idle_frame;
 
+            //Flip the image on the Y axis
+            _aiCharacter.idle_frame.RotateFlip(RotateFlipType.Rotate180FlipY);
+
             //Return AI choice
             return _aiCharacter;
         }
@@ -551,6 +550,5 @@ namespace WinForms_JeuCombat
         {
             return (bool)character.isPoisoned;
         }
-
     }
 }
