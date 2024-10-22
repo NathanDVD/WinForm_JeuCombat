@@ -39,11 +39,11 @@
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
-            PlayerBox = new PictureBox();
-            ComputerBox = new PictureBox();
+            PlayerImage = new PictureBox();
+            ComputerImage = new PictureBox();
             ImageLogo = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PlayerImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
             SuspendLayout();
             // 
@@ -64,7 +64,7 @@
             PlayButton.TabIndex = 0;
             PlayButton.TextImageRelation = TextImageRelation.ImageAboveText;
             PlayButton.UseVisualStyleBackColor = false;
-            PlayButton.Click += button1_Click;
+            PlayButton.Click += menuButton_Click;
             // 
             // QuitButton
             // 
@@ -221,27 +221,27 @@
             SpellButton.UseVisualStyleBackColor = false;
             SpellButton.Click += actionChoice_Click;
             // 
-            // PlayerBox
+            // PlayerImage
             // 
-            PlayerBox.BackColor = Color.Transparent;
-            PlayerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            PlayerBox.Location = new Point(-300, 0);
-            PlayerBox.Name = "PlayerBox";
-            PlayerBox.Size = new Size(235, 235);
-            PlayerBox.TabIndex = 11;
-            PlayerBox.TabStop = false;
-            PlayerBox.WaitOnLoad = true;
+            PlayerImage.BackColor = Color.Transparent;
+            PlayerImage.BackgroundImageLayout = ImageLayout.Stretch;
+            PlayerImage.Location = new Point(-300, 0);
+            PlayerImage.Name = "PlayerImage";
+            PlayerImage.Size = new Size(235, 235);
+            PlayerImage.TabIndex = 11;
+            PlayerImage.TabStop = false;
+            PlayerImage.WaitOnLoad = true;
             // 
-            // ComputerBox
+            // ComputerImage
             // 
-            ComputerBox.BackColor = Color.Transparent;
-            ComputerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            ComputerBox.Location = new Point(-300, 0);
-            ComputerBox.Name = "ComputerBox";
-            ComputerBox.Size = new Size(235, 235);
-            ComputerBox.TabIndex = 12;
-            ComputerBox.TabStop = false;
-            ComputerBox.WaitOnLoad = true;
+            ComputerImage.BackColor = Color.Transparent;
+            ComputerImage.BackgroundImageLayout = ImageLayout.Stretch;
+            ComputerImage.Location = new Point(-300, 0);
+            ComputerImage.Name = "ComputerImage";
+            ComputerImage.Size = new Size(235, 235);
+            ComputerImage.TabIndex = 12;
+            ComputerImage.TabStop = false;
+            ComputerImage.WaitOnLoad = true;
             // 
             // ImageLogo
             // 
@@ -263,8 +263,8 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(ImageLogo);
-            Controls.Add(ComputerBox);
-            Controls.Add(PlayerBox);
+            Controls.Add(ComputerImage);
+            Controls.Add(PlayerImage);
             Controls.Add(SpellButton);
             Controls.Add(DefendButton);
             Controls.Add(AttackButton);
@@ -281,8 +281,8 @@
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)PlayerBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ComputerBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PlayerImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -300,8 +300,8 @@
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
-        private PictureBox PlayerBox;
-        private PictureBox ComputerBox;
+        private PictureBox PlayerImage;
+        private PictureBox ComputerImage;
         private PictureBox ImageLogo;
     }
 }
