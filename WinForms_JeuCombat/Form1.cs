@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.Media;
-using static WinForms_JeuCombat.Form1;
 namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
@@ -17,7 +16,6 @@ namespace WinForms_JeuCombat
         private bool choseCharacter = false;
         private bool canPlay = true;
         public bool choseAction = false;
-        public bool isActive = false;
 
         private int buttonOffset = 0;
 
@@ -51,9 +49,10 @@ namespace WinForms_JeuCombat
             public Image idle_frame;
             public Image attack_frame;
             public Image spell_frame;
+            //public Image spell_frame_1;
+            //public Image spell_frame_2;
 
-
-            //Constructor base
+            //Base constructor
             public Characters(CharacterClass characterClass, string name, int curHealth, int maxHealth, int damage, ActionChoice action, bool isPoisoned)
             {
                 this.characterClass = characterClass;
@@ -67,12 +66,11 @@ namespace WinForms_JeuCombat
                 //GET IMAGES
                 this.idle_frame = Image.FromFile($"./Images/{name}/{name}_Idle.png");
                 this.attack_frame = Image.FromFile($"./Images/{name}/{name}_Attack.png");
-                this.spell_frame = Image.FromFile($"./Images/{name}/{name}_Attack.png");
-
+                this.spell_frame = Image.FromFile($"./Images/{name}/{name}_Spell.png");
 
             }
 
-            //Constructor copy
+            //Copy constructor
             public Characters(Characters characterToCopy)
             {
                 characterClass = characterToCopy.characterClass;
@@ -82,16 +80,19 @@ namespace WinForms_JeuCombat
                 damage = characterToCopy.damage;
                 action = characterToCopy.action;
                 idle_frame = characterToCopy.idle_frame;
+                attack_frame = characterToCopy.attack_frame;
+                spell_frame = characterToCopy.spell_frame;
+
             }
 
             //Inflict damage to character
             public void TakeDamage(int _damage)
             {
-                int res = curHealth - damage;
+                int res = curHealth - _damage;
                 if (res < 0) { res = 0; }
                 curHealth = res;
             }
-            //Poison damages
+
             public void Poisoned(int damagePtn)
             {
                 curHealth -= damagePtn;
@@ -115,10 +116,6 @@ namespace WinForms_JeuCombat
         {
             InitializeComponent();//Start the WinForm
 
-            this.MinimumSize = new Size(1920, 1080);
-
-            this.BackgroundImage = Image.FromFile("./Images/Back1.png");
-
             //Load the sounds and songs (main theme)
             sPlayer = new SoundPlayer("./Sounds/8-Bit_FightingGame_Music.wav");
             sPlayer.Load();
@@ -135,9 +132,9 @@ namespace WinForms_JeuCombat
             PlayButton.Location = new Point((this.Width / 2) - (PlayButton.Width / 2), (this.Height / 2) - (PlayButton.Height / 2));
             QuitButton.Location = new Point((this.Width / 2) - (QuitButton.Width / 2), (this.Height / 2 + 150) - (QuitButton.Height / 2));
 
-            ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 50);
+            ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 150);
 
-            TextBox.Location = new Point(-1000, 0);
+            textBox1.Location = new Point(-1000, 0);
 
             //Add character choice buttons to list
             characterSelectionButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
@@ -151,34 +148,23 @@ namespace WinForms_JeuCombat
 
             //List of all the option buttons to display later
             optionButtonList.AddRange(new Button[] { AttackButton, DefendButton, SpellButton });
-
-            //Player choice
-            TextBox.Text = ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");
         }
 
         //BUTTON START
-        private async void menuButton_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            mSoundPlayer.Play();//Play sound
 
-
-            if (!isActive)
-            {
-                mSoundPlayer.Play();//Play sound
-                isActive = true;
-                //Animate controls leaving screen
-                //PlayButton.Enabled = false;
-                //QuitButton.Enabled = false;
-                AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
-                await Task.Delay(1120);//Wait because it makes the movements laggy and looks like a slide show
-                AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
-                await Task.Delay(100);//Small delay for the button to not overlap
-                AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
-            }
-
+            //ANimate controls leaving screen
+            AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
+            await Task.Delay(1900);
+            AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
+            await Task.Delay(100);
+            AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
 
             buttonOffset = 0;//Offset
 
-            await Task.Delay(2400);//Wait 2 seconds
+            await Task.Delay(2000);//Wait 2 seconds
 
             //Set all character choice buttons position
             foreach (Button button in characterSelectionButtonList)
@@ -189,13 +175,16 @@ namespace WinForms_JeuCombat
                 buttonOffset += 400;//Add offset between images
             }
 
-            TextBox.Location = new Point((this.Width / 2) - (TextBox.Width / 2), 150);
+            textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
 
             this.BackgroundImage = Image.FromFile("./Images/background_menu.png");
 
             await Task.Delay(1000);
 
             //sPlayer.PlayLooping();//Loops the song selected  (A REMETTRE)
+
+            //Before the game starts
+            textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
         }
 
 
@@ -208,17 +197,17 @@ namespace WinForms_JeuCombat
         //If clicked character selection button
         private void characterChoice_Click(object sender, EventArgs e)
         {
-            buttonOffset = 2;
+            buttonOffset = 100;
             //Move the buttons on the window
             foreach (Button button in optionButtonList)
             {
-                button.Location = new Point((this.Width / 6 * buttonOffset) - (button.Width / 2), (this.Height / 10 * 9) - (button.Height / 2));
-                buttonOffset++;
+                button.Location = new Point((this.Width / 3 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 500) - (button.Height / 2));
+                buttonOffset += 200;
             }
 
             Button clickedButton = sender as Button;//Button clicked that sent triggered the event
 
-            MainFunction(TextBox, clickedButton);//Launch main function
+            MainFunction(textBox1, clickedButton);//Launch main function
         }
 
         private async void actionChoice_Click(object sender, EventArgs e)
@@ -237,6 +226,11 @@ namespace WinForms_JeuCombat
             }
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox1.SelectionStart = textBox1.TextLength;//Set text start(the first line to show
+            textBox1.ScrollToCaret();//Scroll to bottom
+        }
 
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------------------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
@@ -246,33 +240,34 @@ namespace WinForms_JeuCombat
         //Big chunk of code ahead : 
 
 
-        public async void MainFunction(Label tBox, Button playerSelectionButton)//here, button = character selection button
+        public async void MainFunction(TextBox tBox, Button playerSelectionButton)//here, button = character selection button
         {
             //--------- INITIALIZATION -----------
             bool isEnd = false;
 
-            Random rnd = new Random();//New random
+            Random rnd = new Random();
 
-            //Create the possible classes with their stats
             Characters damager = new Characters(CharacterClass.Damager, "Damager", 3, 3, 2, ActionChoice.Defend, false);
             Characters healer = new Characters(CharacterClass.Healer, "Healer", 4, 4, 1, ActionChoice.Defend, false);
             Characters tank = new Characters(CharacterClass.Tank, "Tank", 5, 5, 1, ActionChoice.Defend, false);
             Characters assassin = new Characters(CharacterClass.Assassin, "Rogue", 3, 3, 1, ActionChoice.Defend, false);
 
-            //Create a list of the possible characters
             classList = new List<Characters> { damager, healer, tank, assassin };
+            //------------------------------------
 
             //Initial sprites placement (characters selected)
-            PlayerImage.Location = new Point((this.Width / 2-250) - (PlayerImage.Width / 2), (this.Height / 2+350) - (PlayerImage.Height / 2));
-            ComputerImage.Location = new Point((this.Width / 2+250) - (ComputerImage.Width / 2), (this.Height / 2+350) - (ComputerImage.Height / 2));
+            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 + 300) - (PlayerBox.Height / 2));
+            ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 + 300) - (ComputerBox.Height / 2));
 
-            Characters playerCharacter = PlayerChooseCharacter(tBox, playerSelectionButton, PlayerImage);
+            //Player choice
+            tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");
+            Characters playerCharacter = PlayerChooseCharacter(tBox, playerSelectionButton, PlayerBox);
 
             //Display character choice
-            tBox.Text = $"\r\nJoueur : {playerCharacter.name}";
+            tBox.Text += $"\r\nJoueur : {playerCharacter.name}";
 
             //AI's choice
-            Characters AICharacter = new Characters(AIChooseCharacter(ComputerImage));
+            Characters AICharacter = new Characters(AIChooseCharacter(ComputerBox));
 
             //Display character choice
             tBox.Text += $"\r\nAI : {AICharacter.name}";
@@ -281,11 +276,7 @@ namespace WinForms_JeuCombat
             DisplayHealth(playerCharacter, AICharacter, tBox);
 
 
-            //----------------------------------------------------------------------------------//
-            //                      ------------- GAME LOOP  ----------------                   //
-            //__________________________________________________________________________________//
-
-
+            //------------- GAME LOOP  ----------------
             while (!isEnd)
             {
                 Debug.WriteLine(choseAction);
@@ -298,10 +289,10 @@ namespace WinForms_JeuCombat
                 choseAction = false;
 
                 //Choose player action
-                PlayerChooseAction(playerCharacter, tBox, choiceButton, PlayerImage);
+                PlayerChooseAction(playerCharacter, tBox, choiceButton, PlayerBox);
 
                 //Choose ai action
-                AIChooseAction(AICharacter, ComputerImage);
+                AIChooseAction(AICharacter, ComputerBox);
 
                 //Combat (round)
                 Fight(playerCharacter, AICharacter, tBox);
@@ -315,11 +306,11 @@ namespace WinForms_JeuCombat
             }
         }
 
-        //---------------------------------------------//
+        //---------------------------------------------
 
 
         //Function called every turn, 
-        static void Fight(Characters player, Characters ai, Label tBox)
+        static void Fight(Characters player, Characters ai, TextBox tBox)
         {
             //If poisonned last round then - 1 HP and remove poison
             if (isPoisoned(player))
@@ -347,7 +338,7 @@ namespace WinForms_JeuCombat
         }
 
         //Function playing the chosen action
-        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer, Label tBox)
+        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer, TextBox tBox)
         {
             //GET ACTIONS
             ActionChoice actionPlayerChoice = actionPlayer.action;
@@ -357,8 +348,7 @@ namespace WinForms_JeuCombat
             {
                 if (actionPlayer.name == "Healer") //HEAL
                 {
-                    Heal(actionPlayer);
-                    Debug.WriteLine("HEALINGGG");
+                    Heal(actionPlayer, tBox);
                 }
                 else if (actionPlayer.name == "Rogue") //Poisonned daggers
                 {
@@ -418,11 +408,11 @@ namespace WinForms_JeuCombat
 
 
         //Player action choice
-        static void PlayerChooseAction(Characters player, Label tBox, Button button, PictureBox plrBox)
+        static void PlayerChooseAction(Characters player, TextBox tBox, Button button, PictureBox plrBox)
         {
             int action_player_choice = 0;
 
-            tBox.Text = ("\r\nChoisissez une action:\r\n1 - Attack\r\n2 - Defend\r\n3 - Spell");
+            tBox.Text += ("\r\nChoisissez une action:\r\n1 - Attack\r\n2 - Defend\r\n3 - Spell");
 
             action_player_choice = int.Parse(button.Tag.ToString());
 
@@ -444,11 +434,11 @@ namespace WinForms_JeuCombat
             await Task.Delay(500);
 
             //----------------------------------------------------------------------------------------------
-            AnimationClass.CharacterAnim(ai, compBox, -1, ai.action);
+            AnimationClass.CharacterAnim(ai ,compBox, -1, ai.action);
         }
 
 
-        public Characters PlayerChooseCharacter(Label tBox, Button playerChoiceButton, PictureBox plrBox)
+        public Characters PlayerChooseCharacter(TextBox tBox, Button playerChoiceButton, PictureBox plrBox)
         {
             int character_player_choice = 1;
 
@@ -487,14 +477,18 @@ namespace WinForms_JeuCombat
         public Characters AIChooseCharacter(PictureBox compBox)
         {
             Random rand = new Random();
+
             int rand_index = rand.Next(0, classList.Count);
 
             //Get AI choice
             Characters _aiCharacter = new Characters(classList[rand_index]);
+            _aiCharacter.idle_frame = (Image)classList[rand_index].idle_frame.Clone();
 
-            //Update AI sprite (Idle)
+            //Update AI sprite
             compBox.Image = _aiCharacter.idle_frame;
-            compBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
+
+            //Flip cloned image on Y axis
+            _aiCharacter.idle_frame.RotateFlip(RotateFlipType.Rotate180FlipY);
 
             //Return AI choice
             return _aiCharacter;
@@ -502,7 +496,7 @@ namespace WinForms_JeuCombat
 
 
         //End game conditions
-        static bool isEndGame(Characters playerCharacter, Characters aiCharacter, Label tBox)
+        static bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
         {
             //Conditions de fin
             bool playerIsDead = playerCharacter.curHealth <= 0;
@@ -510,43 +504,46 @@ namespace WinForms_JeuCombat
 
             if (playerIsDead && AIisDead)
             {
-                tBox.Text = ("\r\nEgalité !");
+                tBox.Text += ("\r\nEgalit� !");
                 return true;
             }
             else if (AIisDead)
             {
-                tBox.Text = ("\r\nLe joueur a gagné !");
+                tBox.Text += ("\r\nLe joueur a gagn� !");
                 return true;
             }
             else if (playerIsDead)
             {
-                tBox.Text = ("\r\nl'IA a gagné !");
+                tBox.Text += ("\r\nl'AI a gagn� !");
                 return true;
             }
             else return false;
         }
 
-        //----- Function spell
-        static void Heal(Characters charact)
+        //----- Fonction spell
+        static void Heal(Characters charact, TextBox tBox)
         {
             int _health = (int)charact.curHealth + 2;
-            //Check if not going outside health limits
-            charact.curHealth = Math.Min(_health, charact.curHealth);
-            Debug.WriteLine("HEALLED" + charact.curHealth);
+            //Verify
+            charact.curHealth = _health;
+            if (charact.curHealth > charact.maxHealth)
+            {
+                charact.curHealth = charact.maxHealth;
+            }
         }
 
         //---- Display functions
-        static void ShowPlayerAction(ActionChoice action, Label tBox)
+        static void ShowPlayerAction(ActionChoice action, TextBox tBox)
         {
-            tBox.Text = ($"\r\nPlayer choice : {action.ToString()}");
+            tBox.Text += ($"\r\nPlayer choice : {action.ToString()}");
         }
 
-        static void ShowAIAction(ActionChoice action, Label tBox)
+        static void ShowAIAction(ActionChoice action, TextBox tBox)
         {
             tBox.Text += ($"\r\nAI choice : {action.ToString()}");
         }
 
-        static void DisplayHealth(Characters player, Characters ai, Label tBox)
+        static void DisplayHealth(Characters player, Characters ai, TextBox tBox)
         {
             tBox.Text += $"\r\nHP joueur : {player.curHealth}/{player.maxHealth}";
             tBox.Text += $"\r\nHP IA : {ai.curHealth}/{ai.maxHealth}";
