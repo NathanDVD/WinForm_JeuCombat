@@ -14,6 +14,7 @@ namespace WinForms_JeuCombat
         private bool choseCharacter = false;
         private bool canPlay = true;
         public bool choseAction = false;
+        public bool isActive = false;
 
         private int buttonOffset = 0;
 
@@ -155,19 +156,27 @@ namespace WinForms_JeuCombat
 
         //BUTTON START
         private async void menuButton_Click(object sender, EventArgs e)
-        {
-            mSoundPlayer.Play();//Play sound
+        {          
+            
 
-            //ANimate controls leaving screen
-            AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
-            await Task.Delay(1120);//Wait because it makes the movements laggy and looks like a slide show
-            AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
-            await Task.Delay(100);//Small delay for the button to not overlap
-            AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
+            if (!isActive)
+            {
+                mSoundPlayer.Play();//Play sound
+                isActive = true;
+                //Animate controls leaving screen
+                //PlayButton.Enabled = false;
+                //QuitButton.Enabled = false;
+                AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
+                await Task.Delay(1120);//Wait because it makes the movements laggy and looks like a slide show
+                AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
+                await Task.Delay(100);//Small delay for the button to not overlap
+                AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
+            }
+
 
             buttonOffset = 0;//Offset
 
-            await Task.Delay(2000);//Wait 2 seconds
+            await Task.Delay(2400);//Wait 2 seconds
 
             //Set all character choice buttons position
             foreach (Button button in characterSelectionButtonList)
@@ -260,8 +269,8 @@ namespace WinForms_JeuCombat
             classList = new List<Characters> { damager, healer, tank, assassin };
 
             //Initial sprites placement (characters selected)
-            PlayerImage.Location = new Point((this.Width / 2 - 300) - (PlayerImage.Width / 2), (this.Height / 2 + 300) - (PlayerImage.Height / 2));
-            ComputerImage.Location = new Point((this.Width / 2 + 300) - (ComputerImage.Width / 2), (this.Height / 2 + 300) - (ComputerImage.Height / 2));
+            PlayerImage.Location = new Point((this.Width / 4 ) - (PlayerImage.Width / 4), (this.Height / 2 ) - (PlayerImage.Height / 2));
+            ComputerImage.Location = new Point((this.Width / 2 ) - (ComputerImage.Width / 2)*(int)1.5, (this.Height / 2 ) - (ComputerImage.Height / 2));
 
             //Player choice
             tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");

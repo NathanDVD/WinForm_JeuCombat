@@ -51,6 +51,7 @@
             // 
             PlayButton.BackColor = Color.Transparent;
             PlayButton.BackgroundImageLayout = ImageLayout.None;
+            PlayButton.Cursor = Cursors.Hand;
             PlayButton.FlatAppearance.BorderSize = 0;
             PlayButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             PlayButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -70,6 +71,7 @@
             // 
             QuitButton.BackColor = Color.Transparent;
             QuitButton.BackgroundImageLayout = ImageLayout.Center;
+            QuitButton.Cursor = Cursors.Hand;
             QuitButton.FlatAppearance.BorderSize = 0;
             QuitButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             QuitButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -158,6 +160,8 @@
             // textBox1
             // 
             textBox1.AcceptsReturn = true;
+            textBox1.BackColor = SystemColors.Control;
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.Font = new Font("Segoe UI", 15F);
             textBox1.Location = new Point(635, 12);
             textBox1.Multiline = true;
@@ -165,6 +169,7 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(583, 265);
             textBox1.TabIndex = 7;
+            textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // AttackButton
@@ -177,7 +182,7 @@
             AttackButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             AttackButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AttackButton.FlatStyle = FlatStyle.Flat;
-            AttackButton.Location = new Point(-100, -100);
+            AttackButton.Location = new Point(-200, -100);
             AttackButton.Name = "AttackButton";
             AttackButton.Size = new Size(132, 132);
             AttackButton.TabIndex = 8;
@@ -195,7 +200,7 @@
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DefendButton.FlatStyle = FlatStyle.Flat;
-            DefendButton.Location = new Point(-100, -100);
+            DefendButton.Location = new Point(-200, -100);
             DefendButton.Name = "DefendButton";
             DefendButton.Size = new Size(132, 132);
             DefendButton.TabIndex = 9;
@@ -213,7 +218,7 @@
             SpellButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             SpellButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             SpellButton.FlatStyle = FlatStyle.Flat;
-            SpellButton.Location = new Point(-100, -100);
+            SpellButton.Location = new Point(-200, -100);
             SpellButton.Name = "SpellButton";
             SpellButton.Size = new Size(128, 128);
             SpellButton.TabIndex = 10;

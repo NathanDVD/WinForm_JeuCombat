@@ -7,7 +7,6 @@ namespace WinForms_JeuCombat
         private static float speed;
 
 
-
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
         //Bounce function used primarily for the menu buttons. Needs a Control, 2 target locations and a float to control the movement speed.
