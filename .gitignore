@@ -361,4 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+<<<<<<< HEAD
 *.png
+=======
+/WinForms_JeuCombat/Images/Damager/Damager_Spell.png
+/WinForms_JeuCombat/Images/Rogue/Rogue_Spell.png
+/WinForms_JeuCombat/Images/Tank/Tank_Spell.png
+>>>>>>> Nathan
+/WinForms_JeuCombat/Images/Damager/Damager_Spell.png
+/WinForms_JeuCombat/Images/Damager/Damager_Spell.png

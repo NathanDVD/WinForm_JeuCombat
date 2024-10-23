@@ -63,11 +63,11 @@
                 //Go back to base frame
                 characterImage.Image = baseImage;
             }
-            else if (action == Form1.ActionChoice.Defend)  //JUMP
+            else if (action == Form1.ActionChoice.Defend) 
             {
                 //Defend action
             }
-            else if (action == Form1.ActionChoice.Spell)  //JUMP
+            else if (action == Form1.ActionChoice.Spell)
             {
   
                 //Setup the image to use
