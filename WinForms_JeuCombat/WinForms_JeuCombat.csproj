@@ -64,7 +64,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Damager\Damager_Spell.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\damager_inverse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -109,7 +109,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Rogue\Rogue_Spell.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Tank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -127,7 +127,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Tank\Tank_Spell.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Tank_inverse.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
