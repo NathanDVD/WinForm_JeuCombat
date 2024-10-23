@@ -31,25 +31,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             PlayButton = new Button();
             QuitButton = new Button();
-            label1 = new Label();
             DamagerButton = new Button();
             HealerButton = new Button();
             TankButton = new Button();
             AssasinButton = new Button();
-            textBox1 = new TextBox();
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
-            PlayerBox = new PictureBox();
-            ComputerBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
+            PlayerImage = new PictureBox();
+            ComputerImage = new PictureBox();
+            ImageLogo = new PictureBox();
+            TextBox = new Label();
+            ((System.ComponentModel.ISupportInitialize)PlayerImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
             // 
             PlayButton.BackColor = Color.Transparent;
             PlayButton.BackgroundImageLayout = ImageLayout.None;
+            PlayButton.Cursor = Cursors.Hand;
             PlayButton.FlatAppearance.BorderSize = 0;
             PlayButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             PlayButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -63,12 +65,13 @@
             PlayButton.TabIndex = 0;
             PlayButton.TextImageRelation = TextImageRelation.ImageAboveText;
             PlayButton.UseVisualStyleBackColor = false;
-            PlayButton.Click += button1_Click;
+            PlayButton.Click += menuButton_Click;
             // 
             // QuitButton
             // 
             QuitButton.BackColor = Color.Transparent;
             QuitButton.BackgroundImageLayout = ImageLayout.Center;
+            QuitButton.Cursor = Cursors.Hand;
             QuitButton.FlatAppearance.BorderSize = 0;
             QuitButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             QuitButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -84,18 +87,6 @@
             QuitButton.UseVisualStyleBackColor = false;
             QuitButton.Click += exitButton_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 75F);
-            label1.Location = new Point(-15, 301);
-            label1.Margin = new Padding(0);
-            label1.Name = "label1";
-            label1.Size = new Size(321, 133);
-            label1.TabIndex = 2;
-            label1.Text = "label1";
-            // 
             // DamagerButton
             // 
             DamagerButton.BackColor = Color.Transparent;
@@ -105,7 +96,7 @@
             DamagerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DamagerButton.FlatStyle = FlatStyle.Flat;
             DamagerButton.ForeColor = Color.Transparent;
-            DamagerButton.Location = new Point(0, -30);
+            DamagerButton.Location = new Point(0, -300);
             DamagerButton.Name = "DamagerButton";
             DamagerButton.Size = new Size(75, 23);
             DamagerButton.TabIndex = 3;
@@ -123,7 +114,7 @@
             HealerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             HealerButton.FlatStyle = FlatStyle.Flat;
             HealerButton.ForeColor = Color.Transparent;
-            HealerButton.Location = new Point(0, -30);
+            HealerButton.Location = new Point(0, -300);
             HealerButton.Name = "HealerButton";
             HealerButton.Size = new Size(75, 23);
             HealerButton.TabIndex = 4;
@@ -140,7 +131,7 @@
             TankButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             TankButton.FlatStyle = FlatStyle.Flat;
             TankButton.ForeColor = Color.Transparent;
-            TankButton.Location = new Point(0, -30);
+            TankButton.Location = new Point(0, -300);
             TankButton.Name = "TankButton";
             TankButton.Size = new Size(75, 23);
             TankButton.TabIndex = 5;
@@ -157,7 +148,7 @@
             AssasinButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AssasinButton.FlatStyle = FlatStyle.Flat;
             AssasinButton.ForeColor = Color.Transparent;
-            AssasinButton.Location = new Point(0, -30);
+            AssasinButton.Location = new Point(0, -300);
             AssasinButton.Name = "AssasinButton";
             AssasinButton.Size = new Size(75, 23);
             AssasinButton.TabIndex = 6;
@@ -165,18 +156,6 @@
             AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
             AssasinButton.UseVisualStyleBackColor = false;
             AssasinButton.Click += characterChoice_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.AcceptsReturn = true;
-            textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(635, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(583, 265);
-            textBox1.TabIndex = 7;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // AttackButton
             // 
@@ -188,7 +167,7 @@
             AttackButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             AttackButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AttackButton.FlatStyle = FlatStyle.Flat;
-            AttackButton.Location = new Point(-100, -100);
+            AttackButton.Location = new Point(-200, -200);
             AttackButton.Name = "AttackButton";
             AttackButton.Size = new Size(132, 132);
             AttackButton.TabIndex = 8;
@@ -201,11 +180,12 @@
             DefendButton.BackColor = Color.Transparent;
             DefendButton.BackgroundImage = (Image)resources.GetObject("DefendButton.BackgroundImage");
             DefendButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DefendButton.Cursor = Cursors.Hand;
             DefendButton.FlatAppearance.BorderSize = 0;
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DefendButton.FlatStyle = FlatStyle.Flat;
-            DefendButton.Location = new Point(-100, -100);
+            DefendButton.Location = new Point(-200, -200);
             DefendButton.Name = "DefendButton";
             DefendButton.Size = new Size(132, 132);
             DefendButton.TabIndex = 9;
@@ -223,7 +203,7 @@
             SpellButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             SpellButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             SpellButton.FlatStyle = FlatStyle.Flat;
-            SpellButton.Location = new Point(-100, -100);
+            SpellButton.Location = new Point(-200, -200);
             SpellButton.Name = "SpellButton";
             SpellButton.Size = new Size(128, 128);
             SpellButton.TabIndex = 10;
@@ -231,27 +211,50 @@
             SpellButton.UseVisualStyleBackColor = false;
             SpellButton.Click += actionChoice_Click;
             // 
-            // PlayerBox
+            // PlayerImage
             // 
-            PlayerBox.BackColor = Color.Transparent;
-            PlayerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            PlayerBox.Location = new Point(-300, 0);
-            PlayerBox.Name = "PlayerBox";
-            PlayerBox.Size = new Size(235, 235);
-            PlayerBox.TabIndex = 11;
-            PlayerBox.TabStop = false;
-            PlayerBox.WaitOnLoad = true;
+            PlayerImage.BackColor = Color.Transparent;
+            PlayerImage.BackgroundImageLayout = ImageLayout.Stretch;
+            PlayerImage.Location = new Point(-300, 0);
+            PlayerImage.Name = "PlayerImage";
+            PlayerImage.Size = new Size(128, 128);
+            PlayerImage.TabIndex = 11;
+            PlayerImage.TabStop = false;
             // 
-            // ComputerBox
+            // ComputerImage
             // 
-            ComputerBox.BackColor = Color.Transparent;
-            ComputerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            ComputerBox.Location = new Point(-300, 0);
-            ComputerBox.Name = "ComputerBox";
-            ComputerBox.Size = new Size(235, 235);
-            ComputerBox.TabIndex = 12;
-            ComputerBox.TabStop = false;
-            ComputerBox.WaitOnLoad = true;
+            ComputerImage.BackColor = Color.Transparent;
+            ComputerImage.BackgroundImageLayout = ImageLayout.Stretch;
+            ComputerImage.Location = new Point(-300, 0);
+            ComputerImage.Name = "ComputerImage";
+            ComputerImage.Size = new Size(128, 128);
+            ComputerImage.TabIndex = 12;
+            ComputerImage.TabStop = false;
+            ComputerImage.WaitOnLoad = true;
+            // 
+            // ImageLogo
+            // 
+            ImageLogo.BackColor = Color.Transparent;
+            ImageLogo.BackgroundImage = (Image)resources.GetObject("ImageLogo.BackgroundImage");
+            ImageLogo.BackgroundImageLayout = ImageLayout.Stretch;
+            ImageLogo.Location = new Point(12, 224);
+            ImageLogo.Name = "ImageLogo";
+            ImageLogo.Size = new Size(500, 257);
+            ImageLogo.TabIndex = 13;
+            ImageLogo.TabStop = false;
+            // 
+            // TextBox
+            // 
+            TextBox.AutoSize = true;
+            TextBox.BackColor = Color.Transparent;
+            TextBox.FlatStyle = FlatStyle.Flat;
+            TextBox.Font = new Font("Segoe UI", 15F);
+            TextBox.Location = new Point(612, 5);
+            TextBox.MinimumSize = new Size(583, 265);
+            TextBox.Name = "TextBox";
+            TextBox.Size = new Size(583, 265);
+            TextBox.TabIndex = 5;
+            TextBox.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -260,29 +263,30 @@
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
-            Controls.Add(ComputerBox);
-            Controls.Add(PlayerBox);
+            ClientSize = new Size(800, 500);
+            Controls.Add(TextBox);
+            Controls.Add(ImageLogo);
+            Controls.Add(ComputerImage);
+            Controls.Add(PlayerImage);
             Controls.Add(SpellButton);
             Controls.Add(DefendButton);
             Controls.Add(AttackButton);
-            Controls.Add(textBox1);
             Controls.Add(AssasinButton);
             Controls.Add(TankButton);
             Controls.Add(HealerButton);
             Controls.Add(DamagerButton);
-            Controls.Add(label1);
             Controls.Add(QuitButton);
             Controls.Add(PlayButton);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
+            MaximumSize = new Size(1920, 1200);
             Name = "Form1";
-            Text = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)PlayerBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ComputerBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PlayerImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ImageLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -291,16 +295,16 @@
 
         private Button PlayButton;
         private Button QuitButton;
-        private Label label1;
         private Button DamagerButton;
         private Button HealerButton;
         private Button TankButton;
         private Button AssasinButton;
-        private TextBox textBox1;
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
-        private PictureBox PlayerBox;
-        private PictureBox ComputerBox;
+        private PictureBox PlayerImage;
+        private PictureBox ComputerImage;
+        private PictureBox ImageLogo;
+        private Label TextBox;
     }
 }
