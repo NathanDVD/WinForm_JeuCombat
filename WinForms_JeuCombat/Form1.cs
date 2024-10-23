@@ -159,12 +159,12 @@ namespace WinForms_JeuCombat
                 HeartsAI[0].Visible = true;
                 for (int i = 1; i < nb_of_health_player; i++)
                 {
-                    HeartsPlayer[i].Location = new Point(HeartsPlayer[i - 1].Location.X + 81, 100);
+                    HeartsPlayer[i].Location = new Point(HeartsPlayer[i - 1].Location.X + 100, 100);
                     HeartsPlayer[i].Visible = true;
                 }
                 for (int i = 1; i < nb_of_health_ai; i++)
                 {
-                    HeartsAI[i].Location = new Point(HeartsAI[i - 1].Location.X - 81, 100);
+                    HeartsAI[i].Location = new Point(HeartsAI[i - 1].Location.X - 100, 100);
                     HeartsAI[i].Visible = true;
                 }
             }
@@ -334,7 +334,7 @@ namespace WinForms_JeuCombat
             //Display health
             DisplayHealth(playerCharacter, AICharacter, tBox);
 
-            //Update health
+            //Update health and power(fist)
             Health(playerCharacter, AICharacter);
             Power(playerCharacter, AICharacter);
 

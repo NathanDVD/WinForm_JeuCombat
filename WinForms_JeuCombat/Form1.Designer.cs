@@ -292,6 +292,7 @@
             Heart1Player.Size = new Size(94, 90);
             Heart1Player.TabIndex = 14;
             Heart1Player.TabStop = false;
+            Heart1Player.Visible = false;
             // 
             // Heart2Player
             // 
@@ -303,6 +304,7 @@
             Heart2Player.Size = new Size(94, 90);
             Heart2Player.TabIndex = 15;
             Heart2Player.TabStop = false;
+            Heart2Player.Visible = false;
             // 
             // Heart4Player
             // 
@@ -314,6 +316,7 @@
             Heart4Player.Size = new Size(94, 90);
             Heart4Player.TabIndex = 17;
             Heart4Player.TabStop = false;
+            Heart4Player.Visible = false;
             // 
             // Heart3Player
             // 
@@ -325,6 +328,7 @@
             Heart3Player.Size = new Size(94, 90);
             Heart3Player.TabIndex = 16;
             Heart3Player.TabStop = false;
+            Heart3Player.Visible = false;
             // 
             // Heart5Player
             // 
@@ -336,6 +340,7 @@
             Heart5Player.Size = new Size(94, 90);
             Heart5Player.TabIndex = 18;
             Heart5Player.TabStop = false;
+            Heart5Player.Visible = false;
             // 
             // Heart5AI
             // 
@@ -347,6 +352,7 @@
             Heart5AI.Size = new Size(94, 90);
             Heart5AI.TabIndex = 23;
             Heart5AI.TabStop = false;
+            Heart5AI.Visible = false;
             // 
             // Heart4AI
             // 
@@ -358,6 +364,7 @@
             Heart4AI.Size = new Size(94, 90);
             Heart4AI.TabIndex = 22;
             Heart4AI.TabStop = false;
+            Heart4AI.Visible = false;
             // 
             // Heart3AI
             // 
@@ -369,6 +376,7 @@
             Heart3AI.Size = new Size(94, 90);
             Heart3AI.TabIndex = 21;
             Heart3AI.TabStop = false;
+            Heart3AI.Visible = false;
             // 
             // Heart2AI
             // 
@@ -380,6 +388,7 @@
             Heart2AI.Size = new Size(94, 90);
             Heart2AI.TabIndex = 20;
             Heart2AI.TabStop = false;
+            Heart2AI.Visible = false;
             // 
             // Heart1AI
             // 
@@ -391,6 +400,7 @@
             Heart1AI.Size = new Size(94, 90);
             Heart1AI.TabIndex = 19;
             Heart1AI.TabStop = false;
+            Heart1AI.Visible = false;
             // 
             // Power2Player
             // 
@@ -402,6 +412,7 @@
             Power2Player.Size = new Size(94, 115);
             Power2Player.TabIndex = 25;
             Power2Player.TabStop = false;
+            Power2Player.Visible = false;
             // 
             // Power1Player
             // 
@@ -413,6 +424,7 @@
             Power1Player.Size = new Size(94, 115);
             Power1Player.TabIndex = 24;
             Power1Player.TabStop = false;
+            Power1Player.Visible = false;
             // 
             // Power2AI
             // 
@@ -424,6 +436,7 @@
             Power2AI.Size = new Size(94, 115);
             Power2AI.TabIndex = 27;
             Power2AI.TabStop = false;
+            Power2AI.Visible = false;
             // 
             // Power1AI
             // 
@@ -435,6 +448,7 @@
             Power1AI.Size = new Size(94, 115);
             Power1AI.TabIndex = 26;
             Power1AI.TabStop = false;
+            Power1AI.Visible = false;
             // 
             // Form1
             // 
