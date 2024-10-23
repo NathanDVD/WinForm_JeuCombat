@@ -1,4 +1,6 @@
-﻿namespace WinForms_JeuCombat
+﻿using System.Diagnostics;
+
+namespace WinForms_JeuCombat
 {
     internal class AnimationClass
     {
