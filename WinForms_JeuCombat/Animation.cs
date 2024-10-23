@@ -4,7 +4,8 @@
     {
         private static float speed;
 
-        //cs
+
+
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
         //Bounce function used primarily for the menu buttons. Needs a Control, 2 target locations and a float to control the movement speed.
@@ -17,7 +18,7 @@
             // Move upwards until reaching the target position (bounce start)
             while (control.Location.Y > targetPos.Y)
             {
-                speed += 0.9f;
+                speed += 0.5f;
                 float newY = control.Location.Y - speed;
 
                 control.Location = new Point(control.Location.X, (int)newY);//Convert to integer Point
@@ -47,43 +48,37 @@
         {
             Image baseImage = character.idle_frame;
 
-            if (character.name == "Damager" && action == Form1.ActionChoice.Attack)
+            if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
-                if (characterImage.Name == "ComputerImage") { character.attack_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
+                XMovement(characterImage, xDirection);//XMovement one way (positive X)
+
+                await Task.Delay(500);//Wait
+                //Setup the image to use
+                characterImage.Image = character.attack_frame;//"Play" attack animation
+                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
+
+                XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
                 await Task.Delay(500);
+
+                //Go back to base frame
                 characterImage.Image = baseImage;
             }
-            else
+            else if (action == Form1.ActionChoice.Defend)  //JUMP
             {
-                if (action == Form1.ActionChoice.Attack)//MOVEMENT
-                {
-                    XMovement(characterImage, xDirection);//Move one way (positive X)
-
-                    await Task.Delay(400);//Wait for movement to finish
-
-                    if (characterImage.Name == "ComputerImage") { character.attack_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
-                    await Task.Delay(100);//Wait for anim to finish
-                    characterImage.Image = baseImage;//Get back to base character image
-
-                    XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
-                }
-                else if (action == Form1.ActionChoice.Defend)
-                {
-                    //Defend action
-                    XMovement(characterImage, -xDirection);
-                    await Task.Delay(500);//Wait for movement to finish
-                    XMovement(characterImage, xDirection);
-                }
-                else if (action == Form1.ActionChoice.Spell)//If spell button then just show the spell animation
-                {
-                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Spell.png");
-                    if (characterImage.Name == "ComputerImage") { character.spell_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
-                    await Task.Delay(500);
-                    characterImage.Image = baseImage;
-
-                }
+                //Defend action
             }
+            else if (action == Form1.ActionChoice.Spell)  //JUMP
+            {
+  
+                //Setup the image to use
+                characterImage.Image = character.spell_frame;//"Play" attack animation
+                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
 
+                await Task.Delay(500);
+
+                //Go back to base frame
+                characterImage.Image = baseImage;
+            }
         }
 
 
