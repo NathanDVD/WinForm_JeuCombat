@@ -240,6 +240,64 @@ namespace WinForms_JeuCombat
             }
         }
 
+        //Heart & power icons system
+        
+        void Power(Characters player, Characters ai)
+        {
+            List<PictureBox> PowerPlayer = new List<PictureBox> { Power1Player, Power2Player };
+            List<PictureBox> PowerAI = new List<PictureBox> { Power1AI, Power2AI };
+            for (int i = 0; i < PowerAI.Count; i++)
+            {
+                PowerPlayer[i].Visible = false;
+                PowerAI[i].Visible = false;
+            }
+            int nb_of_power_player = player.damage;
+            int nb_of_power_ai = ai.damage;
+            PowerPlayer[0].Location = new Point(100, 200);
+            PowerPlayer[0].Visible = true;
+            PowerAI[0].Location = new Point(this.Width - 175, 200);
+            PowerAI[0].Visible = true;
+            if (player.name == "Damager")
+            {
+                PowerPlayer[1].Location = new Point(175, 200);
+                PowerPlayer[1].Visible = true;
+            }
+            if (ai.name == "Damager")
+            {
+                PowerAI[1].Location = new Point(this.Width - 250, 200);
+                PowerAI[1].Visible = true;
+            }
+        }
+        void Health(Characters player, Characters ai)
+        {
+            List<PictureBox> HeartsPlayer = new List<PictureBox> { Heart1Player, Heart2Player, Heart3Player, Heart4Player, Heart5Player };
+            List<PictureBox> HeartsAI = new List<PictureBox> { Heart1AI, Heart2AI, Heart3AI, Heart4AI, Heart5AI };
+            int nb_of_health_player = player.curHealth;
+            int nb_of_health_ai = ai.curHealth;
+            for (int i = 0; i < HeartsPlayer.Count; i++)
+            {
+                HeartsPlayer[i].Visible = false;
+                HeartsAI[i].Visible = false;
+            }
+            if (nb_of_health_ai > 0 && nb_of_health_player > 0)
+            {
+                HeartsPlayer[0].Location = new Point(100, 100);
+                HeartsPlayer[0].Visible = true;
+                HeartsAI[0].Location = new Point(this.Width - 181, 100);
+                HeartsAI[0].Visible = true;
+                for (int i = 1; i < nb_of_health_player; i++)
+                {
+                    HeartsPlayer[i].Location = new Point(HeartsPlayer[i - 1].Location.X + 81, 100);
+                    HeartsPlayer[i].Visible = true;
+                }
+                for (int i = 1; i < nb_of_health_ai; i++)
+                {
+                    HeartsAI[i].Location = new Point(HeartsAI[i - 1].Location.X - 81, 100);
+                    HeartsAI[i].Visible = true;
+                }
+            }
+        }
+
 
         //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------------------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
@@ -282,6 +340,8 @@ namespace WinForms_JeuCombat
 
             //Display health
             DisplayHealth(playerCharacter, AICharacter, tBox);
+            Health(playerCharacter, AICharacter);
+            Power(playerCharacter, AICharacter);
 
 
             //----------------------------------------------------------------------------------//
@@ -311,6 +371,7 @@ namespace WinForms_JeuCombat
 
                 //Show game state
                 DisplayHealth(playerCharacter, AICharacter, tBox);
+                Health(playerCharacter, AICharacter);
 
                 //Win conditions
                 isEnd = isEndGame(playerCharacter, AICharacter, tBox);
