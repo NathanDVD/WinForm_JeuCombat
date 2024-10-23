@@ -52,7 +52,7 @@ namespace WinForms_JeuCombat
             {
                 XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
-                await Task.Delay(550);//Wait for movement to finish
+                await Task.Delay(500);//Wait for movement to finish
 
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
             }
