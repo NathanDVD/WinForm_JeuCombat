@@ -47,13 +47,15 @@ namespace WinForms_JeuCombat
         //___________________________________________________________________________________________________________
         public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
+            Image baseImage = character.idle_frame;
             if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
                 XMovement(characterImage, xDirection);//Move one way (positive X)
 
-                await Task.Delay(500);//Wait for movement to finish
-                Debug.WriteLine(character.name);
-                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack");
+                await Task.Delay(400);//Wait for movement to finish
+                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
+                await Task.Delay(100);//Wait for anim to finish
+                characterImage.Image = baseImage;//Get back to base character image
 
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
             }

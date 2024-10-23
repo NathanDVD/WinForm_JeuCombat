@@ -496,10 +496,7 @@ namespace WinForms_JeuCombat
 
             //Update AI sprite (Idle)
             compBox.Image = _aiCharacter.idle_frame;
-            _aiCharacter.idle_frame.RotateFlip(RotateFlipType.Rotate180FlipY);
-
-            //Flip the image on the Y axis
-            if (compBox.Name == "ComputerImage") { Debug.WriteLine("Image is yes"); }
+            compBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
 
             //Return AI choice
             return _aiCharacter;
