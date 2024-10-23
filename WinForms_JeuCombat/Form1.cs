@@ -117,6 +117,8 @@ namespace WinForms_JeuCombat
         {
             InitializeComponent();//Start the WinForm
 
+            this.BackgroundImage = Image.FromFile("./Images/Back1.png");
+
             //Load the sounds and songs (main theme)
             sPlayer = new SoundPlayer("./Sounds/8-Bit_FightingGame_Music.wav");
             sPlayer.Load();
@@ -177,6 +179,8 @@ namespace WinForms_JeuCombat
             }
 
             textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);
+
+            this.BackgroundImage = Image.FromFile("./Images/background_menu.png");
 
             await Task.Delay(1000);
 
