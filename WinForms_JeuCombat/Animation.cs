@@ -48,24 +48,41 @@ namespace WinForms_JeuCombat
         public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
             Image baseImage = character.idle_frame;
-            if (action == Form1.ActionChoice.Attack)  //MOVEMENT
-            {
-                XMovement(characterImage, xDirection);//Move one way (positive X)
 
-                await Task.Delay(400);//Wait for movement to finish
+            if (character.name == "Damager" || character.name == "Healer" && action == Form1.ActionChoice.Attack || action == Form1.ActionChoice.Defend)
+            {
                 characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
-                await Task.Delay(100);//Wait for anim to finish
-                characterImage.Image = baseImage;//Get back to base character image
-
-                XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
+                await Task.Delay(500);
+                characterImage.Image = baseImage;
             }
-            else if(action == Form1.ActionChoice.Defend)  //JUMP
+            else
             {
-                //Defend action
-                XMovement(characterImage, -xDirection);
-                await Task.Delay(500);//Wait for movement to finish
-                XMovement(characterImage, xDirection);
+                if (action == Form1.ActionChoice.Attack)  //MOVEMENT
+                {
+                    XMovement(characterImage, xDirection);//Move one way (positive X)
+
+                    await Task.Delay(400);//Wait for movement to finish
+                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
+                    await Task.Delay(100);//Wait for anim to finish
+                    characterImage.Image = baseImage;//Get back to base character image
+
+                    XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
+                }
+                else if (action == Form1.ActionChoice.Defend)  //JUMP
+                {
+                    //Defend action
+                    XMovement(characterImage, -xDirection);
+                    await Task.Delay(500);//Wait for movement to finish
+                    XMovement(characterImage, xDirection);
+                }
+                else//If spell button then just show the spell animation
+                {
+                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Spell.png");
+                    await Task.Delay(500);
+                    characterImage.Image = baseImage;
+                }
             }
+
         }
 
 

@@ -217,7 +217,7 @@
             PlayerImage.BackgroundImageLayout = ImageLayout.Stretch;
             PlayerImage.Location = new Point(-300, 0);
             PlayerImage.Name = "PlayerImage";
-            PlayerImage.Size = new Size(256, 256);
+            PlayerImage.Size = new Size(128, 128);
             PlayerImage.TabIndex = 11;
             PlayerImage.TabStop = false;
             // 
@@ -227,7 +227,7 @@
             ComputerImage.BackgroundImageLayout = ImageLayout.Stretch;
             ComputerImage.Location = new Point(-300, 0);
             ComputerImage.Name = "ComputerImage";
-            ComputerImage.Size = new Size(235, 235);
+            ComputerImage.Size = new Size(128, 128);
             ComputerImage.TabIndex = 12;
             ComputerImage.TabStop = false;
             ComputerImage.WaitOnLoad = true;
