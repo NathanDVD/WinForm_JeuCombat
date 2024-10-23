@@ -5,7 +5,9 @@ namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
     {
+
         //------------------- VARIABLES -------------------//
+
 
         List<Button> characterSelectionButtonList = new List<Button>();
         List<Button> optionButtonList = new List<Button>();
@@ -508,17 +510,17 @@ namespace WinForms_JeuCombat
 
             if (playerIsDead && AIisDead)
             {
-                tBox.Text = ("\r\nEgalité !");
+                tBox.Text = ("\r\nEgalitÃ© !");
                 return true;
             }
             else if (AIisDead)
             {
-                tBox.Text = ("\r\nLe joueur a gagné !");
+                tBox.Text = ("\r\nLe joueur a gagnÃ© !");
                 return true;
             }
             else if (playerIsDead)
             {
-                tBox.Text = ("\r\nl'IA a gagné !");
+                tBox.Text = ("\r\nl'IA a gagnÃ© !");
                 return true;
             }
             else return false;
