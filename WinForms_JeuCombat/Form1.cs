@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Media;
+using static WinForms_JeuCombat.Form1;
 namespace WinForms_JeuCombat
 {
     public partial class Form1 : Form
@@ -46,10 +47,9 @@ namespace WinForms_JeuCombat
             public ActionChoice action;
 
             public Image idle_frame;
-            //public Image attack_frame_1;
-            //public Image attack_frame_2;
-            //public Image spell_frame_1;
-            //public Image spell_frame_2;
+            public Image attack_frame;
+            public Image spell_frame;
+
 
             //Constructor base
             public Characters(CharacterClass characterClass, string name, int curHealth, int maxHealth, int damage, ActionChoice action, bool isPoisoned)
@@ -64,10 +64,9 @@ namespace WinForms_JeuCombat
 
                 //GET IMAGES
                 this.idle_frame = Image.FromFile($"./Images/{name}/{name}_Idle.png");
-                //this.attack_frame_1 = Image.FromFile($"./Images/{name}/{name}Attack_1.png");
-                //this.attack_frame_2 = Image.FromFile($"./Images/{name}/{name}Attack_2.png");
-                //this.spell_frame_1 = Image.FromFile($"./Images/{name}/{name}Spell_1.png");
-                //this.spell_frame_2 = Image.FromFile($"./Images/{name}/{name}Spell_2.png");
+                this.attack_frame = Image.FromFile($"./Images/{name}/{name}_Attack.png");
+                this.spell_frame = Image.FromFile($"./Images/{name}/{name}_Attack.png");
+
 
             }
 
@@ -81,10 +80,6 @@ namespace WinForms_JeuCombat
                 damage = characterToCopy.damage;
                 action = characterToCopy.action;
                 idle_frame = characterToCopy.idle_frame;
-                //attack_frame_1 = characterToCopy.attack_frame_1;
-                //attack_frame_2 = characterToCopy.attack_frame_2;
-                //spell_frame_1 = characterToCopy.spell_frame_1;
-                //spell_frame_2 = characterToCopy.spell_frame_2;
             }
 
             //Inflict damage to character
@@ -360,7 +355,8 @@ namespace WinForms_JeuCombat
             {
                 if (actionPlayer.name == "Healer") //HEAL
                 {
-                    Heal(actionPlayer, tBox);
+                    Heal(actionPlayer);
+                    Debug.WriteLine("HEALINGGG");
                 }
                 else if (actionPlayer.name == "Rogue") //Poisonned daggers
                 {
@@ -529,11 +525,12 @@ namespace WinForms_JeuCombat
         }
 
         //----- Function spell
-        static void Heal(Characters charact, Label tBox)
+        static void Heal(Characters charact)
         {
             int _health = (int)charact.curHealth + 2;
             //Check if not going outside health limits
             charact.curHealth = Math.Min(_health, charact.curHealth);
+            Debug.WriteLine("HEALLED" + charact.curHealth);
         }
 
         //---- Display functions

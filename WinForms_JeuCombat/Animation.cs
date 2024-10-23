@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 
 namespace WinForms_JeuCombat
 {
@@ -49,37 +50,40 @@ namespace WinForms_JeuCombat
         {
             Image baseImage = character.idle_frame;
 
-            if (character.name == "Damager" || character.name == "Healer" && action == Form1.ActionChoice.Attack || action == Form1.ActionChoice.Defend)
+            if (character.name == "Damager" && action == Form1.ActionChoice.Attack)
             {
-                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
+                if (characterImage.Name == "ComputerImage") { character.attack_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
                 await Task.Delay(500);
                 characterImage.Image = baseImage;
             }
             else
             {
-                if (action == Form1.ActionChoice.Attack)  //MOVEMENT
+                if (action == Form1.ActionChoice.Attack)//MOVEMENT
                 {
                     XMovement(characterImage, xDirection);//Move one way (positive X)
 
                     await Task.Delay(400);//Wait for movement to finish
-                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
+
+                    if (characterImage.Name == "ComputerImage") { character.attack_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
                     await Task.Delay(100);//Wait for anim to finish
                     characterImage.Image = baseImage;//Get back to base character image
 
                     XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
                 }
-                else if (action == Form1.ActionChoice.Defend)  //JUMP
+                else if (action == Form1.ActionChoice.Defend)
                 {
                     //Defend action
                     XMovement(characterImage, -xDirection);
                     await Task.Delay(500);//Wait for movement to finish
                     XMovement(characterImage, xDirection);
                 }
-                else//If spell button then just show the spell animation
+                else if (action == Form1.ActionChoice.Spell)//If spell button then just show the spell animation
                 {
                     characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Spell.png");
+                    if (characterImage.Name == "ComputerImage") { character.spell_frame.RotateFlip(RotateFlipType.Rotate180FlipY); }
                     await Task.Delay(500);
                     characterImage.Image = baseImage;
+
                 }
             }
 

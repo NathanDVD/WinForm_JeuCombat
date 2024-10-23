@@ -242,6 +242,7 @@
             ImageLogo.Size = new Size(500, 257);
             ImageLogo.TabIndex = 13;
             ImageLogo.TabStop = false;
+            ImageLogo.WaitOnLoad = true;
             // 
             // TextBox
             // 
