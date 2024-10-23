@@ -7,7 +7,6 @@ namespace WinForms_JeuCombat
         private static float speed;
 
 
-
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
         //Bounce function used primarily for the menu buttons. Needs a Control, 2 target locations and a float to control the movement speed.
@@ -20,10 +19,8 @@ namespace WinForms_JeuCombat
             // Move upwards until reaching the target position (bounce start)
             while (control.Location.Y > targetPos.Y)
             {
-                speed += 0.5f;
+                speed += 0.9f;
                 float newY = control.Location.Y - speed;
-
-                Debug.WriteLine(newY + " / " + (int)newY);
 
                 control.Location = new Point(control.Location.X, (int)newY);//Convert to integer Point
                 await Task.Delay(20); //Wait
@@ -44,28 +41,46 @@ namespace WinForms_JeuCombat
 
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
-        //Uses the animate function to move the character according to the action that was chosen.
+        //Uses the XMovement function to move the character according to the action that was chosen.
         //Character animations  --> Faire ici le chagement de frame
         //
         //___________________________________________________________________________________________________________
-        public static async void CharacterAnim(PictureBox characterImage, int xDirection, Form1.ActionChoice action)
+        public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
-           
-            if (action == Form1.ActionChoice.Attack)  //MOVEMENT
+            Image baseImage = character.idle_frame;
+
+            if (character.name == "Damager" || character.name == "Healer" && action == Form1.ActionChoice.Attack || action == Form1.ActionChoice.Defend)
             {
-                Animate(characterImage, xDirection, 0);//Animate one way
-
-                await Task.Delay(500);//Wait
-
-                Animate(characterImage, -xDirection, 0);//Reverse the animation
-            }
-            else if(action == Form1.ActionChoice.Defend)  //JUMP
-            {
-                Animate(characterImage, 0, -1);//Animate one way
-
+                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
                 await Task.Delay(500);
+                characterImage.Image = baseImage;
+            }
+            else
+            {
+                if (action == Form1.ActionChoice.Attack)  //MOVEMENT
+                {
+                    XMovement(characterImage, xDirection);//Move one way (positive X)
 
-                Animate(characterImage, 0, 1);//Reverse the animation
+                    await Task.Delay(400);//Wait for movement to finish
+                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
+                    await Task.Delay(100);//Wait for anim to finish
+                    characterImage.Image = baseImage;//Get back to base character image
+
+                    XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
+                }
+                else if (action == Form1.ActionChoice.Defend)  //JUMP
+                {
+                    //Defend action
+                    XMovement(characterImage, -xDirection);
+                    await Task.Delay(500);//Wait for movement to finish
+                    XMovement(characterImage, xDirection);
+                }
+                else//If spell button then just show the spell animation
+                {
+                    characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Spell.png");
+                    await Task.Delay(500);
+                    characterImage.Image = baseImage;
+                }
             }
 
         }
@@ -73,21 +88,19 @@ namespace WinForms_JeuCombat
 
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
-        //Animation logic :
+        //Movement logic :
         //Take image location, set a new location every 20ms by the chosen offset multiplied by the speed(which is incremental)
-        //in the chosen direction, only if the xDirection and yDirection are not 0.
+        //in the chosen direction, only if the xDirection is not 0.
         //It also works with anything that has a location parameter, you just need to change PictureBox to Control.
         //
         //___________________________________________________________________________________________________________
-        public async static void Animate(PictureBox characterImage, int xDirection, int yDirection)
+        public async static void XMovement(PictureBox characterImage, int xDirection)
         {
-            Point location = characterImage.Location;
-            Point startLocation = location;//Set start location
+            Point startLocation = characterImage.Location;//Set start location
 
-            int targetX = startLocation.X + (200 * xDirection);//Calculate end locations
-            int targetY = startLocation.Y + (100 * yDirection);
+            int targetX = startLocation.X + (xDirection * 200);//Calculate end locations
 
-            speed = 1;//Reset speed
+            int speed = 0;//Reset speed
 
             if (xDirection != 0)
             {
@@ -95,18 +108,7 @@ namespace WinForms_JeuCombat
                 while ((xDirection == 1 && startLocation.X < targetX) || (xDirection == -1 && startLocation.X > targetX))
                 {
                     speed += 2;//Incremental speed
-                    startLocation.X += xDirection * (int)speed;//Move in the direction based on xDirection (-1 to 1)
-                    characterImage.Location = new Point(startLocation.X, startLocation.Y);
-                    await Task.Delay(20);//Wait
-                }
-            }
-            else
-            {
-                //While loop to move the image until it reaches the set destination (for the Y axis)
-                while ((yDirection == 1 && startLocation.Y < targetY) || (yDirection == -1 && startLocation.Y > targetY))
-                {
-                    speed += 2;//Incremental speed
-                    startLocation.Y += yDirection * (int)speed;//Move in direction based on yDirection (-1 to 1)
+                    startLocation.X += xDirection * speed;//Move in the direction based on xDirection (-1 to 1) multiplied by speed
                     characterImage.Location = new Point(startLocation.X, startLocation.Y);
                     await Task.Delay(20);//Wait
                 }
