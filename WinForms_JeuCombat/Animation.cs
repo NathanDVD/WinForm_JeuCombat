@@ -67,7 +67,7 @@ namespace WinForms_JeuCombat
             }
             else if (action == Form1.ActionChoice.Defend) 
             {
-                //Defend action
+                //Defend action, maybe pass
             }
             else if (action == Form1.ActionChoice.Spell)
             {
