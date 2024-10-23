@@ -35,13 +35,13 @@
             HealerButton = new Button();
             TankButton = new Button();
             AssasinButton = new Button();
-            textBox1 = new TextBox();
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
             PlayerImage = new PictureBox();
             ComputerImage = new PictureBox();
             ImageLogo = new PictureBox();
+            TextBox = new Label();
             ((System.ComponentModel.ISupportInitialize)PlayerImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
@@ -96,7 +96,7 @@
             DamagerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DamagerButton.FlatStyle = FlatStyle.Flat;
             DamagerButton.ForeColor = Color.Transparent;
-            DamagerButton.Location = new Point(0, -30);
+            DamagerButton.Location = new Point(0, -300);
             DamagerButton.Name = "DamagerButton";
             DamagerButton.Size = new Size(75, 23);
             DamagerButton.TabIndex = 3;
@@ -114,7 +114,7 @@
             HealerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             HealerButton.FlatStyle = FlatStyle.Flat;
             HealerButton.ForeColor = Color.Transparent;
-            HealerButton.Location = new Point(0, -30);
+            HealerButton.Location = new Point(0, -300);
             HealerButton.Name = "HealerButton";
             HealerButton.Size = new Size(75, 23);
             HealerButton.TabIndex = 4;
@@ -131,7 +131,7 @@
             TankButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             TankButton.FlatStyle = FlatStyle.Flat;
             TankButton.ForeColor = Color.Transparent;
-            TankButton.Location = new Point(0, -30);
+            TankButton.Location = new Point(0, -300);
             TankButton.Name = "TankButton";
             TankButton.Size = new Size(75, 23);
             TankButton.TabIndex = 5;
@@ -148,7 +148,7 @@
             AssasinButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AssasinButton.FlatStyle = FlatStyle.Flat;
             AssasinButton.ForeColor = Color.Transparent;
-            AssasinButton.Location = new Point(0, -30);
+            AssasinButton.Location = new Point(0, -300);
             AssasinButton.Name = "AssasinButton";
             AssasinButton.Size = new Size(75, 23);
             AssasinButton.TabIndex = 6;
@@ -156,21 +156,6 @@
             AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
             AssasinButton.UseVisualStyleBackColor = false;
             AssasinButton.Click += characterChoice_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.AcceptsReturn = true;
-            textBox1.BackColor = SystemColors.Control;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(635, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(583, 265);
-            textBox1.TabIndex = 7;
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // AttackButton
             // 
@@ -182,7 +167,7 @@
             AttackButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             AttackButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AttackButton.FlatStyle = FlatStyle.Flat;
-            AttackButton.Location = new Point(-200, -100);
+            AttackButton.Location = new Point(-200, -200);
             AttackButton.Name = "AttackButton";
             AttackButton.Size = new Size(132, 132);
             AttackButton.TabIndex = 8;
@@ -200,7 +185,7 @@
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DefendButton.FlatStyle = FlatStyle.Flat;
-            DefendButton.Location = new Point(-200, -100);
+            DefendButton.Location = new Point(-200, -200);
             DefendButton.Name = "DefendButton";
             DefendButton.Size = new Size(132, 132);
             DefendButton.TabIndex = 9;
@@ -218,7 +203,7 @@
             SpellButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             SpellButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             SpellButton.FlatStyle = FlatStyle.Flat;
-            SpellButton.Location = new Point(-200, -100);
+            SpellButton.Location = new Point(-200, -200);
             SpellButton.Name = "SpellButton";
             SpellButton.Size = new Size(128, 128);
             SpellButton.TabIndex = 10;
@@ -259,6 +244,19 @@
             ImageLogo.TabIndex = 13;
             ImageLogo.TabStop = false;
             // 
+            // TextBox
+            // 
+            TextBox.AutoSize = true;
+            TextBox.BackColor = Color.Transparent;
+            TextBox.FlatStyle = FlatStyle.Flat;
+            TextBox.Font = new Font("Segoe UI", 15F);
+            TextBox.Location = new Point(612, 5);
+            TextBox.MinimumSize = new Size(583, 265);
+            TextBox.Name = "TextBox";
+            TextBox.Size = new Size(583, 265);
+            TextBox.TabIndex = 5;
+            TextBox.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -266,14 +264,14 @@
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 500);
+            Controls.Add(TextBox);
             Controls.Add(ImageLogo);
             Controls.Add(ComputerImage);
             Controls.Add(PlayerImage);
             Controls.Add(SpellButton);
             Controls.Add(DefendButton);
             Controls.Add(AttackButton);
-            Controls.Add(textBox1);
             Controls.Add(AssasinButton);
             Controls.Add(TankButton);
             Controls.Add(HealerButton);
@@ -283,6 +281,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
+            MaximumSize = new Size(1920, 1200);
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
@@ -301,12 +300,12 @@
         private Button HealerButton;
         private Button TankButton;
         private Button AssasinButton;
-        private TextBox textBox1;
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
         private PictureBox PlayerImage;
         private PictureBox ComputerImage;
         private PictureBox ImageLogo;
+        private Label TextBox;
     }
 }

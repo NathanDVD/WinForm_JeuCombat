@@ -45,19 +45,24 @@ namespace WinForms_JeuCombat
         //Character animations  --> Faire ici le chagement de frame
         //
         //___________________________________________________________________________________________________________
-        public static async void CharacterAnim(PictureBox characterImage, int xDirection, Form1.ActionChoice action)
+        public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
             if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
-                XMovement(characterImage, xDirection);//XMovement one way (positive X)
+                XMovement(characterImage, xDirection);//Move one way (positive X)
 
                 await Task.Delay(500);//Wait for movement to finish
+                Debug.WriteLine(character.name);
+                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack");
 
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
             }
             else if(action == Form1.ActionChoice.Defend)  //JUMP
             {
                 //Defend action
+                XMovement(characterImage, -xDirection);
+                await Task.Delay(500);//Wait for movement to finish
+                XMovement(characterImage, xDirection);
             }
         }
 
