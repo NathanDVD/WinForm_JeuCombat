@@ -403,10 +403,10 @@
             // 
             Power2Player.BackColor = Color.Transparent;
             Power2Player.BackgroundImage = (Image)resources.GetObject("Power2Player.BackgroundImage");
-            Power2Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Power2Player.BackgroundImageLayout = ImageLayout.Center;
             Power2Player.Location = new Point(112, 148);
             Power2Player.Name = "Power2Player";
-            Power2Player.Size = new Size(66, 64);
+            Power2Player.Size = new Size(95, 95);
             Power2Player.TabIndex = 25;
             Power2Player.TabStop = false;
             Power2Player.Visible = false;
@@ -415,10 +415,11 @@
             // 
             Power1Player.BackColor = Color.Transparent;
             Power1Player.BackgroundImage = (Image)resources.GetObject("Power1Player.BackgroundImage");
-            Power1Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Power1Player.BackgroundImageLayout = ImageLayout.Center;
             Power1Player.Location = new Point(12, 148);
             Power1Player.Name = "Power1Player";
-            Power1Player.Size = new Size(66, 64);
+            Power1Player.Size = new Size(95, 95);
+            Power1Player.SizeMode = PictureBoxSizeMode.CenterImage;
             Power1Player.TabIndex = 24;
             Power1Player.TabStop = false;
             Power1Player.Visible = false;
@@ -427,10 +428,10 @@
             // 
             Power2AI.BackColor = Color.Transparent;
             Power2AI.BackgroundImage = (Image)resources.GetObject("Power2AI.BackgroundImage");
-            Power2AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Power2AI.BackgroundImageLayout = ImageLayout.Center;
             Power2AI.Location = new Point(1812, 148);
             Power2AI.Name = "Power2AI";
-            Power2AI.Size = new Size(66, 64);
+            Power2AI.Size = new Size(95, 95);
             Power2AI.TabIndex = 27;
             Power2AI.TabStop = false;
             Power2AI.Visible = false;
@@ -439,10 +440,10 @@
             // 
             Power1AI.BackColor = Color.Transparent;
             Power1AI.BackgroundImage = (Image)resources.GetObject("Power1AI.BackgroundImage");
-            Power1AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Power1AI.BackgroundImageLayout = ImageLayout.Center;
             Power1AI.Location = new Point(1712, 148);
             Power1AI.Name = "Power1AI";
-            Power1AI.Size = new Size(66, 64);
+            Power1AI.Size = new Size(95, 95);
             Power1AI.TabIndex = 26;
             Power1AI.TabStop = false;
             Power1AI.Visible = false;

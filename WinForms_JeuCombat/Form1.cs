@@ -137,21 +137,21 @@ namespace WinForms_JeuCombat
             int nb_of_power_player = player.damage;
             int nb_of_power_ai = ai.damage;
             //Set the player power location and make it visible
-            PowerPlayer[0].Location = new Point(100, 200);
+            PowerPlayer[0].Location = new Point(65, 150);
             PowerPlayer[0].Visible = true;
             //Set the computer power location and make it visible
-            PowerAI[0].Location = new Point(this.Width - 175, 200);
+            PowerAI[0].Location = new Point(this.Width - 215, 150);
             PowerAI[0].Visible = true;
 
             //IDKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
             if (player.name == "Damager")
             {
-                PowerPlayer[1].Location = new Point(175, 200);
+                PowerPlayer[1].Location = new Point(165, 150);
                 PowerPlayer[1].Visible = true;
             }
             if (ai.name == "Damager")
             {
-                PowerAI[1].Location = new Point(this.Width - 250, 200);
+                PowerAI[1].Location = new Point(this.Width - 310, 150);
                 PowerAI[1].Visible = true;
             }
         }
@@ -180,7 +180,7 @@ namespace WinForms_JeuCombat
                 for (int i = 1; i < nb_of_health_player; i++)
                 {
                     //Add an offset to the hearts so they don't overlap while the player has more than 1 heart
-                    HeartsPlayer[i].Location = new Point(HeartsPlayer[i - 1].Location.X + 120, 100);
+                    HeartsPlayer[i].Location = new Point(HeartsPlayer[i - 1].Location.X + 100, 100);
                     HeartsPlayer[i].Visible = true;
                 }
                 for (int i = 1; i < nb_of_health_ai; i++)
