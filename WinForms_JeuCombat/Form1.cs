@@ -50,13 +50,14 @@ namespace WinForms_JeuCombat
             public int damage;
             public bool isPoisoned;
             public ActionChoice action;
+            public bool isPlayer;
 
             public Image idle_frame;
             public Image attack_frame;
             public Image spell_frame;
 
             //Base constructor
-            public Characters(CharacterClass characterClass, string name, int curHealth, int maxHealth, int damage, ActionChoice action, bool isPoisoned)
+            public Characters(CharacterClass characterClass, string name, int curHealth, int maxHealth, int damage, ActionChoice action, bool isPoisoned, bool isPlayer)
             {
                 this.characterClass = characterClass;
                 this.name = name;
@@ -65,12 +66,12 @@ namespace WinForms_JeuCombat
                 this.damage = damage;
                 this.isPoisoned = isPoisoned;
                 this.action = action;
+                this.isPlayer = isPlayer;
 
                 //Get the images by the name of the character chosen later
                 this.idle_frame = Image.FromFile($"./Images/{name}/{name}_Idle.png");
                 this.attack_frame = Image.FromFile($"./Images/{name}/{name}_Attack.png");
                 this.spell_frame = Image.FromFile($"./Images/{name}/{name}_Spell.png");
-
             }
 
             //Copy the constructor
@@ -85,6 +86,7 @@ namespace WinForms_JeuCombat
                 idle_frame = characterToCopy.idle_frame;
                 attack_frame = characterToCopy.attack_frame;
                 spell_frame = characterToCopy.spell_frame;
+                isPlayer = characterToCopy.isPlayer;
 
             }
 
@@ -155,7 +157,7 @@ namespace WinForms_JeuCombat
                 PowerAI[1].Visible = true;
             }
         }
-        void HeartDisplay(Characters player, Characters ai)
+        void DisplayHeart(Characters player, Characters ai)
         {
             //Get all the hearts
             List<PictureBox> HeartsPlayer = new List<PictureBox> { Heart1Player, Heart2Player, Heart3Player, Heart4Player, Heart5Player };
@@ -347,10 +349,10 @@ namespace WinForms_JeuCombat
             Random rnd = new Random();//Create a new random
 
             //Create all the different character with the class
-            Characters damager = new Characters(CharacterClass.Damager, "Damager", 3, 3, 2, ActionChoice.Defend, false);
-            Characters healer = new Characters(CharacterClass.Healer, "Healer", 4, 4, 1, ActionChoice.Defend, false);
-            Characters tank = new Characters(CharacterClass.Tank, "Tank", 5, 5, 1, ActionChoice.Defend, false);
-            Characters assassin = new Characters(CharacterClass.Assassin, "Rogue", 3, 3, 1, ActionChoice.Defend, false);
+            Characters damager = new Characters(CharacterClass.Damager, "Damager", 3, 3, 2, ActionChoice.Defend, false, false);
+            Characters healer = new Characters(CharacterClass.Healer, "Healer", 4, 4, 1, ActionChoice.Defend, false, false);
+            Characters tank = new Characters(CharacterClass.Tank, "Tank", 5, 5, 1, ActionChoice.Defend, false, false);
+            Characters assassin = new Characters(CharacterClass.Assassin, "Rogue", 3, 3, 1, ActionChoice.Defend, false, false);
 
             //List of all the characters possible
             classList = new List<Characters> { damager, healer, tank, assassin };
@@ -375,9 +377,15 @@ namespace WinForms_JeuCombat
             //Display health
             DisplayHealth(playerCharacter, AICharacter, tBox);
 
-            //Update health and power(fist)
-            HeartDisplay(playerCharacter, AICharacter);
+            //Update icon : health, power(fist), poison
+            DisplayHeart(playerCharacter, AICharacter);
             Power(playerCharacter, AICharacter);
+
+            //Place poison state icon (for player and AI)
+            //playerPoisonStateBox.Location = new Point(Heart2Player.Location.X, Heart2Player.Location.Y - 60); //en cours
+            playerPoisonStateBox.Location = new Point(PlayerBox.Location.X + 50, PlayerBox.Location.Y - 100);
+
+            aiPoisonStateBox.Location = new Point(ComputerBox.Location.X + 50, ComputerBox.Location.Y - 100);
 
 
             //------------- GAME LOOP  ----------------
@@ -399,10 +407,10 @@ namespace WinForms_JeuCombat
                 AIChooseAction(AICharacter, ComputerBox);
 
                 //Combat (round)
-                Fight(playerCharacter, AICharacter, tBox);
+                Fight(playerCharacter, AICharacter, tBox, playerPoisonStateBox, aiPoisonStateBox);
 
                 //Update health
-                HeartDisplay(playerCharacter, AICharacter);
+                DisplayHeart(playerCharacter, AICharacter);
                 Power(playerCharacter, AICharacter);
 
                 //Show game state
@@ -417,34 +425,35 @@ namespace WinForms_JeuCombat
 
 
         //Function called every turn, 
-        static void Fight(Characters player, Characters ai, TextBox tBox)
+        static void Fight(Characters player, Characters ai, TextBox tBox, PictureBox playerPoisonStateBox, PictureBox aiPoisonStateBox)
         {
             //If poisonned last round then - 1 HP and remove poison
             if (isPoisoned(player))
             {
-                tBox.Text += ("\r\nPoison : - 1 HP");
+                tBox.Text += ("\r\nPoison : - 1 HP");   
                 player.TakeDamage(1);
                 Poisoned(player, false);
+                playerPoisonStateBox.Visible = false; //Disable poison icon (player)
             }
             else if (isPoisoned(ai))
             {
                 tBox.Text += ("\r\nPoison : - 1 HP");
                 ai.TakeDamage(1);
                 Poisoned(ai, false);
-
+                aiPoisonStateBox.Visible = false; //Disable poison icon (player)
             }
             //Display
             ShowPlayerAction(player.action, tBox);
             ShowAIAction(ai.action, tBox);
 
             //Play
-            PlayAction(player, ai, true, tBox);
-            PlayAction(ai, player, false, tBox);
+            PlayAction(player, ai, true, tBox, playerPoisonStateBox, aiPoisonStateBox);
+            PlayAction(ai, player, false, tBox, playerPoisonStateBox, aiPoisonStateBox);
 
         }
 
         //Function playing the chosen action
-        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer, TextBox tBox)
+        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer, TextBox tBox, PictureBox playerPoisonStateBox, PictureBox aiPoisonStateBox)
         {
             //GET ACTIONS
             ActionChoice actionPlayerChoice = actionPlayer.action;
@@ -458,6 +467,13 @@ namespace WinForms_JeuCombat
                 }
                 else if (actionPlayer.name == "Rogue") //Poisonned daggers
                 {
+                    //Active poison icon (for player or AI)
+                    if (actionPlayer.isPlayer)
+                    {
+                        aiPoisonStateBox.Visible = true;
+                    }
+                    else playerPoisonStateBox.Visible = true;
+
                     //Poisonned - 1 HP next round
                     Poisoned(otherPlayer, true);
 
@@ -575,8 +591,10 @@ namespace WinForms_JeuCombat
             //Update player sprite (Idle)
             plrBox.BackgroundImage = _playerChoice.idle_frame;
 
+            _playerChoice.isPlayer = true;
+
             //Return player choice
-            return classList[character_player_choice - 1];
+            return _playerChoice;
 
         }
 
@@ -590,6 +608,7 @@ namespace WinForms_JeuCombat
 
             //Get AI choice
             Characters _aiCharacter = new Characters(classList[rand_index]);
+            _aiCharacter.isPlayer = false;
 
             _aiCharacter.idle_frame = (Image)classList[rand_index].idle_frame.Clone();
 
