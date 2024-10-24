@@ -52,23 +52,22 @@ namespace WinForms_JeuCombat
 
             if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
-                XMovement(characterImage, xDirection);//XMovement one way (positive X)
+                //XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
                 //Setup the image to use
-                characterImage.Image = character.attack_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
+                characterImage.Image = character.attack_frame;//Switch(-> attack frame)
+                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); } //AI Flip
 
-                await Task.Delay(500);//Wait
-               
-                XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
-                await Task.Delay(500);
+                await Task.Delay(500);//Wait (delay between frames)
 
                 //Go back to base frame
-                characterImage.Image = baseImage;
+                characterImage.Image = baseImage; //Switch(-> idle frame)
+
+                //XMovement(characterImage, -xDirection);//Reverse XMovement (negative X)
             }
             else if (action == Form1.ActionChoice.Defend)
             {
-                //Defend action, maybe pass
+                //Defend action, maybe pass (useless for moment)
             }
             else if (action == Form1.ActionChoice.Spell)
             {
