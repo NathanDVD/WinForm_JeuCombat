@@ -237,6 +237,38 @@ namespace WinForms_JeuCombat
         }
 
 
+        public void DisplayText(string text)
+        {
+            if (text == "hide")
+            {
+                MessageText.Visible = false;
+            }
+            if (text == "selection")
+            {
+                MessageText.Location = new Point((this.Width / 5) - 250, 200);
+                MessageText.Image = Image.FromFile("./Images/UIElements/select_character.png");
+                MessageText.Visible = true;
+            }
+            if (text == "win")
+            {
+                MessageText.Location = new Point((this.Width / 5) - 250, 500);
+                MessageText.Image = Image.FromFile("./Images/UIElements/you_win.png");
+                MessageText.Visible = true;
+            }
+            if (text == "lose")
+            {
+                MessageText.Location = new Point((this.Width / 5) - 250, 500);
+                MessageText.Image = Image.FromFile("./Images/UIElements/you_lose.png");
+                MessageText.Visible = true;
+            }
+            if (text == "nowinner")
+            {
+                MessageText.Location = new Point((this.Width / 5) - 250, 500);
+                MessageText.Image = Image.FromFile("./Images/UIElements/no_winner.png");
+                MessageText.Visible = true;
+            }
+        }
+
         //------------------------------------------------------------//
         //-------------------- FORM CONTROLS/EVENTS ------------------//
         //------------------------------------------------------------//
@@ -258,15 +290,16 @@ namespace WinForms_JeuCombat
             await Task.Delay(2000);//Wait 2 seconds
 
             //Set all character choice button positions
+            DisplayText("selection");
             foreach (Button button in characterSelectionButtonList)
             {
                 button.Size = new Size(356, 496);//Set the button size to the image's
                 button.Image = imageList[int.Parse(button.Tag.ToString()) - 1];//Select image according to button tag
-                button.Location = new Point((this.Width / 5 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 100) - (button.Height / 2));
+                button.Location = new Point((this.Width / 5 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 50) - (button.Height / 2));
                 buttonOffset += 400;//Add offset between images(400pixels)
             }
 
-            textBox1.Location = new Point((this.Width / 2) - (textBox1.Width / 2), 150);//Move the textBox on the screen
+            textBox1.Location = new Point(5, this.Height + 100);//Move the textBox on the screen
 
             this.BackgroundImage = Image.FromFile("./Images/background_menu.png");//Set the background image
 
@@ -376,6 +409,7 @@ namespace WinForms_JeuCombat
             DisplayHealth(playerCharacter, AICharacter, tBox);
 
             //Update health and power(fist)
+            DisplayText("hide");
             HeartDisplay(playerCharacter, AICharacter);
             Power(playerCharacter, AICharacter);
 
@@ -605,7 +639,7 @@ namespace WinForms_JeuCombat
 
 
         //End game conditions
-        static bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
+         bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
         {
             //Set player and ai death condition(if health is = or < 0)
             bool playerIsDead = playerCharacter.curHealth <= 0;
@@ -614,17 +648,17 @@ namespace WinForms_JeuCombat
             //Show the winner and leave the loop
             if (playerIsDead && AIisDead)
             {
-                tBox.Text += ("\r\nEgalité !");
+                DisplayText("nowinner");
                 return true;
             }
             else if (AIisDead)
             {
-                tBox.Text += ("\r\nLe joueur a gagné !");
+                DisplayText("win");
                 return true;
             }
             else if (playerIsDead)
             {
-                tBox.Text += ("\r\nl'AI a gagné !");
+                DisplayText("lose");
                 return true;
             }
             else return false;

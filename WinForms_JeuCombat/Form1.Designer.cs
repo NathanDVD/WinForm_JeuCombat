@@ -35,7 +35,6 @@
             HealerButton = new Button();
             TankButton = new Button();
             AssasinButton = new Button();
-            textBox1 = new TextBox();
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
@@ -56,6 +55,8 @@
             Power1Player = new PictureBox();
             Power2AI = new PictureBox();
             Power1AI = new PictureBox();
+            MessageText = new PictureBox();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
@@ -73,12 +74,14 @@
             ((System.ComponentModel.ISupportInitialize)Power1Player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Power2AI).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Power1AI).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MessageText).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
             // 
             PlayButton.BackColor = Color.Transparent;
             PlayButton.BackgroundImageLayout = ImageLayout.None;
+            PlayButton.Cursor = Cursors.Hand;
             PlayButton.FlatAppearance.BorderSize = 0;
             PlayButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             PlayButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -98,6 +101,7 @@
             // 
             QuitButton.BackColor = Color.Transparent;
             QuitButton.BackgroundImageLayout = ImageLayout.Center;
+            QuitButton.Cursor = Cursors.Hand;
             QuitButton.FlatAppearance.BorderSize = 0;
             QuitButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             QuitButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -117,6 +121,7 @@
             // 
             DamagerButton.BackColor = Color.Transparent;
             DamagerButton.BackgroundImageLayout = ImageLayout.None;
+            DamagerButton.Cursor = Cursors.Hand;
             DamagerButton.FlatAppearance.BorderSize = 0;
             DamagerButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DamagerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -135,6 +140,7 @@
             // 
             HealerButton.BackColor = Color.Transparent;
             HealerButton.BackgroundImageLayout = ImageLayout.None;
+            HealerButton.Cursor = Cursors.Hand;
             HealerButton.FlatAppearance.BorderSize = 0;
             HealerButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             HealerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -152,6 +158,7 @@
             // TankButton
             // 
             TankButton.BackColor = Color.Transparent;
+            TankButton.Cursor = Cursors.Hand;
             TankButton.FlatAppearance.BorderSize = 0;
             TankButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             TankButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -169,6 +176,7 @@
             // AssasinButton
             // 
             AssasinButton.BackColor = Color.Transparent;
+            AssasinButton.Cursor = Cursors.Hand;
             AssasinButton.FlatAppearance.BorderSize = 0;
             AssasinButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             AssasinButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -182,18 +190,6 @@
             AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
             AssasinButton.UseVisualStyleBackColor = false;
             AssasinButton.Click += characterChoice_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.AcceptsReturn = true;
-            textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(929, 287);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(583, 265);
-            textBox1.TabIndex = 7;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // AttackButton
             // 
@@ -450,6 +446,31 @@
             Power1AI.TabStop = false;
             Power1AI.Visible = false;
             // 
+            // MessageText
+            // 
+            MessageText.BackColor = Color.Transparent;
+            MessageText.Image = (Image)resources.GetObject("MessageText.Image");
+            MessageText.Location = new Point(-206, 100);
+            MessageText.Margin = new Padding(2, 2, 2, 2);
+            MessageText.Name = "MessageText";
+            MessageText.Size = new Size(1695, 185);
+            MessageText.SizeMode = PictureBoxSizeMode.CenterImage;
+            MessageText.TabIndex = 28;
+            MessageText.TabStop = false;
+            MessageText.Visible = false;
+            // 
+            // textBox1
+            // 
+            textBox1.AcceptsReturn = true;
+            textBox1.Font = new Font("Segoe UI", 15F);
+            textBox1.Location = new Point(929, 287);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(583, 265);
+            textBox1.TabIndex = 7;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -457,7 +478,8 @@
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1918, 1080);
+            ClientSize = new Size(1358, 732);
+            Controls.Add(MessageText);
             Controls.Add(Power2AI);
             Controls.Add(Power1AI);
             Controls.Add(Power2Player);
@@ -489,7 +511,7 @@
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MaximumSize = new Size(1920, 1200);
-            MinimumSize = new Size(1918, 1080);
+            MinimumSize = new Size(1343, 690);
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
@@ -510,6 +532,7 @@
             ((System.ComponentModel.ISupportInitialize)Power1Player).EndInit();
             ((System.ComponentModel.ISupportInitialize)Power2AI).EndInit();
             ((System.ComponentModel.ISupportInitialize)Power1AI).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MessageText).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -522,7 +545,6 @@
         private Button HealerButton;
         private Button TankButton;
         private Button AssasinButton;
-        private TextBox textBox1;
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
@@ -543,5 +565,7 @@
         private PictureBox Power1Player;
         private PictureBox Power2AI;
         private PictureBox Power1AI;
+        private PictureBox MessageText;
+        private TextBox textBox1;
     }
 }
