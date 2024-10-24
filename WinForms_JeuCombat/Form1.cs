@@ -17,6 +17,7 @@ namespace WinForms_JeuCombat
         private bool choseCharacter = false;
         private bool canPlay = true;
         public bool choseAction = false;
+        public bool played = false;
 
         private int buttonOffset = 0;
 
@@ -145,7 +146,7 @@ namespace WinForms_JeuCombat
             PowerAI[0].Location = new Point(this.Width - 175, 200);
             PowerAI[0].Visible = true;
 
-            //IDKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+            //If the player / AI is a Damager, another Power icon is added along the first.
             if (player.name == "Damager")
             {
                 PowerPlayer[1].Location = new Point(175, 200);
@@ -239,78 +240,97 @@ namespace WinForms_JeuCombat
         }
 
 
-        public void DisplayText(string text)
+        public void DisplayText(string text)//Display the end message + "Choose a character" message.
         {
             if (text == "hide")
             {
                 MessageText.Visible = false;
             }
-            if (text == "selection")
+            if (text == "selection")//"Choose a character" message box
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 200);
                 MessageText.Image = Image.FromFile("./Images/UIElements/select_character.png");
                 MessageText.Visible = true;
             }
-            if (text == "win")
+            if (text == "win")//"You win!" message box
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
-                MessageText.Image = Image.FromFile("./Images/UIElements/you_win.png");
+                MessageText.Image = Image.FromFile("./Images/UIElements/you_win.png");//Restart button appears
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 300, 755);
+                RestartButton.Visible = true;
             }
-            if (text == "lose")
+            if (text == "lose")//"You lose!" message box
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
                 MessageText.Image = Image.FromFile("./Images/UIElements/you_lose.png");
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 300, 755);
+                RestartButton.Visible = true;
             }
-            if (text == "nowinner")
+            if (text == "nowinner")// "No winner" message box
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
                 MessageText.Image = Image.FromFile("./Images/UIElements/no_winner.png");
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 300, 755);
+                RestartButton.Visible = true;
             }
+            Power1Player.Visible = false; Power2Player.Visible = false;
+            Power1AI.Visible = false; Power2AI.Visible = false;
         }
 
         //------------------------------------------------------------//
         //-------------------- FORM CONTROLS/EVENTS ------------------//
         //------------------------------------------------------------//
-        private async void button1_Click(object sender, EventArgs e)
+
+        private void RestartButton_Click(object sender, EventArgs e) //Restart Button event
         {
-            mSoundPlayer.Play();//Play sound
-
-            //Animate controls leaving screen
-            AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
-            await Task.Delay(2000);
-            AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
-            await Task.Delay(100);
-            AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
+            Application.Restart();//Restart the app
+        }
 
 
-
-            buttonOffset = 0;//Offset
-
-            await Task.Delay(2000);//Wait 2 seconds
-
-            //Set all character choice button positions
-            DisplayText("selection");
-            foreach (Button button in characterSelectionButtonList)
+        private async void button1_Click(object sender, EventArgs e)//Play button event
+        {
+            if (played)
             {
-                button.Size = new Size(356, 496);//Set the button size to the image's
-                button.Image = imageList[int.Parse(button.Tag.ToString()) - 1];//Select image according to button tag
-                button.Location = new Point((this.Width / 5 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 50) - (button.Height / 2));
-                buttonOffset += 400;//Add offset between images(400pixels)
+                played = true;
+                mSoundPlayer.Play();//Play sound
+
+                //Animate controls leaving screen
+                AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
+                await Task.Delay(2000);
+                AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
+                await Task.Delay(100);
+                AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
+
+
+
+                buttonOffset = 0;//Offset
+
+                await Task.Delay(2000);//Wait 2 seconds
+
+                //Set all character choice button positions
+                DisplayText("selection");
+                foreach (Button button in characterSelectionButtonList)
+                {
+                    button.Size = new Size(356, 496);//Set the button size to the image's
+                    button.Image = imageList[int.Parse(button.Tag.ToString()) - 1];//Select image according to button tag
+                    button.Location = new Point((this.Width / 5 + buttonOffset) - (button.Width / 2), (this.Height / 2 + 50) - (button.Height / 2));
+                    buttonOffset += 400;//Add offset between images(400pixels)
+                }
+
+                textBox1.Location = new Point(5, this.Height + 100);//Move the textBox on the screen
+
+                this.BackgroundImage = Image.FromFile("./Images/background_menu.png");//Set the background image
+
+                await Task.Delay(1000);
+
+                sPlayer.PlayLooping();//Loops the song selected
+
+                //Ask the player to chose a character
+                textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
             }
-
-            textBox1.Location = new Point(5, this.Height + 100);//Move the textBox on the screen
-
-            this.BackgroundImage = Image.FromFile("./Images/background_menu.png");//Set the background image
-
-            await Task.Delay(1000);
-
-            sPlayer.PlayLooping();//Loops the song selected
-
-            //Ask the player to chose a character
-            textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
         }
 
 

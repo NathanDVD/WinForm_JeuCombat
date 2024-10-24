@@ -59,6 +59,7 @@
             playerPoisonStateBox = new PictureBox();
             MessageText = new PictureBox();
             textBox1 = new TextBox();
+            RestartButton = new Button();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
@@ -76,9 +77,9 @@
             ((System.ComponentModel.ISupportInitialize)Power1Player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Power2AI).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Power1AI).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)MessageText).BeginInit();
             ((System.ComponentModel.ISupportInitialize)aiPoisonStateBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playerPoisonStateBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MessageText).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
@@ -451,6 +452,30 @@
             Power1AI.TabStop = false;
             Power1AI.Visible = false;
             // 
+            // aiPoisonStateBox
+            // 
+            aiPoisonStateBox.BackColor = Color.Transparent;
+            aiPoisonStateBox.BackgroundImage = (Image)resources.GetObject("aiPoisonStateBox.BackgroundImage");
+            aiPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
+            aiPoisonStateBox.Location = new Point(1798, 262);
+            aiPoisonStateBox.Name = "aiPoisonStateBox";
+            aiPoisonStateBox.Size = new Size(80, 80);
+            aiPoisonStateBox.TabIndex = 29;
+            aiPoisonStateBox.TabStop = false;
+            aiPoisonStateBox.Visible = false;
+            // 
+            // playerPoisonStateBox
+            // 
+            playerPoisonStateBox.BackColor = Color.Transparent;
+            playerPoisonStateBox.BackgroundImage = (Image)resources.GetObject("playerPoisonStateBox.BackgroundImage");
+            playerPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
+            playerPoisonStateBox.Location = new Point(12, 262);
+            playerPoisonStateBox.Name = "playerPoisonStateBox";
+            playerPoisonStateBox.Size = new Size(80, 80);
+            playerPoisonStateBox.TabIndex = 28;
+            playerPoisonStateBox.TabStop = false;
+            playerPoisonStateBox.Visible = false;
+            // 
             // MessageText
             // 
             MessageText.BackColor = Color.Transparent;
@@ -476,29 +501,26 @@
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
-            // aiPoisonStateBox
+            // RestartButton
             // 
-            aiPoisonStateBox.BackColor = Color.Transparent;
-            aiPoisonStateBox.BackgroundImage = (Image)resources.GetObject("aiPoisonStateBox.BackgroundImage");
-            aiPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
-            aiPoisonStateBox.Location = new Point(1798, 262);
-            aiPoisonStateBox.Name = "aiPoisonStateBox";
-            aiPoisonStateBox.Size = new Size(80, 80);
-            aiPoisonStateBox.TabIndex = 29;
-            aiPoisonStateBox.TabStop = false;
-            aiPoisonStateBox.Visible = false;
-            // 
-            // playerPoisonStateBox
-            // 
-            playerPoisonStateBox.BackColor = Color.Transparent;
-            playerPoisonStateBox.BackgroundImage = (Image)resources.GetObject("playerPoisonStateBox.BackgroundImage");
-            playerPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
-            playerPoisonStateBox.Location = new Point(12, 262);
-            playerPoisonStateBox.Name = "playerPoisonStateBox";
-            playerPoisonStateBox.Size = new Size(80, 80);
-            playerPoisonStateBox.TabIndex = 28;
-            playerPoisonStateBox.TabStop = false;
-            playerPoisonStateBox.Visible = false;
+            RestartButton.BackColor = Color.Transparent;
+            RestartButton.BackgroundImageLayout = ImageLayout.None;
+            RestartButton.Cursor = Cursors.Hand;
+            RestartButton.FlatAppearance.BorderSize = 0;
+            RestartButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            RestartButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            RestartButton.FlatStyle = FlatStyle.Flat;
+            RestartButton.ForeColor = Color.Transparent;
+            RestartButton.Image = (Image)resources.GetObject("RestartButton.Image");
+            RestartButton.Location = new Point(929, 610);
+            RestartButton.Margin = new Padding(0);
+            RestartButton.Name = "RestartButton";
+            RestartButton.Size = new Size(597, 110);
+            RestartButton.TabIndex = 60;
+            RestartButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            RestartButton.UseVisualStyleBackColor = false;
+            RestartButton.Visible = false;
+            RestartButton.Click += RestartButton_Click;
             // 
             // Form1
             // 
@@ -508,9 +530,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1918, 1080);
-            Controls.Add(aiPoisonStateBox);
-            Controls.Add(playerPoisonStateBox);
-            ClientSize = new Size(1358, 732);
+            Controls.Add(RestartButton);
             Controls.Add(MessageText);
             Controls.Add(Power2AI);
             Controls.Add(Power1AI);
@@ -539,11 +559,13 @@
             Controls.Add(DamagerButton);
             Controls.Add(QuitButton);
             Controls.Add(PlayButton);
+            Controls.Add(playerPoisonStateBox);
+            Controls.Add(aiPoisonStateBox);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MaximumSize = new Size(1920, 1200);
-            MinimumSize = new Size(1920,1080);
+            MinimumSize = new Size(1918, 1080);
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
@@ -603,5 +625,6 @@
         private PictureBox playerPoisonStateBox;
         private PictureBox MessageText;
         private TextBox textBox1;
+        private Button RestartButton;
     }
 }
