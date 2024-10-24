@@ -1,4 +1,4 @@
 Dual of legends
 
 
-Dual of legends est un jeux de combat en 2D se jouant en tour par tour. Réalisé en C#
+Dual of legends est un jeux de combat tour par tour en 2D opposant un joueur et l'ordinateur.
