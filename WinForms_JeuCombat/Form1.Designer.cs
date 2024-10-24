@@ -35,11 +35,12 @@
             HealerButton = new Button();
             TankButton = new Button();
             AssasinButton = new Button();
+            textBox1 = new TextBox();
             AttackButton = new Button();
             DefendButton = new Button();
             SpellButton = new Button();
-            PlayerImage = new PictureBox();
-            ComputerImage = new PictureBox();
+            PlayerBox = new PictureBox();
+            ComputerBox = new PictureBox();
             ImageLogo = new PictureBox();
             TextBox = new Label();
             Heart1Player = new PictureBox();
@@ -79,7 +80,6 @@
             // 
             PlayButton.BackColor = Color.Transparent;
             PlayButton.BackgroundImageLayout = ImageLayout.None;
-            PlayButton.Cursor = Cursors.Hand;
             PlayButton.FlatAppearance.BorderSize = 0;
             PlayButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             PlayButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -93,13 +93,12 @@
             PlayButton.TabIndex = 0;
             PlayButton.TextImageRelation = TextImageRelation.ImageAboveText;
             PlayButton.UseVisualStyleBackColor = false;
-            PlayButton.Click += menuButton_Click;
+            PlayButton.Click += button1_Click;
             // 
             // QuitButton
             // 
             QuitButton.BackColor = Color.Transparent;
             QuitButton.BackgroundImageLayout = ImageLayout.Center;
-            QuitButton.Cursor = Cursors.Hand;
             QuitButton.FlatAppearance.BorderSize = 0;
             QuitButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             QuitButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -193,6 +192,18 @@
             AssasinButton.UseVisualStyleBackColor = false;
             AssasinButton.Click += characterChoice_Click;
             // 
+            // textBox1
+            // 
+            textBox1.AcceptsReturn = true;
+            textBox1.Font = new Font("Segoe UI", 15F);
+            textBox1.Location = new Point(929, 287);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(583, 265);
+            textBox1.TabIndex = 7;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // AttackButton
             // 
             AttackButton.BackColor = Color.Transparent;
@@ -217,7 +228,6 @@
             DefendButton.BackColor = Color.Transparent;
             DefendButton.BackgroundImage = (Image)resources.GetObject("DefendButton.BackgroundImage");
             DefendButton.BackgroundImageLayout = ImageLayout.Stretch;
-            DefendButton.Cursor = Cursors.Hand;
             DefendButton.FlatAppearance.BorderSize = 0;
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -250,7 +260,7 @@
             SpellButton.UseVisualStyleBackColor = false;
             SpellButton.Click += actionChoice_Click;
             // 
-            // PlayerImage
+            // PlayerBox
             // 
             PlayerImage.BackColor = Color.Transparent;
             PlayerImage.BackgroundImageLayout = ImageLayout.Stretch;
@@ -261,7 +271,7 @@
             PlayerImage.TabIndex = 11;
             PlayerImage.TabStop = false;
             // 
-            // ComputerImage
+            // ComputerBox
             // 
             ComputerImage.BackColor = Color.Transparent;
             ComputerImage.BackgroundImageLayout = ImageLayout.Stretch;
@@ -284,8 +294,165 @@
             ImageLogo.Size = new Size(714, 428);
             ImageLogo.TabIndex = 13;
             ImageLogo.TabStop = false;
+            ImageLogo.WaitOnLoad = true;
             // 
-            // TextBox
+            // Heart1Player
+            // 
+            Heart1Player.BackColor = Color.Transparent;
+            Heart1Player.BackgroundImage = (Image)resources.GetObject("Heart1Player.BackgroundImage");
+            Heart1Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart1Player.Location = new Point(12, 12);
+            Heart1Player.Name = "Heart1Player";
+            Heart1Player.Size = new Size(94, 90);
+            Heart1Player.TabIndex = 14;
+            Heart1Player.TabStop = false;
+            Heart1Player.Visible = false;
+            // 
+            // Heart2Player
+            // 
+            Heart2Player.BackColor = Color.Transparent;
+            Heart2Player.BackgroundImage = (Image)resources.GetObject("Heart2Player.BackgroundImage");
+            Heart2Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart2Player.Location = new Point(112, 12);
+            Heart2Player.Name = "Heart2Player";
+            Heart2Player.Size = new Size(94, 90);
+            Heart2Player.TabIndex = 15;
+            Heart2Player.TabStop = false;
+            Heart2Player.Visible = false;
+            // 
+            // Heart4Player
+            // 
+            Heart4Player.BackColor = Color.Transparent;
+            Heart4Player.BackgroundImage = (Image)resources.GetObject("Heart4Player.BackgroundImage");
+            Heart4Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart4Player.Location = new Point(313, 12);
+            Heart4Player.Name = "Heart4Player";
+            Heart4Player.Size = new Size(94, 90);
+            Heart4Player.TabIndex = 17;
+            Heart4Player.TabStop = false;
+            Heart4Player.Visible = false;
+            // 
+            // Heart3Player
+            // 
+            Heart3Player.BackColor = Color.Transparent;
+            Heart3Player.BackgroundImage = (Image)resources.GetObject("Heart3Player.BackgroundImage");
+            Heart3Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart3Player.Location = new Point(213, 12);
+            Heart3Player.Name = "Heart3Player";
+            Heart3Player.Size = new Size(94, 90);
+            Heart3Player.TabIndex = 16;
+            Heart3Player.TabStop = false;
+            Heart3Player.Visible = false;
+            // 
+            // Heart5Player
+            // 
+            Heart5Player.BackColor = Color.Transparent;
+            Heart5Player.BackgroundImage = (Image)resources.GetObject("Heart5Player.BackgroundImage");
+            Heart5Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart5Player.Location = new Point(413, 12);
+            Heart5Player.Name = "Heart5Player";
+            Heart5Player.Size = new Size(94, 90);
+            Heart5Player.TabIndex = 18;
+            Heart5Player.TabStop = false;
+            Heart5Player.Visible = false;
+            // 
+            // Heart5AI
+            // 
+            Heart5AI.BackColor = Color.Transparent;
+            Heart5AI.BackgroundImage = (Image)resources.GetObject("Heart5AI.BackgroundImage");
+            Heart5AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart5AI.Location = new Point(1812, 12);
+            Heart5AI.Name = "Heart5AI";
+            Heart5AI.Size = new Size(94, 90);
+            Heart5AI.TabIndex = 23;
+            Heart5AI.TabStop = false;
+            Heart5AI.Visible = false;
+            // 
+            // Heart4AI
+            // 
+            Heart4AI.BackColor = Color.Transparent;
+            Heart4AI.BackgroundImage = (Image)resources.GetObject("Heart4AI.BackgroundImage");
+            Heart4AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart4AI.Location = new Point(1712, 12);
+            Heart4AI.Name = "Heart4AI";
+            Heart4AI.Size = new Size(94, 90);
+            Heart4AI.TabIndex = 22;
+            Heart4AI.TabStop = false;
+            Heart4AI.Visible = false;
+            // 
+            // Heart3AI
+            // 
+            Heart3AI.BackColor = Color.Transparent;
+            Heart3AI.BackgroundImage = (Image)resources.GetObject("Heart3AI.BackgroundImage");
+            Heart3AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart3AI.Location = new Point(1612, 12);
+            Heart3AI.Name = "Heart3AI";
+            Heart3AI.Size = new Size(94, 90);
+            Heart3AI.TabIndex = 21;
+            Heart3AI.TabStop = false;
+            Heart3AI.Visible = false;
+            // 
+            // Heart2AI
+            // 
+            Heart2AI.BackColor = Color.Transparent;
+            Heart2AI.BackgroundImage = (Image)resources.GetObject("Heart2AI.BackgroundImage");
+            Heart2AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart2AI.Location = new Point(1511, 12);
+            Heart2AI.Name = "Heart2AI";
+            Heart2AI.Size = new Size(94, 90);
+            Heart2AI.TabIndex = 20;
+            Heart2AI.TabStop = false;
+            Heart2AI.Visible = false;
+            // 
+            // Heart1AI
+            // 
+            Heart1AI.BackColor = Color.Transparent;
+            Heart1AI.BackgroundImage = (Image)resources.GetObject("Heart1AI.BackgroundImage");
+            Heart1AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Heart1AI.Location = new Point(1411, 12);
+            Heart1AI.Name = "Heart1AI";
+            Heart1AI.Size = new Size(94, 90);
+            Heart1AI.TabIndex = 19;
+            Heart1AI.TabStop = false;
+            Heart1AI.Visible = false;
+            // 
+            // Power2Player
+            // 
+            Power2Player.BackColor = Color.Transparent;
+            Power2Player.BackgroundImage = (Image)resources.GetObject("Power2Player.BackgroundImage");
+            Power2Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Power2Player.Location = new Point(112, 148);
+            Power2Player.Name = "Power2Player";
+            Power2Player.Size = new Size(94, 115);
+            Power2Player.TabIndex = 25;
+            Power2Player.TabStop = false;
+            Power2Player.Visible = false;
+            // 
+            // Power1Player
+            // 
+            Power1Player.BackColor = Color.Transparent;
+            Power1Player.BackgroundImage = (Image)resources.GetObject("Power1Player.BackgroundImage");
+            Power1Player.BackgroundImageLayout = ImageLayout.Stretch;
+            Power1Player.Location = new Point(12, 148);
+            Power1Player.Name = "Power1Player";
+            Power1Player.Size = new Size(94, 115);
+            Power1Player.TabIndex = 24;
+            Power1Player.TabStop = false;
+            Power1Player.Visible = false;
+            // 
+            // Power2AI
+            // 
+            Power2AI.BackColor = Color.Transparent;
+            Power2AI.BackgroundImage = (Image)resources.GetObject("Power2AI.BackgroundImage");
+            Power2AI.BackgroundImageLayout = ImageLayout.Stretch;
+            Power2AI.Location = new Point(1812, 148);
+            Power2AI.Name = "Power2AI";
+            Power2AI.Size = new Size(94, 115);
+            Power2AI.TabIndex = 27;
+            Power2AI.TabStop = false;
+            Power2AI.Visible = false;
+            // 
+            // Power1AI
             // 
             TextBox.AutoSize = true;
             TextBox.BackColor = Color.Transparent;
@@ -505,11 +672,12 @@
             Controls.Add(Heart1Player);
             Controls.Add(TextBox);
             Controls.Add(ImageLogo);
-            Controls.Add(ComputerImage);
-            Controls.Add(PlayerImage);
+            Controls.Add(ComputerBox);
+            Controls.Add(PlayerBox);
             Controls.Add(SpellButton);
             Controls.Add(DefendButton);
             Controls.Add(AttackButton);
+            Controls.Add(textBox1);
             Controls.Add(AssasinButton);
             Controls.Add(TankButton);
             Controls.Add(HealerButton);
@@ -524,8 +692,8 @@
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)PlayerImage).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ComputerImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PlayerBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ComputerBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)Heart1Player).EndInit();
             ((System.ComponentModel.ISupportInitialize)Heart2Player).EndInit();
@@ -553,11 +721,12 @@
         private Button HealerButton;
         private Button TankButton;
         private Button AssasinButton;
+        private TextBox textBox1;
         private Button AttackButton;
         private Button DefendButton;
         private Button SpellButton;
-        private PictureBox PlayerImage;
-        private PictureBox ComputerImage;
+        private PictureBox PlayerBox;
+        private PictureBox ComputerBox;
         private PictureBox ImageLogo;
         private Label TextBox;
         private PictureBox Heart1Player;

@@ -7,6 +7,7 @@ namespace WinForms_JeuCombat
         private static float speed;
 
 
+
         //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //
         //Bounce function used primarily for the menu buttons. Needs a Control, 2 target locations and a float to control the movement speed.
@@ -19,7 +20,7 @@ namespace WinForms_JeuCombat
             // Move upwards until reaching the target position (bounce start)
             while (control.Location.Y > targetPos.Y)
             {
-                speed += 0.9f;
+                speed += 0.5f;
                 float newY = control.Location.Y - speed;
 
                 control.Location = new Point(control.Location.X, (int)newY);//Convert to integer Point
@@ -48,23 +49,37 @@ namespace WinForms_JeuCombat
         public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
             Image baseImage = character.idle_frame;
+
             if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
-                XMovement(characterImage, xDirection);//Move one way (positive X)
+                XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
-                await Task.Delay(400);//Wait for movement to finish
-                characterImage.Image = Image.FromFile($"./Images/{character.name}/{character.name}_Attack.png");//"Play" attack animation
-                await Task.Delay(100);//Wait for anim to finish
-                characterImage.Image = baseImage;//Get back to base character image
+                await Task.Delay(500);//Wait
+                //Setup the image to use
+                characterImage.Image = character.attack_frame;//"Play" attack animation
+                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
 
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
+                await Task.Delay(500);
+
+                //Go back to base frame
+                characterImage.Image = baseImage;
             }
-            else if(action == Form1.ActionChoice.Defend)  //JUMP
+            else if (action == Form1.ActionChoice.Defend) 
             {
-                //Defend action
-                XMovement(characterImage, -xDirection);
-                await Task.Delay(500);//Wait for movement to finish
-                XMovement(characterImage, xDirection);
+                //Defend action, maybe pass
+            }
+            else if (action == Form1.ActionChoice.Spell)
+            {
+  
+                //Setup the image to use
+                characterImage.Image = character.spell_frame;//"Play" attack animation
+                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
+
+                await Task.Delay(500);
+
+                //Go back to base frame
+                characterImage.Image = baseImage;
             }
         }
 
