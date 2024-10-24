@@ -1,4 +1,4 @@
-`rgb(9, 105, 218)`
+#`rgb(9, 105, 218)`
 
 # Dual of legends
 
