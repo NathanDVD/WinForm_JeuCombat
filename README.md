@@ -7,8 +7,6 @@
 - Hugo Impérat
 - Samuel Bugeas
 
-Résolution recommandé : 1920 x 1080 ou 1920x1200
-
 Outils utilisés :
 C#
 Visual Studio 2022 (Application Windows Form)
@@ -16,9 +14,9 @@ Visual Studio 2022 (Application Windows Form)
 ### Contexte :
 Dual of legends est un jeu 2D de combat en tour par tour, opposant un joueur à un ordinateur.
 Chaque tour, le joueur devra choisir une action parmi l'Attaque, la Défense ou une compétence, qui dépend de la classe choisie. 
-L'ordinateur, lui, choisi aléatoirement.
-Lorsque la vie d'un des joueurs(ou les deux) atteint 0, la partie est perdu. 
-A chaque tour, les actions sont jouées simultanément, il peut donc y avoir égalité.
+L'ordinateur, lui, choisit aléatoirement.
+Lorsque la vie d'un des joueurs(ou les deux) atteint 0, la partie est perdue. 
+A chaque tour, les actions sont jouées simultanément, il peut donc y avoir une égalité.
 
 
 ### Interactions avec le programme :
@@ -39,7 +37,7 @@ Compétence : Le rogue applique du poison sur ses dagues et entreprend une attaq
 ---------------------------------------------
 
 Instructions pour installer et lancer le programme :
-Résolution recommandé : 1920 x 1080
+Résolution recommandé : 1920 x 1080 ou 1920x1200
 Lancer le fichier comportant l'extention ".sln" et lancer l'execution du programme.
 
 Interactions avec le programme :
