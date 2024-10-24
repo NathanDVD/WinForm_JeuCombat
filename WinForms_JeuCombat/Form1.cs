@@ -220,8 +220,6 @@ namespace WinForms_JeuCombat
 
             ImageLogo.Location = new Point((this.Width / 2) - (ImageLogo.Width / 2), 150);
 
-            textBox1.Location = new Point(-1000, 0);
-
             //Add character choice buttons to list
             characterSelectionButtonList.AddRange(new Button[] { DamagerButton, HealerButton, TankButton, AssasinButton });
             //Set all the images for the buttons
@@ -305,16 +303,12 @@ namespace WinForms_JeuCombat
                 buttonOffset += 400;//Add offset between images(400pixels)
             }
 
-            textBox1.Location = new Point(5, this.Height + 100);//Move the textBox on the screen
-
             this.BackgroundImage = Image.FromFile("./Images/background_menu.png");//Set the background image
 
             await Task.Delay(1000);
 
             sPlayer.PlayLooping();//Loops the song selected
 
-            //Ask the player to chose a character
-            textBox1.Text += "Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Assasin\r\n";
         }
 
 
@@ -337,7 +331,7 @@ namespace WinForms_JeuCombat
 
             Button clickedButton = sender as Button;//Button clicked that sent triggered the event
 
-            MainFunction(textBox1, clickedButton);//Launch main function
+            MainFunction(clickedButton);//Launch main function
         }
 
         //Select the user Action choice according to the button clicked
@@ -357,13 +351,6 @@ namespace WinForms_JeuCombat
             }
         }
 
-        //When text is added or removed in the textBox
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            textBox1.SelectionStart = textBox1.TextLength;//Set text start(the first line to show
-            textBox1.ScrollToCaret();//Scroll to bottom
-        }
-
 
 
         //------------------------------------------------------------//
@@ -378,7 +365,7 @@ namespace WinForms_JeuCombat
         //Big chunk of code ahead :
         //---------------------------------------------------------------------------------------------------------//
 
-        public async void MainFunction(TextBox tBox, Button playerSelectionButton)//here, button = character selection button
+        public async void MainFunction(Button playerSelectionButton)//here, button = character selection button
         {
             //--------- INITIALIZATION -----------
             bool isEnd = false;
@@ -399,20 +386,11 @@ namespace WinForms_JeuCombat
             ComputerBox.Location = new Point((this.Width / 2 + 150) - (ComputerBox.Width / 2), (this.Height / 2 + 350) - (ComputerBox.Height / 2));
 
             //Player choice
-            tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");
-            Characters playerCharacter = PlayerChooseCharacter(tBox, playerSelectionButton, PlayerBox);
+            Characters playerCharacter = PlayerChooseCharacter(playerSelectionButton, PlayerBox);
 
-            //Display character choice
-            tBox.Text += $"\r\nJoueur : {playerCharacter.name}";
 
             //AI's choice
             Characters AICharacter = new Characters(AIChooseCharacter(ComputerBox));
-
-            //Display character choice
-            tBox.Text += $"\r\nAI : {AICharacter.name}";
-
-            //Display health
-            DisplayHealth(playerCharacter, AICharacter, tBox);
 
             //Update health and power(fist)
             DisplayText("hide");
@@ -433,23 +411,20 @@ namespace WinForms_JeuCombat
                 choseAction = false;
 
                 //Choose player action
-                PlayerChooseAction(playerCharacter, tBox, choiceButton, PlayerBox);
+                PlayerChooseAction(playerCharacter, choiceButton, PlayerBox);
 
                 //Choose ai action
                 AIChooseAction(AICharacter, ComputerBox);
 
                 //Combat (round)
-                Fight(playerCharacter, AICharacter, tBox);
+                Fight(playerCharacter, AICharacter);
 
                 //Update health
                 HeartDisplay(playerCharacter, AICharacter);
                 Power(playerCharacter, AICharacter);
 
-                //Show game state
-                DisplayHealth(playerCharacter, AICharacter, tBox);
-
                 //Win conditions
-                isEnd = isEndGame(playerCharacter, AICharacter, tBox);
+                isEnd = isEndGame(playerCharacter, AICharacter);
 
             }
         }
@@ -457,34 +432,29 @@ namespace WinForms_JeuCombat
 
 
         //Function called every turn, 
-        static void Fight(Characters player, Characters ai, TextBox tBox)
+        static void Fight(Characters player, Characters ai)
         {
             //If poisonned last round then - 1 HP and remove poison
             if (isPoisoned(player))
             {
-                tBox.Text += ("\r\nPoison : - 1 HP");
                 player.TakeDamage(1);
                 Poisoned(player, false);
             }
             else if (isPoisoned(ai))
             {
-                tBox.Text += ("\r\nPoison : - 1 HP");
                 ai.TakeDamage(1);
                 Poisoned(ai, false);
 
             }
-            //Display
-            ShowPlayerAction(player.action, tBox);
-            ShowAIAction(ai.action, tBox);
 
             //Play
-            PlayAction(player, ai, true, tBox);
-            PlayAction(ai, player, false, tBox);
+            PlayAction(player, ai, true);
+            PlayAction(ai, player, false);
 
         }
 
         //Function playing the chosen action
-        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer, TextBox tBox)
+        static void PlayAction(Characters actionPlayer, Characters otherPlayer, bool isPlayer)
         {
             //GET ACTIONS
             ActionChoice actionPlayerChoice = actionPlayer.action;
@@ -494,14 +464,12 @@ namespace WinForms_JeuCombat
             {
                 if (actionPlayer.name == "Healer") //HEAL
                 {
-                    Heal(actionPlayer, tBox);
+                    Heal(actionPlayer);
                 }
                 else if (actionPlayer.name == "Rogue") //Poisonned daggers
                 {
                     //Poisonned - 1 HP next round
                     Poisoned(otherPlayer, true);
-
-                    tBox.Text += ("\r\nPoisoned attack : - 1 HP | Poisoned state");
 
                     //If not defending then - 1 damage point
                     if (otherPlayerChoice != ActionChoice.Defend)
@@ -554,11 +522,9 @@ namespace WinForms_JeuCombat
 
 
         //Player action choice
-        static void PlayerChooseAction(Characters player, TextBox tBox, Button button, PictureBox plrBox)
+        static void PlayerChooseAction(Characters player, Button button, PictureBox plrBox)
         {
             int action_player_choice = 0;
-
-            tBox.Text += ("\r\nChoisissez une action:\r\n1 - Attack\r\n2 - Defend\r\n3 - Spell");
 
             action_player_choice = int.Parse(button.Tag.ToString());
 
@@ -586,7 +552,7 @@ namespace WinForms_JeuCombat
         }
 
         //Find / Get the player choice
-        public Characters PlayerChooseCharacter(TextBox tBox, Button playerChoiceButton, PictureBox plrBox)
+        public Characters PlayerChooseCharacter(Button playerChoiceButton, PictureBox plrBox)
         {
             int character_player_choice = 1;//If for some reason the character is not manually chosen, there is a default one
 
@@ -645,7 +611,7 @@ namespace WinForms_JeuCombat
 
 
         //End game conditions
-        bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
+        bool isEndGame(Characters playerCharacter, Characters aiCharacter)
         {
             //Set player and ai death condition(if health is = or < 0)
             bool playerIsDead = playerCharacter.curHealth <= 0;
@@ -671,7 +637,7 @@ namespace WinForms_JeuCombat
         }
 
         //----- Fonction spell
-        static void Heal(Characters charact, TextBox tBox)
+        static void Heal(Characters charact)
         {
             int _health = (int)charact.curHealth + 2;
             //Verify if health is not going over the maximum health
@@ -680,26 +646,6 @@ namespace WinForms_JeuCombat
             {
                 charact.curHealth = charact.maxHealth;//Set health to max health if going over max health
             }
-        }
-
-        //------------------ Display functions -----------------
-        static void ShowPlayerAction(ActionChoice action, TextBox tBox)
-        {
-            //Show player action
-            tBox.Text += ($"\r\nPlayer choice : {action.ToString()}");
-        }
-
-        static void ShowAIAction(ActionChoice action, TextBox tBox)
-        {
-            //Show ai action
-            tBox.Text += ($"\r\nAI choice : {action.ToString()}");
-        }
-
-        static void DisplayHealth(Characters player, Characters ai, TextBox tBox)
-        {
-            //Show player and ai health
-            tBox.Text += $"\r\nHP joueur : {player.curHealth}/{player.maxHealth}";
-            tBox.Text += $"\r\nHP IA : {ai.curHealth}/{ai.maxHealth}";
         }
 
         //--------------- Poison functions ------------------
