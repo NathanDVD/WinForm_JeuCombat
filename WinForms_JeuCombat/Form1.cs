@@ -747,5 +747,80 @@ namespace WinForms_JeuCombat
             //Check if a character is poisoned
             return (bool)character.isPoisoned;
         }
+
+
+
+
+        //Game Simulation function
+        //Call it on a button click for example
+        public static void GameSimulation(Characters characterA, Characters characterB, int totalMatch, PictureBox compBox, TextBox tBox, PictureBox playerPoisonBox, PictureBox aiPoisonBox)
+        {
+            //----------- VARIABLES
+            bool endOfFight = false;
+            int winMatch = 0;
+            int matchIndex = 1;
+
+            //----------- BOUCLE SIMULATION
+            while (matchIndex <= totalMatch)
+            {
+                //Conditions de fin
+                bool fstCharacterisDead = false;
+                bool scndCharacterisDead = false;
+                endOfFight = false;
+
+                //Création IA_1
+                Characters fstCharacter = new Characters(characterA);
+
+                //Création IA_2
+                Characters scndCharacter = new Characters(characterB);
+
+                Console.WriteLine("Match {0}\n", matchIndex);
+
+                //-------- BOUCLE COMBAT
+                while (!endOfFight)
+                {
+                    //Vérification empoisonnement
+                    if (isPoisoned(fstCharacter))
+
+                    {
+                        fstCharacter.isPoisoned = true;
+                        fstCharacter.TakeDamage(1);
+                    }
+                    else if (isPoisoned(scndCharacter))
+                    {
+                        scndCharacter.isPoisoned = true;
+                        scndCharacter.TakeDamage(1);
+                    }
+
+                    //Choix action IA_1
+                    AIChooseAction(characterA, compBox);
+                    //Choix action IA_2
+                    AIChooseAction(characterB, compBox);
+
+                    //Play action IA_1
+                    PlayAction( characterA,  characterB, false, tBox, playerPoisonBox, aiPoisonBox);
+                    //Play action IA_2
+                    PlayAction( characterB,  characterA, false, tBox, playerPoisonBox, aiPoisonBox);
+
+                    //Conditions de fin
+                    fstCharacterisDead = fstCharacter.curHealth <= 0;
+                    scndCharacterisDead = scndCharacter.curHealth <= 0;
+
+                    if (!fstCharacterisDead && scndCharacterisDead)
+                    {
+                        winMatch++;
+                    }
+
+                    endOfFight = (fstCharacterisDead || scndCharacterisDead);
+
+
+                }
+                matchIndex++;
+            }
+
+            Console.WriteLine("\nWinrate : {0}%", (((float)winMatch / totalMatch) * 100));
+
+
+        }
     }
 }
