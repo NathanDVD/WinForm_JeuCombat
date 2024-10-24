@@ -356,8 +356,8 @@ namespace WinForms_JeuCombat
             classList = new List<Characters> { damager, healer, tank, assassin };
 
             //Initial sprites placement (characters selected)
-            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 + 350) - (PlayerBox.Height / 2));
-            ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 + 300) - (ComputerBox.Height / 2));
+            PlayerBox.Location = new Point((this.Width / 2 - 150) - (PlayerBox.Width / 2), (this.Height / 2 + 350) - (PlayerBox.Height / 2));
+            ComputerBox.Location = new Point((this.Width / 2 + 150) - (ComputerBox.Width / 2), (this.Height / 2 + 350) - (ComputerBox.Height / 2));
 
             //Player choice
             tBox.Text += ("Choisissez un personnage:\r\n1 - Damager\r\n2 - Healer\r\n3 - Tank\r\n4 - Rogue\r\n");
