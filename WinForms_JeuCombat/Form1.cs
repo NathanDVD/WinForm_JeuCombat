@@ -292,7 +292,7 @@ namespace WinForms_JeuCombat
 
         private async void button1_Click(object sender, EventArgs e)//Play button event
         {
-            if (played)
+            if (played == false)
             {
                 played = true;
                 mSoundPlayer.Play();//Play sound
