@@ -34,10 +34,11 @@ La classe 'Rogue'
 Statistiques : 2 cœurs / 1 dégât
 Compétence : Le rogue applique du poison sur ses dagues et entreprend une attaque infligeant 1 dégât, si la cible ne se défend pas et l'empoisonne, même si celle-ci s'est défendu. La cible est alors dans l'état empoisonnée jusqu'au tour suivant, ce qui lui infligera 1 dégât supplémentaire. Le cible sortira ensuite de l'état d'empoisonnement.
 
----------------------------------------------
 
-Instructions pour installer et lancer le programme :
+###Instructions pour installer et lancer le programme :
+
 Résolution recommandé : 1920 x 1080 ou 1920x1200
+
 Lancer le fichier comportant l'extention ".sln" et lancer l'execution du programme.
 
 Interactions avec le programme :
