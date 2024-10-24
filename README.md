@@ -9,4 +9,4 @@
 
 ### Interactions avec le programme :
 
-L'implementation visuelle du jeu s'est faite sur Windows Form. L'application possède donc des boutons pour récuperer les choix du joueur.
+L'implementation visuelle du jeu s'est faite sur Windows Form. L'application possède donc des boutons pour récupérer les choix du joueur.
