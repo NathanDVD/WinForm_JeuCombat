@@ -55,6 +55,8 @@
             Power1Player = new PictureBox();
             Power2AI = new PictureBox();
             Power1AI = new PictureBox();
+            aiPoisonStateBox = new PictureBox();
+            playerPoisonStateBox = new PictureBox();
             MessageText = new PictureBox();
             textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
@@ -75,6 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)Power2AI).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Power1AI).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MessageText).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)aiPoisonStateBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)playerPoisonStateBox).BeginInit();
             SuspendLayout();
             // 
             // PlayButton
@@ -404,9 +408,9 @@
             Power2Player.BackColor = Color.Transparent;
             Power2Player.BackgroundImage = (Image)resources.GetObject("Power2Player.BackgroundImage");
             Power2Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Power2Player.Location = new Point(112, 148);
+            Power2Player.Location = new Point(112, 82);
             Power2Player.Name = "Power2Player";
-            Power2Player.Size = new Size(66, 64);
+            Power2Player.Size = new Size(80, 80);
             Power2Player.TabIndex = 25;
             Power2Player.TabStop = false;
             Power2Player.Visible = false;
@@ -416,9 +420,9 @@
             Power1Player.BackColor = Color.Transparent;
             Power1Player.BackgroundImage = (Image)resources.GetObject("Power1Player.BackgroundImage");
             Power1Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Power1Player.Location = new Point(12, 148);
+            Power1Player.Location = new Point(12, 82);
             Power1Player.Name = "Power1Player";
-            Power1Player.Size = new Size(66, 64);
+            Power1Player.Size = new Size(80, 80);
             Power1Player.TabIndex = 24;
             Power1Player.TabStop = false;
             Power1Player.Visible = false;
@@ -428,9 +432,9 @@
             Power2AI.BackColor = Color.Transparent;
             Power2AI.BackgroundImage = (Image)resources.GetObject("Power2AI.BackgroundImage");
             Power2AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Power2AI.Location = new Point(1812, 148);
+            Power2AI.Location = new Point(1798, 82);
             Power2AI.Name = "Power2AI";
-            Power2AI.Size = new Size(66, 64);
+            Power2AI.Size = new Size(80, 80);
             Power2AI.TabIndex = 27;
             Power2AI.TabStop = false;
             Power2AI.Visible = false;
@@ -440,9 +444,9 @@
             Power1AI.BackColor = Color.Transparent;
             Power1AI.BackgroundImage = (Image)resources.GetObject("Power1AI.BackgroundImage");
             Power1AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Power1AI.Location = new Point(1712, 148);
+            Power1AI.Location = new Point(1698, 82);
             Power1AI.Name = "Power1AI";
-            Power1AI.Size = new Size(66, 64);
+            Power1AI.Size = new Size(80, 80);
             Power1AI.TabIndex = 26;
             Power1AI.TabStop = false;
             Power1AI.Visible = false;
@@ -472,6 +476,30 @@
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
+            // aiPoisonStateBox
+            // 
+            aiPoisonStateBox.BackColor = Color.Transparent;
+            aiPoisonStateBox.BackgroundImage = (Image)resources.GetObject("aiPoisonStateBox.BackgroundImage");
+            aiPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
+            aiPoisonStateBox.Location = new Point(1798, 262);
+            aiPoisonStateBox.Name = "aiPoisonStateBox";
+            aiPoisonStateBox.Size = new Size(80, 80);
+            aiPoisonStateBox.TabIndex = 29;
+            aiPoisonStateBox.TabStop = false;
+            aiPoisonStateBox.Visible = false;
+            // 
+            // playerPoisonStateBox
+            // 
+            playerPoisonStateBox.BackColor = Color.Transparent;
+            playerPoisonStateBox.BackgroundImage = (Image)resources.GetObject("playerPoisonStateBox.BackgroundImage");
+            playerPoisonStateBox.BackgroundImageLayout = ImageLayout.Stretch;
+            playerPoisonStateBox.Location = new Point(12, 262);
+            playerPoisonStateBox.Name = "playerPoisonStateBox";
+            playerPoisonStateBox.Size = new Size(80, 80);
+            playerPoisonStateBox.TabIndex = 28;
+            playerPoisonStateBox.TabStop = false;
+            playerPoisonStateBox.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -479,6 +507,9 @@
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1918, 1080);
+            Controls.Add(aiPoisonStateBox);
+            Controls.Add(playerPoisonStateBox);
             ClientSize = new Size(1358, 732);
             Controls.Add(MessageText);
             Controls.Add(Power2AI);
@@ -512,7 +543,7 @@
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MaximumSize = new Size(1920, 1200);
-            MinimumSize = new Size(1343, 690);
+            MinimumSize = new Size(1920,1080);
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
@@ -533,6 +564,8 @@
             ((System.ComponentModel.ISupportInitialize)Power1Player).EndInit();
             ((System.ComponentModel.ISupportInitialize)Power2AI).EndInit();
             ((System.ComponentModel.ISupportInitialize)Power1AI).EndInit();
+            ((System.ComponentModel.ISupportInitialize)aiPoisonStateBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)playerPoisonStateBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)MessageText).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -566,6 +599,8 @@
         private PictureBox Power1Player;
         private PictureBox Power2AI;
         private PictureBox Power1AI;
+        private PictureBox aiPoisonStateBox;
+        private PictureBox playerPoisonStateBox;
         private PictureBox MessageText;
         private TextBox textBox1;
     }
