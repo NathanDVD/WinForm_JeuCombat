@@ -123,8 +123,6 @@ namespace WinForms_JeuCombat
         //Uses list to hide hearts that the player lost or doesn't have
         void Power(Characters player, Characters ai)
         {
-
-            MessageBox.Show("WHY");
             //Get power visuals form ai and player
             List<PictureBox> PowerPlayer = new List<PictureBox> { Power1Player, Power2Player };
             List<PictureBox> PowerAI = new List<PictureBox> { Power1AI, Power2AI };
@@ -248,10 +246,12 @@ namespace WinForms_JeuCombat
 
             //Animate controls leaving screen
             AnimationClass.BounceFunction(ImageLogo, new Point(0, 100), new Point(0, 400), 11);
-            await Task.Delay(1700);
+            await Task.Delay(2000);
             AnimationClass.BounceFunction(PlayButton, new Point(0, 300), new Point(0, 500), 11);
             await Task.Delay(100);
             AnimationClass.BounceFunction(QuitButton, new Point(0, 450), new Point(0, 500), 11);
+
+
 
             buttonOffset = 0;//Offset
 
@@ -356,7 +356,7 @@ namespace WinForms_JeuCombat
             classList = new List<Characters> { damager, healer, tank, assassin };
 
             //Initial sprites placement (characters selected)
-            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 + 300) - (PlayerBox.Height / 2));
+            PlayerBox.Location = new Point((this.Width / 2 - 200) - (PlayerBox.Width / 2), (this.Height / 2 + 350) - (PlayerBox.Height / 2));
             ComputerBox.Location = new Point((this.Width / 2 + 200) - (ComputerBox.Width / 2), (this.Height / 2 + 300) - (ComputerBox.Height / 2));
 
             //Player choice
@@ -524,7 +524,6 @@ namespace WinForms_JeuCombat
 
             player.action = (ActionChoice)action_player_choice;
 
-            //----------------------------------------------------------------------------------------------
             AnimationClass.CharacterAnim(player, plrBox, 1, player.action);
         }
 
@@ -574,7 +573,7 @@ namespace WinForms_JeuCombat
             Characters _playerChoice = new Characters(classList[character_player_choice - 1]);
 
             //Update player sprite (Idle)
-            plrBox.Image = _playerChoice.idle_frame;
+            plrBox.BackgroundImage = _playerChoice.idle_frame;
 
             //Return player choice
             return classList[character_player_choice - 1];
@@ -591,10 +590,11 @@ namespace WinForms_JeuCombat
 
             //Get AI choice
             Characters _aiCharacter = new Characters(classList[rand_index]);
+
             _aiCharacter.idle_frame = (Image)classList[rand_index].idle_frame.Clone();
 
-            //Update AI sprite
-            compBox.Image = _aiCharacter.idle_frame;
+            //Update AI sprite (Idle) with cloned image
+            compBox.BackgroundImage = _aiCharacter.idle_frame;
 
             //Flip cloned image on Y axis
             _aiCharacter.idle_frame.RotateFlip(RotateFlipType.Rotate180FlipY);
@@ -619,12 +619,12 @@ namespace WinForms_JeuCombat
             }
             else if (AIisDead)
             {
-                tBox.Text += ("\r\nLe joueur a gagn� !");
+                tBox.Text += ("\r\nLe joueur a gagné !");
                 return true;
             }
             else if (playerIsDead)
             {
-                tBox.Text += ("\r\nl'AI a gagn� !");
+                tBox.Text += ("\r\nl'AI a gagné !");
                 return true;
             }
             else return false;
