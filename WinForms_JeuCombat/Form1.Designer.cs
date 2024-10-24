@@ -214,6 +214,7 @@
             DefendButton.BackColor = Color.Transparent;
             DefendButton.BackgroundImage = (Image)resources.GetObject("DefendButton.BackgroundImage");
             DefendButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DefendButton.Cursor = Cursors.Hand;
             DefendButton.FlatAppearance.BorderSize = 0;
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -451,7 +452,7 @@
             MessageText.BackColor = Color.Transparent;
             MessageText.Image = (Image)resources.GetObject("MessageText.Image");
             MessageText.Location = new Point(-206, 100);
-            MessageText.Margin = new Padding(2, 2, 2, 2);
+            MessageText.Margin = new Padding(2);
             MessageText.Name = "MessageText";
             MessageText.Size = new Size(1695, 185);
             MessageText.SizeMode = PictureBoxSizeMode.CenterImage;
