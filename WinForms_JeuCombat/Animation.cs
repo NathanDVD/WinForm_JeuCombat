@@ -48,15 +48,19 @@ namespace WinForms_JeuCombat
         //___________________________________________________________________________________________________________
         public static async void CharacterAnim(Form1.Characters character, PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
-            Image baseImage = character.idle_frame;
+            Image baseImage = (Image)character.idle_frame.Clone();//Clone the base image
 
-            if (action == Form1.ActionChoice.Attack)  //MOVEMENT
+            if (action == Form1.ActionChoice.Attack)//MOVEMENT
             {
                 //Setup the image to use
-                characterImage.BackgroundImage = character.attack_frame;//Switch(-> attack frame)
-                if (characterImage.Name == "ComputerBox") { characterImage.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY); } //AI Flip
+                Image attackImage = (Image)character.attack_frame.Clone(); // Clone the attack frame
+                if (characterImage.Name == "ComputerBox")
+                {
+                    attackImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                } //AI Flip
 
-                await Task.Delay(500);//Wait (delay between frames)
+                characterImage.BackgroundImage = attackImage;//Set image
+                await Task.Delay(500);//Wait
 
                 //Go back to base frame
                 characterImage.BackgroundImage = baseImage; //Switch(-> idle frame)
@@ -67,10 +71,14 @@ namespace WinForms_JeuCombat
             }
             else if (action == Form1.ActionChoice.Spell)
             {
-
                 //Setup the image to use
-                characterImage.BackgroundImage = character.spell_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerBox") { characterImage.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY); }
+                Image spellImage = (Image)character.spell_frame.Clone(); // Clone the spell frame
+                if (characterImage.Name == "ComputerBox")
+                {
+                    spellImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                }
+
+                characterImage.BackgroundImage = spellImage;
 
                 await Task.Delay(500);
 

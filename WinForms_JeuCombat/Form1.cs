@@ -591,7 +591,7 @@ namespace WinForms_JeuCombat
             //Get AI choice
             Characters _aiCharacter = new Characters(classList[rand_index]);
 
-            _aiCharacter.idle_frame = (Image)classList[rand_index].idle_frame.Clone();
+            _aiCharacter.idle_frame = (Image)_aiCharacter.idle_frame.Clone();
 
             //Update AI sprite (Idle) with cloned image
             compBox.BackgroundImage = _aiCharacter.idle_frame;
