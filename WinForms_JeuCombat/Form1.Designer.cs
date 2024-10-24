@@ -289,7 +289,7 @@
             Heart1Player.BackgroundImageLayout = ImageLayout.Stretch;
             Heart1Player.Location = new Point(12, 12);
             Heart1Player.Name = "Heart1Player";
-            Heart1Player.Size = new Size(94, 90);
+            Heart1Player.Size = new Size(85, 80);
             Heart1Player.TabIndex = 14;
             Heart1Player.TabStop = false;
             Heart1Player.Visible = false;
@@ -301,7 +301,7 @@
             Heart2Player.BackgroundImageLayout = ImageLayout.Stretch;
             Heart2Player.Location = new Point(112, 12);
             Heart2Player.Name = "Heart2Player";
-            Heart2Player.Size = new Size(94, 90);
+            Heart2Player.Size = new Size(85, 80);
             Heart2Player.TabIndex = 15;
             Heart2Player.TabStop = false;
             Heart2Player.Visible = false;
@@ -313,7 +313,7 @@
             Heart4Player.BackgroundImageLayout = ImageLayout.Stretch;
             Heart4Player.Location = new Point(313, 12);
             Heart4Player.Name = "Heart4Player";
-            Heart4Player.Size = new Size(94, 90);
+            Heart4Player.Size = new Size(85, 80);
             Heart4Player.TabIndex = 17;
             Heart4Player.TabStop = false;
             Heart4Player.Visible = false;
@@ -325,7 +325,7 @@
             Heart3Player.BackgroundImageLayout = ImageLayout.Stretch;
             Heart3Player.Location = new Point(213, 12);
             Heart3Player.Name = "Heart3Player";
-            Heart3Player.Size = new Size(94, 90);
+            Heart3Player.Size = new Size(85, 80);
             Heart3Player.TabIndex = 16;
             Heart3Player.TabStop = false;
             Heart3Player.Visible = false;
@@ -337,7 +337,7 @@
             Heart5Player.BackgroundImageLayout = ImageLayout.Stretch;
             Heart5Player.Location = new Point(413, 12);
             Heart5Player.Name = "Heart5Player";
-            Heart5Player.Size = new Size(94, 90);
+            Heart5Player.Size = new Size(85, 80);
             Heart5Player.TabIndex = 18;
             Heart5Player.TabStop = false;
             Heart5Player.Visible = false;
@@ -349,7 +349,7 @@
             Heart5AI.BackgroundImageLayout = ImageLayout.Stretch;
             Heart5AI.Location = new Point(1812, 12);
             Heart5AI.Name = "Heart5AI";
-            Heart5AI.Size = new Size(94, 90);
+            Heart5AI.Size = new Size(85, 80);
             Heart5AI.TabIndex = 23;
             Heart5AI.TabStop = false;
             Heart5AI.Visible = false;
@@ -361,7 +361,7 @@
             Heart4AI.BackgroundImageLayout = ImageLayout.Stretch;
             Heart4AI.Location = new Point(1712, 12);
             Heart4AI.Name = "Heart4AI";
-            Heart4AI.Size = new Size(94, 90);
+            Heart4AI.Size = new Size(85, 80);
             Heart4AI.TabIndex = 22;
             Heart4AI.TabStop = false;
             Heart4AI.Visible = false;
@@ -373,7 +373,7 @@
             Heart3AI.BackgroundImageLayout = ImageLayout.Stretch;
             Heart3AI.Location = new Point(1612, 12);
             Heart3AI.Name = "Heart3AI";
-            Heart3AI.Size = new Size(94, 90);
+            Heart3AI.Size = new Size(85, 80);
             Heart3AI.TabIndex = 21;
             Heart3AI.TabStop = false;
             Heart3AI.Visible = false;
@@ -385,7 +385,7 @@
             Heart2AI.BackgroundImageLayout = ImageLayout.Stretch;
             Heart2AI.Location = new Point(1511, 12);
             Heart2AI.Name = "Heart2AI";
-            Heart2AI.Size = new Size(94, 90);
+            Heart2AI.Size = new Size(85, 80);
             Heart2AI.TabIndex = 20;
             Heart2AI.TabStop = false;
             Heart2AI.Visible = false;
@@ -397,7 +397,7 @@
             Heart1AI.BackgroundImageLayout = ImageLayout.Stretch;
             Heart1AI.Location = new Point(1411, 12);
             Heart1AI.Name = "Heart1AI";
-            Heart1AI.Size = new Size(94, 90);
+            Heart1AI.Size = new Size(85, 80);
             Heart1AI.TabIndex = 19;
             Heart1AI.TabStop = false;
             Heart1AI.Visible = false;

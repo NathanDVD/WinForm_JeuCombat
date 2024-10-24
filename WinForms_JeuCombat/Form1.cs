@@ -123,6 +123,8 @@ namespace WinForms_JeuCombat
         //Uses list to hide hearts that the player lost or doesn't have
         void Power(Characters player, Characters ai)
         {
+
+            MessageBox.Show("WHY");
             //Get power visuals form ai and player
             List<PictureBox> PowerPlayer = new List<PictureBox> { Power1Player, Power2Player };
             List<PictureBox> PowerAI = new List<PictureBox> { Power1AI, Power2AI };
@@ -155,7 +157,7 @@ namespace WinForms_JeuCombat
                 PowerAI[1].Visible = true;
             }
         }
-        void Health(Characters player, Characters ai)
+        void HeartDisplay(Characters player, Characters ai)
         {
             //Get all the hearts
             List<PictureBox> HeartsPlayer = new List<PictureBox> { Heart1Player, Heart2Player, Heart3Player, Heart4Player, Heart5Player };
@@ -374,7 +376,7 @@ namespace WinForms_JeuCombat
             DisplayHealth(playerCharacter, AICharacter, tBox);
 
             //Update health and power(fist)
-            Health(playerCharacter, AICharacter);
+            HeartDisplay(playerCharacter, AICharacter);
             Power(playerCharacter, AICharacter);
 
 
@@ -400,7 +402,7 @@ namespace WinForms_JeuCombat
                 Fight(playerCharacter, AICharacter, tBox);
 
                 //Update health
-                Health(playerCharacter, AICharacter);
+                HeartDisplay(playerCharacter, AICharacter);
                 Power(playerCharacter, AICharacter);
 
                 //Show game state
@@ -541,7 +543,7 @@ namespace WinForms_JeuCombat
             await Task.Delay(500);
 
             //Animate the character using this function
-            AnimationClass.CharacterAnim(ai ,compBox, -1, ai.action);
+            AnimationClass.CharacterAnim(ai, compBox, -1, ai.action);
         }
 
         //Find / Get the player choice

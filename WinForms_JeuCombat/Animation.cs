@@ -46,7 +46,7 @@ namespace WinForms_JeuCombat
         //Character animations  --> Faire ici le chagement de frame
         //
         //___________________________________________________________________________________________________________
-        public static async void CharacterAnim(Form1.Characters character ,PictureBox characterImage, int xDirection, Form1.ActionChoice action)
+        public static async void CharacterAnim(Form1.Characters character, PictureBox characterImage, int xDirection, Form1.ActionChoice action)
         {
             Image baseImage = character.idle_frame;
 
@@ -54,27 +54,28 @@ namespace WinForms_JeuCombat
             {
                 XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
-                await Task.Delay(500);//Wait
                 //Setup the image to use
                 characterImage.Image = character.attack_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
+                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
 
+                await Task.Delay(500);//Wait
+               
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
                 await Task.Delay(500);
 
                 //Go back to base frame
                 characterImage.Image = baseImage;
             }
-            else if (action == Form1.ActionChoice.Defend) 
+            else if (action == Form1.ActionChoice.Defend)
             {
                 //Defend action, maybe pass
             }
             else if (action == Form1.ActionChoice.Spell)
             {
-  
+
                 //Setup the image to use
                 characterImage.Image = character.spell_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
+                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
 
                 await Task.Delay(500);
 
