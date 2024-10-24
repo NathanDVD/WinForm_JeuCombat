@@ -7,6 +7,8 @@
 - Hugo Impérat
 - Samuel Bugeas
 
+Résolution recommandé : 1920 x 1080 ou 1920x1200
+
 Outils utilisés :
 C#
 Visual Studio 2022 (Application Windows Form)
