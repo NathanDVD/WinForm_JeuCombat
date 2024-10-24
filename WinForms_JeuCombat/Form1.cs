@@ -254,18 +254,24 @@ namespace WinForms_JeuCombat
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
                 MessageText.Image = Image.FromFile("./Images/UIElements/you_win.png");
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 260, 755);
+                RestartButton.Visible = true;
             }
             if (text == "lose")
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
                 MessageText.Image = Image.FromFile("./Images/UIElements/you_lose.png");
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 260, 755);
+                RestartButton.Visible = true;
             }
             if (text == "nowinner")
             {
                 MessageText.Location = new Point((this.Width / 5) - 250, 500);
                 MessageText.Image = Image.FromFile("./Images/UIElements/no_winner.png");
                 MessageText.Visible = true;
+                RestartButton.Location = new Point((this.Width / 2) - 260, 755);
+                RestartButton.Visible = true;
             }
         }
 
@@ -639,7 +645,7 @@ namespace WinForms_JeuCombat
 
 
         //End game conditions
-         bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
+        bool isEndGame(Characters playerCharacter, Characters aiCharacter, TextBox tBox)
         {
             //Set player and ai death condition(if health is = or < 0)
             bool playerIsDead = playerCharacter.curHealth <= 0;
@@ -707,6 +713,11 @@ namespace WinForms_JeuCombat
         {
             //Check if a character is poisoned
             return (bool)character.isPoisoned;
+        }
+
+        private void RestartButton_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

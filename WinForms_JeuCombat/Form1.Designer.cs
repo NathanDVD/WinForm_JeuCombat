@@ -57,6 +57,7 @@
             Power1AI = new PictureBox();
             MessageText = new PictureBox();
             textBox1 = new TextBox();
+            RestartButton = new Button();
             ((System.ComponentModel.ISupportInitialize)PlayerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComputerBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImageLogo).BeginInit();
@@ -88,10 +89,10 @@
             PlayButton.FlatStyle = FlatStyle.Flat;
             PlayButton.ForeColor = Color.Transparent;
             PlayButton.Image = (Image)resources.GetObject("PlayButton.Image");
-            PlayButton.Location = new Point(213, 287);
+            PlayButton.Location = new Point(304, 478);
             PlayButton.Margin = new Padding(0);
             PlayButton.Name = "PlayButton";
-            PlayButton.Size = new Size(597, 110);
+            PlayButton.Size = new Size(853, 183);
             PlayButton.TabIndex = 0;
             PlayButton.TextImageRelation = TextImageRelation.ImageAboveText;
             PlayButton.UseVisualStyleBackColor = false;
@@ -108,10 +109,10 @@
             QuitButton.FlatStyle = FlatStyle.Flat;
             QuitButton.ForeColor = Color.Transparent;
             QuitButton.Image = (Image)resources.GetObject("QuitButton.Image");
-            QuitButton.Location = new Point(210, 397);
+            QuitButton.Location = new Point(300, 662);
             QuitButton.Margin = new Padding(0);
             QuitButton.Name = "QuitButton";
-            QuitButton.Size = new Size(597, 106);
+            QuitButton.Size = new Size(853, 177);
             QuitButton.TabIndex = 1;
             QuitButton.TextImageRelation = TextImageRelation.ImageAboveText;
             QuitButton.UseVisualStyleBackColor = false;
@@ -127,9 +128,10 @@
             DamagerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DamagerButton.FlatStyle = FlatStyle.Flat;
             DamagerButton.ForeColor = Color.Transparent;
-            DamagerButton.Location = new Point(0, -30);
+            DamagerButton.Location = new Point(0, -50);
+            DamagerButton.Margin = new Padding(4, 5, 4, 5);
             DamagerButton.Name = "DamagerButton";
-            DamagerButton.Size = new Size(75, 23);
+            DamagerButton.Size = new Size(107, 38);
             DamagerButton.TabIndex = 3;
             DamagerButton.Tag = "1";
             DamagerButton.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -146,9 +148,10 @@
             HealerButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             HealerButton.FlatStyle = FlatStyle.Flat;
             HealerButton.ForeColor = Color.Transparent;
-            HealerButton.Location = new Point(0, -30);
+            HealerButton.Location = new Point(0, -50);
+            HealerButton.Margin = new Padding(4, 5, 4, 5);
             HealerButton.Name = "HealerButton";
-            HealerButton.Size = new Size(75, 23);
+            HealerButton.Size = new Size(107, 38);
             HealerButton.TabIndex = 4;
             HealerButton.Tag = "2";
             HealerButton.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -164,9 +167,10 @@
             TankButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             TankButton.FlatStyle = FlatStyle.Flat;
             TankButton.ForeColor = Color.Transparent;
-            TankButton.Location = new Point(0, -30);
+            TankButton.Location = new Point(0, -50);
+            TankButton.Margin = new Padding(4, 5, 4, 5);
             TankButton.Name = "TankButton";
-            TankButton.Size = new Size(75, 23);
+            TankButton.Size = new Size(107, 38);
             TankButton.TabIndex = 5;
             TankButton.Tag = "3";
             TankButton.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -182,9 +186,10 @@
             AssasinButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AssasinButton.FlatStyle = FlatStyle.Flat;
             AssasinButton.ForeColor = Color.Transparent;
-            AssasinButton.Location = new Point(0, -30);
+            AssasinButton.Location = new Point(0, -50);
+            AssasinButton.Margin = new Padding(4, 5, 4, 5);
             AssasinButton.Name = "AssasinButton";
-            AssasinButton.Size = new Size(75, 23);
+            AssasinButton.Size = new Size(107, 38);
             AssasinButton.TabIndex = 6;
             AssasinButton.Tag = "4";
             AssasinButton.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -201,9 +206,10 @@
             AttackButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             AttackButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             AttackButton.FlatStyle = FlatStyle.Flat;
-            AttackButton.Location = new Point(-100, -100);
+            AttackButton.Location = new Point(-143, -167);
+            AttackButton.Margin = new Padding(4, 5, 4, 5);
             AttackButton.Name = "AttackButton";
-            AttackButton.Size = new Size(132, 132);
+            AttackButton.Size = new Size(189, 220);
             AttackButton.TabIndex = 8;
             AttackButton.Tag = "1";
             AttackButton.UseVisualStyleBackColor = false;
@@ -219,9 +225,10 @@
             DefendButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             DefendButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             DefendButton.FlatStyle = FlatStyle.Flat;
-            DefendButton.Location = new Point(-100, -100);
+            DefendButton.Location = new Point(-143, -167);
+            DefendButton.Margin = new Padding(4, 5, 4, 5);
             DefendButton.Name = "DefendButton";
-            DefendButton.Size = new Size(132, 132);
+            DefendButton.Size = new Size(189, 220);
             DefendButton.TabIndex = 9;
             DefendButton.Tag = "2";
             DefendButton.UseVisualStyleBackColor = false;
@@ -237,9 +244,10 @@
             SpellButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
             SpellButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
             SpellButton.FlatStyle = FlatStyle.Flat;
-            SpellButton.Location = new Point(-100, -100);
+            SpellButton.Location = new Point(-143, -167);
+            SpellButton.Margin = new Padding(4, 5, 4, 5);
             SpellButton.Name = "SpellButton";
-            SpellButton.Size = new Size(128, 128);
+            SpellButton.Size = new Size(183, 213);
             SpellButton.TabIndex = 10;
             SpellButton.Tag = "3";
             SpellButton.UseVisualStyleBackColor = false;
@@ -249,9 +257,10 @@
             // 
             PlayerBox.BackColor = Color.Transparent;
             PlayerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            PlayerBox.Location = new Point(-300, 0);
+            PlayerBox.Location = new Point(-429, 0);
+            PlayerBox.Margin = new Padding(4, 5, 4, 5);
             PlayerBox.Name = "PlayerBox";
-            PlayerBox.Size = new Size(192, 192);
+            PlayerBox.Size = new Size(274, 320);
             PlayerBox.TabIndex = 11;
             PlayerBox.TabStop = false;
             PlayerBox.WaitOnLoad = true;
@@ -260,9 +269,10 @@
             // 
             ComputerBox.BackColor = Color.Transparent;
             ComputerBox.BackgroundImageLayout = ImageLayout.Stretch;
-            ComputerBox.Location = new Point(-300, 0);
+            ComputerBox.Location = new Point(-429, 0);
+            ComputerBox.Margin = new Padding(4, 5, 4, 5);
             ComputerBox.Name = "ComputerBox";
-            ComputerBox.Size = new Size(192, 192);
+            ComputerBox.Size = new Size(274, 320);
             ComputerBox.TabIndex = 12;
             ComputerBox.TabStop = false;
             ComputerBox.WaitOnLoad = true;
@@ -272,9 +282,10 @@
             ImageLogo.BackColor = Color.Transparent;
             ImageLogo.BackgroundImage = (Image)resources.GetObject("ImageLogo.BackgroundImage");
             ImageLogo.BackgroundImageLayout = ImageLayout.Stretch;
-            ImageLogo.Location = new Point(210, 506);
+            ImageLogo.Location = new Point(300, 843);
+            ImageLogo.Margin = new Padding(4, 5, 4, 5);
             ImageLogo.Name = "ImageLogo";
-            ImageLogo.Size = new Size(600, 300);
+            ImageLogo.Size = new Size(857, 500);
             ImageLogo.TabIndex = 13;
             ImageLogo.TabStop = false;
             ImageLogo.WaitOnLoad = true;
@@ -284,9 +295,10 @@
             Heart1Player.BackColor = Color.Transparent;
             Heart1Player.BackgroundImage = (Image)resources.GetObject("Heart1Player.BackgroundImage");
             Heart1Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart1Player.Location = new Point(12, 12);
+            Heart1Player.Location = new Point(17, 20);
+            Heart1Player.Margin = new Padding(4, 5, 4, 5);
             Heart1Player.Name = "Heart1Player";
-            Heart1Player.Size = new Size(66, 54);
+            Heart1Player.Size = new Size(94, 90);
             Heart1Player.TabIndex = 14;
             Heart1Player.TabStop = false;
             Heart1Player.Visible = false;
@@ -296,9 +308,10 @@
             Heart2Player.BackColor = Color.Transparent;
             Heart2Player.BackgroundImage = (Image)resources.GetObject("Heart2Player.BackgroundImage");
             Heart2Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart2Player.Location = new Point(112, 12);
+            Heart2Player.Location = new Point(160, 20);
+            Heart2Player.Margin = new Padding(4, 5, 4, 5);
             Heart2Player.Name = "Heart2Player";
-            Heart2Player.Size = new Size(66, 54);
+            Heart2Player.Size = new Size(94, 90);
             Heart2Player.TabIndex = 15;
             Heart2Player.TabStop = false;
             Heart2Player.Visible = false;
@@ -308,9 +321,10 @@
             Heart4Player.BackColor = Color.Transparent;
             Heart4Player.BackgroundImage = (Image)resources.GetObject("Heart4Player.BackgroundImage");
             Heart4Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart4Player.Location = new Point(313, 12);
+            Heart4Player.Location = new Point(447, 20);
+            Heart4Player.Margin = new Padding(4, 5, 4, 5);
             Heart4Player.Name = "Heart4Player";
-            Heart4Player.Size = new Size(66, 54);
+            Heart4Player.Size = new Size(94, 90);
             Heart4Player.TabIndex = 17;
             Heart4Player.TabStop = false;
             Heart4Player.Visible = false;
@@ -320,9 +334,10 @@
             Heart3Player.BackColor = Color.Transparent;
             Heart3Player.BackgroundImage = (Image)resources.GetObject("Heart3Player.BackgroundImage");
             Heart3Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart3Player.Location = new Point(213, 12);
+            Heart3Player.Location = new Point(304, 20);
+            Heart3Player.Margin = new Padding(4, 5, 4, 5);
             Heart3Player.Name = "Heart3Player";
-            Heart3Player.Size = new Size(66, 54);
+            Heart3Player.Size = new Size(94, 90);
             Heart3Player.TabIndex = 16;
             Heart3Player.TabStop = false;
             Heart3Player.Visible = false;
@@ -332,9 +347,10 @@
             Heart5Player.BackColor = Color.Transparent;
             Heart5Player.BackgroundImage = (Image)resources.GetObject("Heart5Player.BackgroundImage");
             Heart5Player.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart5Player.Location = new Point(413, 12);
+            Heart5Player.Location = new Point(590, 20);
+            Heart5Player.Margin = new Padding(4, 5, 4, 5);
             Heart5Player.Name = "Heart5Player";
-            Heart5Player.Size = new Size(66, 54);
+            Heart5Player.Size = new Size(94, 90);
             Heart5Player.TabIndex = 18;
             Heart5Player.TabStop = false;
             Heart5Player.Visible = false;
@@ -344,9 +360,10 @@
             Heart5AI.BackColor = Color.Transparent;
             Heart5AI.BackgroundImage = (Image)resources.GetObject("Heart5AI.BackgroundImage");
             Heart5AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart5AI.Location = new Point(1812, 12);
+            Heart5AI.Location = new Point(2589, 20);
+            Heart5AI.Margin = new Padding(4, 5, 4, 5);
             Heart5AI.Name = "Heart5AI";
-            Heart5AI.Size = new Size(66, 54);
+            Heart5AI.Size = new Size(94, 90);
             Heart5AI.TabIndex = 23;
             Heart5AI.TabStop = false;
             Heart5AI.Visible = false;
@@ -356,9 +373,10 @@
             Heart4AI.BackColor = Color.Transparent;
             Heart4AI.BackgroundImage = (Image)resources.GetObject("Heart4AI.BackgroundImage");
             Heart4AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart4AI.Location = new Point(1712, 12);
+            Heart4AI.Location = new Point(2446, 20);
+            Heart4AI.Margin = new Padding(4, 5, 4, 5);
             Heart4AI.Name = "Heart4AI";
-            Heart4AI.Size = new Size(66, 54);
+            Heart4AI.Size = new Size(94, 90);
             Heart4AI.TabIndex = 22;
             Heart4AI.TabStop = false;
             Heart4AI.Visible = false;
@@ -368,9 +386,10 @@
             Heart3AI.BackColor = Color.Transparent;
             Heart3AI.BackgroundImage = (Image)resources.GetObject("Heart3AI.BackgroundImage");
             Heart3AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart3AI.Location = new Point(1612, 12);
+            Heart3AI.Location = new Point(2303, 20);
+            Heart3AI.Margin = new Padding(4, 5, 4, 5);
             Heart3AI.Name = "Heart3AI";
-            Heart3AI.Size = new Size(66, 54);
+            Heart3AI.Size = new Size(94, 90);
             Heart3AI.TabIndex = 21;
             Heart3AI.TabStop = false;
             Heart3AI.Visible = false;
@@ -380,9 +399,10 @@
             Heart2AI.BackColor = Color.Transparent;
             Heart2AI.BackgroundImage = (Image)resources.GetObject("Heart2AI.BackgroundImage");
             Heart2AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart2AI.Location = new Point(1511, 12);
+            Heart2AI.Location = new Point(2159, 20);
+            Heart2AI.Margin = new Padding(4, 5, 4, 5);
             Heart2AI.Name = "Heart2AI";
-            Heart2AI.Size = new Size(66, 54);
+            Heart2AI.Size = new Size(94, 90);
             Heart2AI.TabIndex = 20;
             Heart2AI.TabStop = false;
             Heart2AI.Visible = false;
@@ -392,9 +412,10 @@
             Heart1AI.BackColor = Color.Transparent;
             Heart1AI.BackgroundImage = (Image)resources.GetObject("Heart1AI.BackgroundImage");
             Heart1AI.BackgroundImageLayout = ImageLayout.Stretch;
-            Heart1AI.Location = new Point(1411, 12);
+            Heart1AI.Location = new Point(2016, 20);
+            Heart1AI.Margin = new Padding(4, 5, 4, 5);
             Heart1AI.Name = "Heart1AI";
-            Heart1AI.Size = new Size(66, 54);
+            Heart1AI.Size = new Size(94, 90);
             Heart1AI.TabIndex = 19;
             Heart1AI.TabStop = false;
             Heart1AI.Visible = false;
@@ -404,9 +425,10 @@
             Power2Player.BackColor = Color.Transparent;
             Power2Player.BackgroundImage = (Image)resources.GetObject("Power2Player.BackgroundImage");
             Power2Player.BackgroundImageLayout = ImageLayout.Center;
-            Power2Player.Location = new Point(112, 148);
+            Power2Player.Location = new Point(160, 247);
+            Power2Player.Margin = new Padding(4, 5, 4, 5);
             Power2Player.Name = "Power2Player";
-            Power2Player.Size = new Size(95, 95);
+            Power2Player.Size = new Size(136, 158);
             Power2Player.TabIndex = 25;
             Power2Player.TabStop = false;
             Power2Player.Visible = false;
@@ -416,9 +438,10 @@
             Power1Player.BackColor = Color.Transparent;
             Power1Player.BackgroundImage = (Image)resources.GetObject("Power1Player.BackgroundImage");
             Power1Player.BackgroundImageLayout = ImageLayout.Center;
-            Power1Player.Location = new Point(12, 148);
+            Power1Player.Location = new Point(17, 247);
+            Power1Player.Margin = new Padding(4, 5, 4, 5);
             Power1Player.Name = "Power1Player";
-            Power1Player.Size = new Size(95, 95);
+            Power1Player.Size = new Size(136, 158);
             Power1Player.SizeMode = PictureBoxSizeMode.CenterImage;
             Power1Player.TabIndex = 24;
             Power1Player.TabStop = false;
@@ -429,9 +452,10 @@
             Power2AI.BackColor = Color.Transparent;
             Power2AI.BackgroundImage = (Image)resources.GetObject("Power2AI.BackgroundImage");
             Power2AI.BackgroundImageLayout = ImageLayout.Center;
-            Power2AI.Location = new Point(1812, 148);
+            Power2AI.Location = new Point(2589, 247);
+            Power2AI.Margin = new Padding(4, 5, 4, 5);
             Power2AI.Name = "Power2AI";
-            Power2AI.Size = new Size(95, 95);
+            Power2AI.Size = new Size(136, 158);
             Power2AI.TabIndex = 27;
             Power2AI.TabStop = false;
             Power2AI.Visible = false;
@@ -441,9 +465,10 @@
             Power1AI.BackColor = Color.Transparent;
             Power1AI.BackgroundImage = (Image)resources.GetObject("Power1AI.BackgroundImage");
             Power1AI.BackgroundImageLayout = ImageLayout.Center;
-            Power1AI.Location = new Point(1712, 148);
+            Power1AI.Location = new Point(2446, 247);
+            Power1AI.Margin = new Padding(4, 5, 4, 5);
             Power1AI.Name = "Power1AI";
-            Power1AI.Size = new Size(95, 95);
+            Power1AI.Size = new Size(136, 158);
             Power1AI.TabIndex = 26;
             Power1AI.TabStop = false;
             Power1AI.Visible = false;
@@ -452,10 +477,9 @@
             // 
             MessageText.BackColor = Color.Transparent;
             MessageText.Image = (Image)resources.GetObject("MessageText.Image");
-            MessageText.Location = new Point(-206, 100);
-            MessageText.Margin = new Padding(2);
+            MessageText.Location = new Point(-294, 167);
             MessageText.Name = "MessageText";
-            MessageText.Size = new Size(1695, 185);
+            MessageText.Size = new Size(2421, 308);
             MessageText.SizeMode = PictureBoxSizeMode.CenterImage;
             MessageText.TabIndex = 28;
             MessageText.TabStop = false;
@@ -465,22 +489,45 @@
             // 
             textBox1.AcceptsReturn = true;
             textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.Location = new Point(929, 287);
+            textBox1.Location = new Point(1327, 478);
+            textBox1.Margin = new Padding(4, 5, 4, 5);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(583, 265);
+            textBox1.Size = new Size(831, 439);
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
+            // RestartButton
+            // 
+            RestartButton.BackColor = Color.Transparent;
+            RestartButton.BackgroundImageLayout = ImageLayout.Center;
+            RestartButton.Cursor = Cursors.Hand;
+            RestartButton.FlatAppearance.BorderSize = 0;
+            RestartButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            RestartButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            RestartButton.FlatStyle = FlatStyle.Flat;
+            RestartButton.ForeColor = Color.Transparent;
+            RestartButton.Image = (Image)resources.GetObject("RestartButton.Image");
+            RestartButton.Location = new Point(765, 958);
+            RestartButton.Margin = new Padding(0);
+            RestartButton.Name = "RestartButton";
+            RestartButton.Size = new Size(853, 177);
+            RestartButton.TabIndex = 29;
+            RestartButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            RestartButton.UseVisualStyleBackColor = false;
+            RestartButton.Visible = false;
+            RestartButton.Click += RestartButton_Click;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1358, 732);
+            ClientSize = new Size(1940, 1220);
+            Controls.Add(RestartButton);
             Controls.Add(MessageText);
             Controls.Add(Power2AI);
             Controls.Add(Power1AI);
@@ -511,9 +558,10 @@
             Controls.Add(PlayButton);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
-            MaximumSize = new Size(1920, 1200);
-            MinimumSize = new Size(1343, 690);
+            MaximumSize = new Size(2743, 2000);
+            MinimumSize = new Size(1919, 1150);
             Name = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
@@ -569,5 +617,6 @@
         private PictureBox Power1AI;
         private PictureBox MessageText;
         private TextBox textBox1;
+        private Button RestartButton;
     }
 }
