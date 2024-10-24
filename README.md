@@ -18,8 +18,8 @@ L'ordinateur, lui, choisit aléatoirement.
 Lorsque la vie d'un des joueurs(ou les deux) atteint 0, la partie est perdue. 
 A chaque tour, les actions sont jouées simultanément, il peut donc y avoir une égalité.
 
-
-### Interactions avec le programme :
+-----------------------------------
+Interactions avec le programme :
 
 L'implementation visuelle du jeu s'est faite sur Windows Form. L'application possède donc des boutons pour récupérer les choix du joueur.
 
