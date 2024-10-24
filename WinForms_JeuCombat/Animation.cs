@@ -73,13 +73,13 @@ namespace WinForms_JeuCombat
             {
 
                 //Setup the image to use
-                characterImage.Image = character.spell_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
+                characterImage.BackgroundImage = character.spell_frame;//"Play" attack animation
+                if (characterImage.Name == "ComputerBox") { characterImage.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY); }
 
                 await Task.Delay(500);
 
                 //Go back to base frame
-                characterImage.Image = baseImage;
+                characterImage.BackgroundImage = baseImage;
             }
         }
 
