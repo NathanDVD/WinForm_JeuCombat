@@ -54,11 +54,12 @@ namespace WinForms_JeuCombat
             {
                 XMovement(characterImage, xDirection);//XMovement one way (positive X)
 
-                await Task.Delay(500);//Wait
                 //Setup the image to use
                 characterImage.Image = character.attack_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
+                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); Debug.WriteLine("HAoaaaher"); }
 
+                await Task.Delay(500);//Wait
+               
                 XMovement(characterImage, -xDirection);//Reverse the animation (negative X)
                 await Task.Delay(500);
 
@@ -74,7 +75,7 @@ namespace WinForms_JeuCombat
 
                 //Setup the image to use
                 characterImage.Image = character.spell_frame;//"Play" attack animation
-                if (characterImage.Name == "ComputerImage") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
+                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); }
 
                 await Task.Delay(500);
 
