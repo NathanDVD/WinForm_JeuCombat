@@ -52,18 +52,14 @@ namespace WinForms_JeuCombat
 
             if (action == Form1.ActionChoice.Attack)  //MOVEMENT
             {
-                //XMovement(characterImage, xDirection);//XMovement one way (positive X)
-
                 //Setup the image to use
-                characterImage.Image = character.attack_frame;//Switch(-> attack frame)
-                if (characterImage.Name == "ComputerBox") { characterImage.Image.RotateFlip(RotateFlipType.Rotate180FlipY); } //AI Flip
+                characterImage.BackgroundImage = character.attack_frame;//Switch(-> attack frame)
+                if (characterImage.Name == "ComputerBox") { characterImage.BackgroundImage.RotateFlip(RotateFlipType.Rotate180FlipY); } //AI Flip
 
                 await Task.Delay(500);//Wait (delay between frames)
 
                 //Go back to base frame
-                characterImage.Image = baseImage; //Switch(-> idle frame)
-
-                //XMovement(characterImage, -xDirection);//Reverse XMovement (negative X)
+                characterImage.BackgroundImage = baseImage; //Switch(-> idle frame)
             }
             else if (action == Form1.ActionChoice.Defend)
             {
@@ -84,33 +80,6 @@ namespace WinForms_JeuCombat
         }
 
 
-        //<<<<<<<<<<<<<<<<<<<<<<<<<<----------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        //
-        //Movement logic :
-        //Take image location, set a new location every 20ms by the chosen offset multiplied by the speed(which is incremental)
-        //in the chosen direction, only if the xDirection is not 0.
-        //It also works with anything that has a location parameter, you just need to change PictureBox to Control.
-        //
-        //___________________________________________________________________________________________________________
-        public async static void XMovement(PictureBox characterImage, int xDirection)
-        {
-            Point startLocation = characterImage.Location;//Set start location
-
-            int targetX = startLocation.X + (xDirection * 200);//Calculate end locations
-
-            int speed = 0;//Reset speed
-
-            if (xDirection != 0)
-            {
-                //While loop to move the image until it reaches the set destination (for the X axis)
-                while ((xDirection == 1 && startLocation.X < targetX) || (xDirection == -1 && startLocation.X > targetX))
-                {
-                    speed += 2;//Incremental speed
-                    startLocation.X += xDirection * speed;//Move in the direction based on xDirection (-1 to 1) multiplied by speed
-                    characterImage.Location = new Point(startLocation.X, startLocation.Y);
-                    await Task.Delay(20);//Wait
-                }
-            }
-        }
+        
     }
 }
